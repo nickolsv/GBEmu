@@ -23,13 +23,13 @@ int cpu::op_LD_BCnn(void)
     val = mainMemory.readAddress(addr);
 
     registers["BC"]->setLowValue(val);
-    registers["BC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     addr = registers["PC"]->getTotalValue();
     val = mainMemory.readAddress(addr);
 
     registers["BC"]->setHighValue(val);
-    registers["BC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     return 12;
 }
@@ -37,8 +37,8 @@ int cpu::op_LD_BCnn(void)
 int cpu::op_LD_BCA(void)
 {
     // opCode 0x02
-    // Loads value in register A into
-    // byte pointed to by register BC
+    // Loads value in register A into memory
+    // location pointed to by register BC
     // 8 Cycles, 1 byte
 
     uint16_t addr;
@@ -104,8 +104,15 @@ int cpu::op_LD_Bn(void)
     // into B register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
 
+    addr = registers["PC"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    registers["BC"]->setHighValue(val);
+    registers["PC"]->incrementRegister();
+    
     return 8;
 }
 
@@ -148,7 +155,8 @@ int cpu::op_ADD_HLBC(void)
 int cpu::op_LD_ABC(void)
 {
     // opCode 0x0A
-    // Loads BC into A
+    // Loads the value pointed to by
+    // register BC into register A
     // 8 Cycles, 1 byte
 
     // TODO: Implement
