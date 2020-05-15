@@ -60,6 +60,35 @@ void register16::incrementRegister(void)
     setTotalValue(regVal);
 }
 
+void register16::incrementHighRegister(void)
+{
+    high.incrementRegister();
+}
+
+void register16::incrementLowRegister(void)
+{
+    low.incrementRegister();
+}
+
+void register16::decrementRegister(void)
+{
+    uint16_t regVal = getTotalValue();
+
+    regVal--;
+    setTotalValue(regVal);
+}
+
+void register16::decrementHighRegister(void)
+{
+    high.decrementRegister();
+}
+
+void register16::decrementLowRegister(void)
+{
+    low.decrementRegister();
+}
+
+
 
 
 register8::register8()
@@ -81,4 +110,14 @@ uint8_t register8::getValue()
 void register8::setValue(uint8_t val)
 {
     data = val;
+}
+
+void register8::incrementRegister(void)
+{
+    data++;
+}
+
+void register8::decrementRegister(void)
+{
+    data--;
 }

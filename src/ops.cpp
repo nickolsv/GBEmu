@@ -67,10 +67,15 @@ int cpu::op_INC_B(void)
 {
     // opCode 0x04
     // Increments value in register B by 1
-    // Possibly Sets Flags: Z,N,H
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["BC"]->incrementHighRegister();
+
+    // TODO: Set Flags
 
     return 4;
 }
@@ -79,10 +84,15 @@ int cpu::op_DEC_B(void)
 {
     // opCode 0x05
     // Decrements value in register B by 1
-    // Possibly Sets Flags: Z,N,H
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["BC"]->decrementHighRegister();
+
+    // TODO: Set Flags
 
     return 4;
 }

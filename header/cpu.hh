@@ -1,9 +1,9 @@
+#ifndef __GB_CPU_HH__
+#define __GB_CPU_HH__
+
 #include <map>
 #include "../header/registers.hh"
 #include "../header/memory.hh"
-
-#ifndef __GB_CPU_HH__
-#define __GB_CPU_HH__
 
 // High Registers: A, B, D, H, Hi Bits of SP, Hi Bits of PC
 // Low Registers : F, C, E, L, Lo Bits of SP, Lo Bits of PC

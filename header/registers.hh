@@ -12,6 +12,9 @@ class register8
         ~register8();
         uint8_t getValue();
         void setValue(uint8_t);
+        
+        void incrementRegister();
+        void decrementRegister();
 };
 
 // The Gameboy has eight 8-bit ( A,B,C,D,E,H,L )
@@ -39,6 +42,11 @@ class register16
         void setTotalValue(uint16_t);
 
         void incrementRegister();
+        void incrementHighRegister();
+        void incrementLowRegister();
+        void decrementRegister();
+        void decrementHighRegister();
+        void decrementLowRegister();
 };
 
 #endif
