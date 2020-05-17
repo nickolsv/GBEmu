@@ -3,6 +3,7 @@
 int cpu::op_NOOP(void)
 {
     // opCode 0x00
+    // NOOP
     // Does Nothing
     // 4 Cycles, 1 byte
 
@@ -12,6 +13,7 @@ int cpu::op_NOOP(void)
 int cpu::op_LD_BCnn(void)
 {
     // opCode 0x01
+    // LD BC, nn
     // Loads next 2 bytes of memory
     // into BC register
     // 12 Cycles, 3 bytes
@@ -37,6 +39,7 @@ int cpu::op_LD_BCnn(void)
 int cpu::op_LD_BCA(void)
 {
     // opCode 0x02
+    // LD (BC), A
     // Loads value in register A into memory
     // location pointed to by register BC
     // 8 Cycles, 1 byte
@@ -55,6 +58,7 @@ int cpu::op_LD_BCA(void)
 int cpu::op_INC_BC(void)
 {
     // opCode 0x03
+    // INC BC
     // Increments value in register BC by 1
     // 8 Cycles, 1 byte
 
@@ -66,6 +70,7 @@ int cpu::op_INC_BC(void)
 int cpu::op_INC_B(void)
 {
     // opCode 0x04
+    // INC B
     // Increments value in register B by 1
     // Flags: 
     //      - Sets Z if result is 0

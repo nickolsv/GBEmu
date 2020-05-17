@@ -14,7 +14,6 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
-
         std::map<uint8_t, int (cpu::*)()> instructionTable;
         void initializeInstructionTable();
     public:
@@ -23,26 +22,20 @@ class cpu
 
         void runFrame();
         int executeInstruction();
-
-
-        void incrementPC();
-
         void load16BitRegister(std::string, uint16_t);
 
-
-        
 
         // Flag Access Methods
 
         uint8_t getFlag(char);
-        void setFlag(char, uint8_t);
-        
+        void setFlag(char);
+        void resetFlag(char);
 
         // Instruction Set
 
         int op_NOOP();                                              // 0x00  NOOP
         int op_LD_BCnn();                                           // 0x01  LD BC, nn
-        int op_LD_BCA();                                            // 0x02  LD BC, A
+        int op_LD_BCA();                                            // 0x02  LD (BC), A
         int op_INC_BC();                                            // 0x03  INC BC
         int op_INC_B();                                             // 0x04  INC B
         int op_DEC_B();                                             // 0x05  DEC B
@@ -74,6 +67,22 @@ class cpu
         int op_LD_En();                                             // 0x1E  LD E, n
         int op_RRA();                                               // 0x1F  RRA
 
+        int op_JR_NZn();                                            // 0x20  JR NZ, n
+        int op_LD_HLnn();                                           // 0x21  LD HL, nn
+        int op_LD_HLincA();                                         // 0x22  LD HL+, A
+        int op_INC_HL();                                            // 0x23  INC HL
+        int op_INC_H();                                             // 0x24  INC H
+        int op_DEC_H();                                             // 0x25  DEC H
+        int op_LD_Hn();                                             // 0x26  LD H, n
+        int op_DAA();                                               // 0x27  DAA
+        int op_JR_Zn();                                             // 0x28  JR Z, n
+        int op_ADD_HLHL();                                          // 0x29  ADD HL, HL
+        int op_LD_AHLinc();                                         // 0x2A  LD A, HL+
+        int op_DEC_HL();                                            // 0x2B  DEC HL
+        int op_INC_L();                                             // 0x2C  INC L
+        int op_DEC_L();                                             // 0x2D  DEC L
+        int op_LD_Ln();                                             // 0x2E  LD L, n
+        int op_CPL();                                               // 0x2F  CPL
 
         // Instructions (CB Prefix)
 };

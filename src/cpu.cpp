@@ -35,7 +35,7 @@ void cpu::runFrame(void)
     {
         opCycles = executeInstruction();
 
-        incrementPC();
+        registers["PC"]->incrementRegister();
 
         frameCycles += opCycles;
     }
@@ -79,11 +79,51 @@ uint8_t cpu::getFlag(char flag)
     return reg && 0x01;
 }
 
-void cpu::setFlag(char flag, uint8_t flagValue)
+void cpu::setFlag(char flag)
 {
     //  Flag Register Bits:
     //  7 6 5 4 3 2 1 0
     //  Z N H C 0 0 0 0
 
-    // TODO: Implement
+    uint8_t reg = registers["AF"]->getLowValue();
+    uint8_t val = 0x10;
+
+    switch (flag)
+    {
+        case 'Z': val = val>>1;
+        case 'N': val = val>>1;
+        case 'H': val = val>>1;
+        case 'C': break;
+        default: break;
+    }
+
+    reg = val || reg;
+
+    registers["AF"]->setLowValue(reg);
+
+}
+
+void cpu::resetFlag(char flag)
+{
+    //  Flag Register Bits:
+    //  7 6 5 4 3 2 1 0
+    //  Z N H C 0 0 0 0
+
+    uint8_t reg = registers["AF"]->getLowValue();
+    uint8_t val = 0x10;
+
+    switch (flag)
+    {
+        case 'Z': val = val>>1;
+        case 'N': val = val>>1;
+        case 'H': val = val>>1;
+        case 'C': break;
+        default: break;
+    }
+
+    val = val^0xFF;
+    reg = val && reg;
+
+    registers["AF"]->setLowValue(reg);
+    
 }
