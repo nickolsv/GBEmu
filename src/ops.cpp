@@ -128,7 +128,9 @@ int cpu::op_RLC_A(void)
     //      - C Contains old bit 7 data
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t carry = registers["AF"]->rotateHighLeft();
+
+    // TODO: Set Flags
 
     return 4;
 }
@@ -174,7 +176,7 @@ int cpu::op_DEC_BC(void)
     // Decrements value in register BC by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["BC"]->decrementRegister();
 
     return 8;
 }
@@ -183,10 +185,15 @@ int cpu::op_INC_C(void)
 {
     // opCode 0x0C
     // Increments value in register C by 1
-    // Possibly Sets Flags: Z,N,H
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["BC"]->incrementLowRegister();
+
+    // TODO: Set Flags
 
     return 4;
 }
@@ -195,10 +202,13 @@ int cpu::op_DEC_C(void)
 {
     // opCode 0x0D
     // Decrements value in register C by 1
-    // Possibly Sets Flags: Z,N,H
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["BC"]->decrementLowRegister();
 
     return 4;
 }
@@ -220,10 +230,16 @@ int cpu::op_RRC_A(void)
     // opCode 0x0F
     // Rotate register A right
     // by 1 bit
-    // Possibly Sets Flags: Z,N,H,C
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 0 data
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t carry = registers["AF"]->rotateLowLeft();
+
+    // TODO: Set Flags
 
     return 4;
 }
