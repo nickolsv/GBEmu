@@ -57,3 +57,33 @@ int cpu::executeInstruction()
 
     return (this->*instructionTable[opcode])();
 }
+
+uint8_t cpu::getFlag(char flag)
+{
+    //  Flag Register Bits:
+    //  7 6 5 4 3 2 1 0
+    //  Z N H C 0 0 0 0
+
+    uint8_t reg = registers["AF"]->getLowValue();
+    reg = reg>>4;
+
+    switch(flag) 
+    {
+        case 'Z': reg = reg>>1;
+        case 'N': reg = reg>>1;
+        case 'H': reg = reg>>1;
+        case 'C': break;
+        default: break;
+    }
+
+    return reg && 0x01;
+}
+
+void cpu::setFlag(char flag, uint8_t flagValue)
+{
+    //  Flag Register Bits:
+    //  7 6 5 4 3 2 1 0
+    //  Z N H C 0 0 0 0
+
+    // TODO: Implement
+}

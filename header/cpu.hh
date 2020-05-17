@@ -30,7 +30,13 @@ class cpu
         void load16BitRegister(std::string, uint16_t);
 
 
+        
 
+        // Flag Access Methods
+
+        uint8_t getFlag(char);
+        void setFlag(char, uint8_t);
+        
 
         // Instruction Set
 
