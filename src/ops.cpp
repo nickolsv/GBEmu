@@ -121,7 +121,11 @@ int cpu::op_RLC_A(void)
     // opCode 0x07
     // Rotate register A left
     // by 1 bit
-    // Possibly Sets Flags: Z,N,H,C
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
     // 4 Cycles, 1 byte
 
     // TODO: Implement

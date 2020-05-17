@@ -88,8 +88,37 @@ void register16::decrementLowRegister(void)
     low.decrementRegister();
 }
 
+uint8_t register16::rotateHighLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    
+    return high.rotateLeft();
+}
 
+uint8_t register16::rotateLowLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    
+    return low.rotateLeft();
+}
 
+uint8_t register16::rotateHighRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag 
+    
+    return high.rotateRight();
+}
+
+uint8_t register16::rotateLowRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag 
+    
+    return low.rotateRight();
+}
 
 register8::register8()
 {
@@ -106,7 +135,6 @@ uint8_t register8::getValue()
     return data;
 }
 
-
 void register8::setValue(uint8_t val)
 {
     data = val;
@@ -120,4 +148,40 @@ void register8::incrementRegister(void)
 void register8::decrementRegister(void)
 {
     data--;
+}
+
+uint8_t register8::rotateLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    
+    uint8_t val  = getValue();
+    uint8_t temp = val && 0x80;
+
+    val = val<<1;
+    temp = temp>>7;
+
+    val = val || temp;
+
+    setValue(val);
+
+    return temp;
+}
+
+uint8_t register8::rotateRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag 
+    
+    uint8_t val  = getValue();
+    uint8_t temp = val && 0x01;
+
+    val = val>>1;
+    temp = temp<<7;
+
+    val = val || temp;
+
+    setValue(val);
+
+    return temp;
 }
