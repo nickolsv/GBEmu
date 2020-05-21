@@ -1,5 +1,3 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-
 #include "../header/catch.hpp"
 #include "../header/registers.hh"
 
@@ -47,4 +45,20 @@ TEST_CASE("8Bit Register Functions")
 
     test.rotateRight();
     REQUIRE( test.getValue() == 0xFF );
+}
+
+TEST_CASE("16Bit Register Functions")
+{
+    register16 test;
+
+    test.setTotalValue(0xFFFF);
+    test.incrementRegister();
+    REQUIRE( test.getTotalValue() == 0x0000 );
+
+    test.decrementRegister();
+    REQUIRE( test.getTotalValue() == 0xFFFF );
+
+    test.incrementHighRegister();
+    test.decrementLowRegister();
+    REQUIRE( test.getTotalValue() == 0x00FE );
 }
