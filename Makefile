@@ -22,6 +22,8 @@ TESTOBJ = $(patsubst $(TESTDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST))
 
 ## RULES ##
 
+all: $(TESTOUT)
+
 # Compile object files into executable
 $(OUT): $(OBJDIR) $(OBJDIR)/$(OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ)
