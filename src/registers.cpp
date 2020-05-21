@@ -156,12 +156,12 @@ uint8_t register8::rotateLeft()
     // to set the carry flag 
     
     uint8_t val  = getValue();
-    uint8_t temp = val && 0x80;
+    uint8_t temp = val & 0x80;
 
     val = val<<1;
     temp = temp>>7;
 
-    val = val || temp;
+    val = val | temp;
 
     setValue(val);
 
@@ -174,14 +174,12 @@ uint8_t register8::rotateRight()
     // to set the carry flag 
     
     uint8_t val  = getValue();
-    uint8_t temp = val && 0x01;
+    uint8_t temp = val & 0x01;
 
     val = val>>1;
     temp = temp<<7;
 
-    val = val || temp;
-
-    setValue(val);
+    setValue(temp | val);
 
     return temp;
 }
