@@ -1,3 +1,3 @@
 gbTEST
 gbEMU
-./obj/*.o
+obj/
