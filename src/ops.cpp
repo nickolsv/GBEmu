@@ -373,7 +373,16 @@ int cpu::op_INC_D(void)
     //      - Sets H if bit 3 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["DE"]->incrementHighRegister();
+
+    uint8_t val = registers["DE"]->getHighValue();
+
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
+                                                        // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
+    resetFlag('N');
 
     return 4;
 }
