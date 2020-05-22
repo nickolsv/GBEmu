@@ -408,7 +408,7 @@ int cpu::op_DEC_D(void)
                                                         // the result mod 16 equals 15
 
     setFlag('N');
-    
+
     return 4;
 }
 
@@ -419,7 +419,14 @@ int cpu::op_LD_Dn(void)
     // into D register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
+
+    addr = registers["PC"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    registers["DE"]->setHighValue(val);
+    registers["PC"]->incrementRegister();
     
     return 8;
 }
