@@ -299,3 +299,224 @@ int cpu::op_RRC_A(void)
 
     return 4;
 }
+
+int cpu::op_STOP(void)
+{
+    // opCode 0x10
+    // Halt CPU & LCD Display until button pressed
+    // 4 Cycles , 2 bytes
+    // Note: Actually is a 2 byte instruction: 0x10 0x00
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_DEnn(void)
+{
+    // opCode 0x11
+    // LD DE, nn
+    // Loads next 2 bytes of memory
+    // into DE register
+    // 12 Cycles, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_LD_DEA(void)
+{
+    // opCode 0x12
+    // LD (DE), A
+    // Loads value in register A into memory
+    // location pointed to by register DE
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_DE(void)
+{
+    // opCode 0x13
+    // INC DE
+    // Increments value in register DE by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_D(void)
+{
+    // opCode 0x14
+    // INC D
+    // Increments value in register D by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_DEC_D(void)
+{
+    // opCode 0x15
+    // Decrements value in register D by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_Dn(void)
+{
+    // opCode 0x16
+    // Loads next byte of memory
+    // into D register
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+    
+    return 8;
+}
+
+int cpu::op_RLA(void)
+{
+    // opCode 0x17
+    // Rotate register A left
+    // by 1 bit. Previous C flag
+    // value written to new bit 0
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_JR_n(void)
+{
+    // opCode 0x18
+    // Add n to current address
+    // and jump to it
+    // 12 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_ADD_HLDE(void)
+{
+    // opCode 0x19
+    // Add DE to HL
+    // Flags: 
+    //      - Reset N
+    //      - Set H if bit 11 overflows
+    //      - Set C if bit 15 overflows
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_ADE(void)
+{
+    // opCode 0x1A
+    // Loads the value pointed to by
+    // register DE into register A
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_DEC_DE(void)
+{
+    // opCode 0x1B
+    // Decrements value in register DE by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_E(void)
+{
+    // opCode 0x1C
+    // Increments value in register E by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_DEC_E(void)
+{
+    // opCode 0x1D
+    // Decrements value in register E by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_En(void)
+{
+    // opCode 0x1E
+    // Loads next byte of memory
+    // into E register
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_RLA(void)
+{
+    // opCode 0x1F
+    // Rotate register A right
+    // by 1 bit. Previous C flag
+    // value written to new bit 7
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 0 data
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
