@@ -496,7 +496,7 @@ int cpu::op_DEC_DE(void)
     // Decrements value in register DE by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["DE"]->decrementRegister();
 
     return 8;
 }
