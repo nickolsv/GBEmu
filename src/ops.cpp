@@ -117,14 +117,8 @@ int cpu::op_LD_Bn(void)
     // into B register
     // 8 Cycles, 2 bytes
 
-    uint16_t addr;
-    uint8_t val;
-
-    addr = registers["PC"]->getTotalValue();
-    val = mainMemory.readAddress(addr);
-
+    uint8_t val = getNextByte();
     registers["BC"]->setHighValue(val);
-    registers["PC"]->incrementRegister();
     
     return 8;
 }
@@ -419,14 +413,8 @@ int cpu::op_LD_Dn(void)
     // into D register
     // 8 Cycles, 2 bytes
 
-    uint16_t addr;
-    uint8_t val;
-
-    addr = registers["PC"]->getTotalValue();
-    val = mainMemory.readAddress(addr);
-
+    uint8_t val = getNextByte();
     registers["DE"]->setHighValue(val);
-    registers["PC"]->incrementRegister();
     
     return 8;
 }
