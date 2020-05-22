@@ -269,7 +269,8 @@ int cpu::op_LD_Cn(void)
     // into C register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val = getNextByte();
+    registers["BC"]->setLowValue(val);
 
     return 8;
 }
