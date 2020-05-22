@@ -397,8 +397,18 @@ int cpu::op_DEC_D(void)
     //      - Sets H if borrows from bit 4
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["DE"]->decrementHighRegister();
 
+    uint8_t val = registers["DE"]->getHighValue();
+
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
+                                                        // bit 4 is borrowed from is when a number of the form
+                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // the result mod 16 equals 15
+
+    setFlag('N');
+    
     return 4;
 }
 
