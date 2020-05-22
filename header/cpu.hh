@@ -54,9 +54,9 @@ class cpu
 
         int op_STOP();                                              // 0x10  STOP 0
         int op_LD_DEnn();                                           // 0x11  LD DE, nn
-        int op_LD_DEA();                                            // 0x12  LD DE, A
+        int op_LD_DEA();                                            // 0x12  LD (DE), A
         int op_INC_DE();                                            // 0x13  INC DE
-        int op_IND_D();                                             // 0x14  INC D
+        int op_INC_D();                                             // 0x14  INC D
         int op_DEC_D();                                             // 0x15  DEC D
         int op_LD_Dn();                                             // 0x16  LD D, n
         int op_RLA();                                               // 0x17  RLA
