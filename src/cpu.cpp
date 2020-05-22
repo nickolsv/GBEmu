@@ -48,6 +48,19 @@ void cpu::load16BitRegister(std::string registerName, uint16_t value)
     registers[registerName]->setTotalValue(value);
 }
 
+uint8_t cpu::getNextByte(void)
+{
+    // Retrieve the Byte that the Program Counter Points 
+    // to then increment the Program Counter
+
+    uint16_t addr = registers["PC"]->getTotalValue();
+    uint8_t val = mainMemory.readAddress(addr);
+    
+    registers["PC"]->incrementRegister();
+
+    return val;
+}
+
 
 int cpu::executeInstruction()
 {

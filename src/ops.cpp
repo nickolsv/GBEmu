@@ -18,20 +18,13 @@ int cpu::op_LD_BCnn(void)
     // into BC register
     // 12 Cycles, 3 bytes
 
-    uint16_t addr;
     uint8_t val;
 
-    addr = registers["PC"]->getTotalValue();
-    val = mainMemory.readAddress(addr);
-
+    val = getNextByte();
     registers["BC"]->setLowValue(val);
-    registers["PC"]->incrementRegister();
 
-    addr = registers["PC"]->getTotalValue();
-    val = mainMemory.readAddress(addr);
-
+    val = getNextByte();
     registers["BC"]->setHighValue(val);
-    registers["PC"]->incrementRegister();
 
     return 12;
 }

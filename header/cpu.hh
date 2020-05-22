@@ -24,6 +24,8 @@ class cpu
         int executeInstruction();
         void load16BitRegister(std::string, uint16_t);
 
+        uint8_t getNextByte();
+
 
         // Flag Access Methods
 
