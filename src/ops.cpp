@@ -511,7 +511,14 @@ int cpu::op_INC_E(void)
     //      - Sets H if bit 3 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["DE"]->incrementLowRegister();
+
+    uint8_t val = registers["DE"]->getLowValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 0 ) setFlag('H');
+
+    resetFlag('N');
 
     return 4;
 }
