@@ -537,7 +537,7 @@ int cpu::op_DEC_E(void)
 
     registers["DE"]->decrementLowRegister();
 
-    uint8_t val = registers["DE"]->getLowValue();
+    uint8_t val = registers["DE"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
     else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
@@ -557,7 +557,8 @@ int cpu::op_LD_En(void)
     // into E register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val = getNextByte();
+    registers["DE"]->setLowValue(val);
 
     return 8;
 }
