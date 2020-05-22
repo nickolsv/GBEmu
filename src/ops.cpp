@@ -357,7 +357,7 @@ int cpu::op_INC_DE(void)
     // Increments value in register DE by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["DE"]->incrementRegister();
 
     return 8;
 }
