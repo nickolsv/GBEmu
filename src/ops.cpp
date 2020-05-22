@@ -75,9 +75,11 @@ int cpu::op_INC_B(void)
 
     uint8_t val = registers["BC"]->getHighValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 0 ) setFlag('H');
-
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
+                                                        // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
     resetFlag('N');
 
     return 4;
@@ -97,8 +99,11 @@ int cpu::op_DEC_B(void)
 
     uint8_t val = registers["BC"]->getHighValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 7 ) setFlag('H');
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
+                                                        // bit 4 is borrowed from is when a number of the form
+                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // the result mod 16 equals 15
 
     setFlag('N');
 
@@ -164,7 +169,10 @@ int cpu::op_ADD_HLBC(void)
 {
     // opCode 0x09
     // Add BC to HL
-    // Possibly Sets Flags: N,H,C
+    // Flags: 
+    //      - Reset N
+    //      - Set H if bit 11 overflows
+    //      - Set C if bit 15 overflows
     // 8 Cycles, 1 byte
 
     // TODO: Implement
@@ -179,7 +187,10 @@ int cpu::op_LD_ABC(void)
     // register BC into register A
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr = registers["BC"]->getTotalValue();
+    uint8_t  val  = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
 
     return 8;
 }
