@@ -339,7 +339,13 @@ int cpu::op_LD_DEA(void)
     // location pointed to by register DE
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
+
+    addr = registers["DE"]->getTotalValue();
+    val = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
 
     return 8;
 }
