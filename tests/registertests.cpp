@@ -10,8 +10,8 @@ TEST_CASE("Getters & Setters")
     REQUIRE( test.getTotalValue() == 0x1234 );
     
     test.setTotalValue(0x4321);
-    REQUIRE( test.getHighValue() == 0x43);
-    REQUIRE( test.getLowValue() == 0x21);
+    REQUIRE( test.getHighValue() == 0x43 );
+    REQUIRE( test.getLowValue() == 0x21 );
 }
 
 TEST_CASE("8Bit Register Functions")
@@ -27,7 +27,7 @@ TEST_CASE("8Bit Register Functions")
     REQUIRE( test.getValue() == 0x0F );
 
     test.rotateRight();
-    REQUIRE(test.getValue() == 0x87);
+    REQUIRE( test.getValue() == 0x87 );
 
     test.rotateLeft();
     REQUIRE( test.getValue() == 0x0F );
