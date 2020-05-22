@@ -320,7 +320,13 @@ int cpu::op_LD_DEnn(void)
     // into DE register
     // 12 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t val;
+
+    val = getNextByte();
+    registers["DE"]->setLowValue(val);
+
+    val = getNextByte();
+    registers["DE"]->setHighValue(val);
 
     return 12;
 }
