@@ -483,8 +483,10 @@ int cpu::op_LD_ADE(void)
     // register DE into register A
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr = registers["DE"]->getTotalValue();
+    uint8_t  val  = registers["AF"]->getHighValue();
 
+    mainMemory.writeToAddress(addr,val);
     return 8;
 }
 
