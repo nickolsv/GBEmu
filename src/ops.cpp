@@ -80,7 +80,12 @@ int cpu::op_INC_B(void)
 
     registers["BC"]->incrementHighRegister();
 
-    // TODO: Set Flags
+    uint8_t val = registers["BC"]->getHighValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 0 ) setFlag('H');
+
+    resetFlag('N');
 
     return 4;
 }
@@ -97,7 +102,12 @@ int cpu::op_DEC_B(void)
 
     registers["BC"]->decrementHighRegister();
 
-    // TODO: Set Flags
+    uint8_t val = registers["BC"]->getHighValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 7 ) setFlag('H');
+
+    setFlag('N');
 
     return 4;
 }
@@ -135,7 +145,13 @@ int cpu::op_RLC_A(void)
 
     uint8_t carry = registers["AF"]->rotateHighLeft();
 
-    // TODO: Set Flags
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
 
     return 4;
 }
@@ -198,7 +214,12 @@ int cpu::op_INC_C(void)
 
     registers["BC"]->incrementLowRegister();
 
-    // TODO: Set Flags
+    uint8_t val = registers["BC"]->getLowValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 0 ) setFlag('H');
+
+    resetFlag('N');
 
     return 4;
 }
@@ -214,6 +235,14 @@ int cpu::op_DEC_C(void)
     // 4 Cycles, 1 byte
 
     registers["BC"]->decrementLowRegister();
+
+    uint8_t val = registers["BC"]->getLowValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 7 ) setFlag('H');
+
+    setFlag('N');
+
 
     return 4;
 }
@@ -242,9 +271,15 @@ int cpu::op_RRC_A(void)
     //      - C Contains old bit 0 data
     // 4 Cycles, 1 byte
 
-    uint8_t carry = registers["AF"]->rotateLowLeft();
+    uint8_t carry = registers["AF"]->rotateHighRight();
 
-    // TODO: Set Flags
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
 
     return 4;
 }
