@@ -160,7 +160,18 @@ int cpu::op_LD_aaSP(void)
     // Loads SP into address aa
     // 20 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t low  = registers["SP"]->getLowValue();
+    uint8_t high = registers["SP"]->getHighValue();
+
+    uint8_t lAddr = getNextByte();
+    uint8_t hAddr = getNextByte();
+
+    uint16_t addr = hAddr;
+    addr = addr << 8;
+    addr = addr + lAddr;
+
+    mainMemory.writeToAddress(addr,low);
+    mainMemory.writeToAddress(addr + 1,high);
 
     return 20;
 }
