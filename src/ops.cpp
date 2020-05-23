@@ -957,7 +957,13 @@ int cpu::op_LD_SPnn(void)
     // into SP register
     // 12 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t val;
+
+    val = getNextByte();
+    registers["SP"]->setLowValue(val);
+
+    val = getNextByte();
+    registers["SP"]->setHighValue(val);
 
     return 12;
 }
