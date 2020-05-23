@@ -1482,3 +1482,253 @@ int cpu::op_LD_CA(void)
     return 4;
 }
 
+int cpu::op_LD_DB(void)
+{
+    // opCode 0x50
+    // LD D, B
+    //
+    // Loads value in register B
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["BC"]->getHighValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DC(void)
+{
+    // opCode 0x51
+    // LD D, C
+    //
+    // Loads value in register C
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["BC"]->getLowValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DD(void)
+{
+    // opCode 0x52
+    // LD D, D
+    //
+    // Loads value in register D
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["DE"]->getHighValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DE(void)
+{
+    // opCode 0x53
+    // LD D, E
+    //
+    // Loads value in register E
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["DE"]->getLowValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DH(void)
+{
+    // opCode 0x54
+    // LD D, H
+    //
+    // Loads value in register H
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["HL"]->getHighValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DL(void)
+{
+    // opCode 0x55
+    // LD D, L
+    //
+    // Loads value in register L
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["HL"]->getLowValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_DHL(void)
+{
+    // opCode 0x56
+    // LD D, (HL)
+    //
+    // Loads value in memory address
+    // that register HL points to
+    // into register D
+    // 8 Cycles, 1 byte
+
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
+
+    registers["DE"]->setHighValue(val);
+
+    return 8;
+}
+
+int cpu::op_LD_DA(void)
+{
+    // opCode 0x57
+    // LD D, A
+    //
+    // Loads value in register A
+    // into register D
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["AF"]->getHighValue();
+    registers["DE"]->setHighValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EB(void)
+{
+    // opCode 0x58
+    // LD E, B
+    //
+    // Loads value in register B
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["BC"]->getHighValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EC(void)
+{
+    // opCode 0x59
+    // LD E, C
+    //
+    // Loads value in register C
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["BC"]->getLowValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_ED(void)
+{
+    // opCode 0x5A
+    // LD E, D
+    //
+    // Loads value in register D
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["DE"]->getHighValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EE(void)
+{
+    // opCode 0x5B
+    // LD E, E
+    //
+    // Loads value in register E
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["DE"]->getLowValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EH(void)
+{
+    // opCode 0x5C
+    // LD E, H
+    //
+    // Loads value in register H
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["HL"]->getHighValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EL(void)
+{
+    // opCode 0x5D
+    // LD E, L
+    //
+    // Loads value in register L
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["HL"]->getLowValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
+
+int cpu::op_LD_EHL(void)
+{
+    // opCode 0x5E
+    // LD E, (HL)
+    //
+    // Loads value in memory address
+    // that register HL points to
+    // into register E
+    // 8 Cycles, 1 byte
+
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
+
+    registers["DE"]->setLowValue(val);
+    return 8;
+}
+
+int cpu::op_LD_EA(void)
+{
+    // opCode 0x5F
+    // LD E, A
+    //
+    // Loads value in register A
+    // into register E
+    // 4 Cycles, 1 byte
+
+    uint8_t src = registers["AF"]->getHighValue();
+    registers["DE"]->setLowValue(src);
+
+    return 4;
+}
