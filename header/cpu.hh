@@ -103,6 +103,23 @@ class cpu
         int op_LD_An();                                             // 0x3E  LD A, n
         int op_CCF();                                               // 0x3F  CCF
 
+        int op_LD_BB();                                             // 0x40  LD B, B
+        int op_LD_BC();                                             // 0x41  LD B, C
+        int op_LD_BD();                                             // 0x42  LD B, D
+        int op_LD_BE();                                             // 0x43  LD B, E
+        int op_LD_BH();                                             // 0x44  LD B, H
+        int op_LD_BL();                                             // 0x45  LD B, L
+        int op_LD_BHL();                                            // 0x46  LD B, (HL)
+        int op_LD_BA();                                             // 0x47  LD B, A
+        int op_LD_CB();                                             // 0x48  LD C, B
+        int op_LD_CC();                                             // 0x49  LD C, C
+        int op_LD_CD();                                             // 0x4A  LD C, D
+        int op_LD_CE();                                             // 0x4B  LD C, E
+        int op_LD_CH();                                             // 0x4C  LD C, H
+        int op_LD_CL();                                             // 0x4D  LD C, L
+        int op_LD_CHL();                                            // 0x4E  LD C, (HL)
+        int op_LD_CA();                                             // 0x4F  LD C, A
+
         // Instructions (CB Prefix)
 };
 
