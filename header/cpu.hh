@@ -160,7 +160,7 @@ class cpu
         int op_LD_HLE();                                            // 0x73  LD (HL), E
         int op_LD_HLH();                                            // 0x74  LD (HL), H
         int op_LD_HLL();                                            // 0x75  LD (HL), L
-        int op_HALT();                                              // 0x76  HALT
+        int op_HALT();                                              // 0x76  HALT               // TODO: Implement
         int op_LD_HLA();                                            // 0x77  LD (HL), A
         int op_LD_AB();                                             // 0x78  LD A, B
         int op_LD_AC();                                             // 0x79  LD A, C
