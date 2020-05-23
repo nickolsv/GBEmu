@@ -627,7 +627,7 @@ int cpu::op_JR_NZn(void)
     // opCode 0x20
     // JR NZ, n
     //
-    // If Z flag is reset
+    // If Z flag is not set
     // Adds n to current address
     // and jumps to it
     // 8 Cycles, 2 bytes
@@ -921,6 +921,257 @@ int cpu::op_CPL(void)
     //      - Sets H
     // 4 Cycles, 1 byte
 
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_JR_NCn(void)
+{
+    // opCode 0x30
+    // JR NC, n
+    //
+    // If C flag is not set
+    // Adds n to current address
+    // and jumps to it
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_SPnn(void)
+{
+    // opCode 0x31
+    // LD SP, nn
+    //
+    // Loads next 2 bytes of memory
+    // into SP register
+    // 12 Cycles, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_LD_HLdecA(void)
+{
+    // opCode 0x32
+    // LD (HL-), A
+    //
+    // Loads value in register A into memory
+    // location pointed to by register HL
+    // Then, decrements HL
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_SP(void)
+{
+    // opCode 0x33
+    // INC SP
+    //
+    // Increments value in register SP by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_HLaddr(void)
+{
+    // opCode 0x34
+    // INC (HL)
+    //
+    // Increments value at memory address
+    // register HL points to
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Sets H if bit 3 overflows
+    // 12 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_DEC_HLaddr(void)
+{
+    // opCode 0x35
+    // DEC (HL)
+    //
+    // Decrements value at memory address
+    // register HL points to
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Sets N
+    //      - Sets H if borrows from bit 4
+    // 12 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_LD_HLaddrn(void)
+{
+    // opCode 0x36
+    // LD (HL), n
+    //
+    // Loads next byte of memory
+    // into memory address register HL
+    // points to
+    // 12 Cycles, 8 bytes
+    
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_SCF(void)
+{
+    // opCode 0x37
+    // SCF
+    //
+    // Sets the Carry Flag
+    // Flags:
+    //      - Reset N
+    //      - Reset H
+    //      - Set H
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_JR_Cn(void)
+{
+    // opCode 0x38
+    // JR C, n
+    //
+    // If C flag is set
+    // Adds n to current address
+    // and jumps to it
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_ADD_HLSP(void)
+{
+    // opCode 0x39
+    // ADD HL, SP
+    //
+    // Adds SP to HL
+    // Flags: 
+    //      - Reset N
+    //      - Set H if bit 11 overflows
+    //      - Set C if bit 15 overflows
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_AHLdec(void)
+{
+    // opCode 0x3A
+    // LD A, (HL-)
+    //
+    // Loads the value pointed to by
+    // register HL into register A
+    // Then, decrements HL
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_DEC_SP(void)
+{
+    // opCode 0x3B
+    // DEC SP
+    //
+    // Decrements value in register SP by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_A(void)
+{
+    // opCode 0x3C
+    // INC A
+    //
+    // Increments value in register A by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_DEC_A(void)
+{
+    // opCode 0x3D
+    // DEC A
+    //
+    // Decrements value in register A by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_An(void)
+{
+    // opCode 0x3E
+    // LD A, n
+    //
+    // Loads next byte of memory
+    // into A register
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_CCF(void)
+{
+    // opCode 0x3F
+    // CCF
+    //
+    // Complements Carry Flag
+    // ( Resets if set and vice versa )
+    // Flags:
+    //      - Resets N
+    //      - Resets H
+    //      - Set/Reset C according to operation
+    // 4 Cycles, 1 byte
+    
     // TODO: Implement
 
     return 4;
