@@ -1111,7 +1111,14 @@ int cpu::op_LD_HLaddrn(void)
     // points to
     // 12 Cycles, 8 bytes
     
-    // TODO: Implement
+    uint16_t addrSP, addrHL;
+    uint8_t val;
+    
+    addrSP = registers["SP"]->getTotalValue();
+    addrHL = registers["HL"]->getTotalValue();
+
+    val    = mainMemory.readAddress(addrSP);
+    mainMemory.writeToAddress(addrHL,val);
 
     return 12;
 }

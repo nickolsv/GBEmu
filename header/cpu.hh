@@ -90,9 +90,9 @@ class cpu
         int op_LD_SPnn();                                           // 0x31  LD SP, nn
         int op_LD_HLdecA();                                         // 0x32  LD HL-, A
         int op_INC_SP();                                            // 0x33  INC SP
-        int op_INC_HLaddr();                                        // 0x34  INC (HL)           // TODO: Implement
-        int op_DEC_HLaddr();                                        // 0x35  DEC (HL)           // TODO: Implement
-        int op_LD_HLaddrn();                                        // 0x36  LD (HL), n         // TODO: Implement
+        int op_INC_HLaddr();                                        // 0x34  INC (HL)
+        int op_DEC_HLaddr();                                        // 0x35  DEC (HL)
+        int op_LD_HLaddrn();                                        // 0x36  LD (HL), n
         int op_SCF();                                               // 0x37  SCF
         int op_JR_Cn();                                             // 0x38  JR C, n            // TODO: Implement
         int op_ADD_HLSP();                                          // 0x39  ADD HL, SP         // TODO: Implement
