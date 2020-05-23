@@ -44,7 +44,7 @@ class cpu
         int op_LD_Bn();                                             // 0x06  LD B, n
         int op_RLC_A();                                             // 0x07  RLCA
         int op_LD_aaSP();                                           // 0x08  LD aa, SP
-        int op_ADD_HLBC();                                          // 0x09  ADD HL, BC
+        int op_ADD_HLBC();                                          // 0x09  ADD HL, BC         // TODO: Implement
         int op_LD_ABC();                                            // 0x0A  LD A, BC
         int op_DEC_BC();                                            // 0x0B  DEC BC
         int op_INC_C();                                             // 0x0C  INC C
@@ -52,33 +52,33 @@ class cpu
         int op_LD_Cn();                                             // 0x0E  LD C, n
         int op_RRC_A();                                             // 0x0F  RRCA
 
-        int op_STOP();                                              // 0x10  STOP 0
+        int op_STOP();                                              // 0x10  STOP 0             // TODO: Implement
         int op_LD_DEnn();                                           // 0x11  LD DE, nn
         int op_LD_DEA();                                            // 0x12  LD (DE), A
         int op_INC_DE();                                            // 0x13  INC DE
         int op_INC_D();                                             // 0x14  INC D
         int op_DEC_D();                                             // 0x15  DEC D
         int op_LD_Dn();                                             // 0x16  LD D, n
-        int op_RLA();                                               // 0x17  RLA
-        int op_JR_n();                                              // 0x18  JR n
-        int op_ADD_HLDE();                                          // 0x19  ADD HL, DE
+        int op_RLA();                                               // 0x17  RLA                // TODO: Implement
+        int op_JR_n();                                              // 0x18  JR n               // TODO: Implement
+        int op_ADD_HLDE();                                          // 0x19  ADD HL, DE         // TODO: Implement
         int op_LD_ADE();                                            // 0x1A  LD A, DE
         int op_DEC_DE();                                            // 0x1B  DEC DE
         int op_INC_E();                                             // 0x1C  INC E
         int op_DEC_E();                                             // 0x1D  DEC E
         int op_LD_En();                                             // 0x1E  LD E, n
-        int op_RRA();                                               // 0x1F  RRA
+        int op_RRA();                                               // 0x1F  RRA                // TODO: Implement
 
-        int op_JR_NZn();                                            // 0x20  JR NZ, n
+        int op_JR_NZn();                                            // 0x20  JR NZ, n           // TODO: Implement
         int op_LD_HLnn();                                           // 0x21  LD HL, nn
         int op_LD_HLincA();                                         // 0x22  LD HL+, A
         int op_INC_HL();                                            // 0x23  INC HL
         int op_INC_H();                                             // 0x24  INC H
         int op_DEC_H();                                             // 0x25  DEC H
         int op_LD_Hn();                                             // 0x26  LD H, n
-        int op_DAA();                                               // 0x27  DAA
-        int op_JR_Zn();                                             // 0x28  JR Z, n
-        int op_ADD_HLHL();                                          // 0x29  ADD HL, HL
+        int op_DAA();                                               // 0x27  DAA                // TODO: Implement
+        int op_JR_Zn();                                             // 0x28  JR Z, n            // TODO: Implement
+        int op_ADD_HLHL();                                          // 0x29  ADD HL, HL         // TODO: Implement
         int op_LD_AHLinc();                                         // 0x2A  LD A, (HL-)
         int op_DEC_HL();                                            // 0x2B  DEC HL
         int op_INC_L();                                             // 0x2C  INC L
@@ -86,16 +86,16 @@ class cpu
         int op_LD_Ln();                                             // 0x2E  LD L, n
         int op_CPL();                                               // 0x2F  CPL
 
-        int op_JR_NCn();                                            // 0x30  JR NC, n
+        int op_JR_NCn();                                            // 0x30  JR NC, n           // TODO: Implement
         int op_LD_SPnn();                                           // 0x31  LD SP, nn
         int op_LD_HLdecA();                                         // 0x32  LD HL-, A
         int op_INC_SP();                                            // 0x33  INC SP
-        int op_INC_HLaddr();                                        // 0x34  INC (HL)
-        int op_DEC_HLaddr();                                        // 0x35  DEC (HL)
-        int op_LD_HLaddrn();                                        // 0x36  LD (HL), n
+        int op_INC_HLaddr();                                        // 0x34  INC (HL)           // TODO: Implement
+        int op_DEC_HLaddr();                                        // 0x35  DEC (HL)           // TODO: Implement
+        int op_LD_HLaddrn();                                        // 0x36  LD (HL), n         // TODO: Implement
         int op_SCF();                                               // 0x37  SCF
-        int op_JR_Cn();                                             // 0x38  JR C, n
-        int op_ADD_HLSP();                                          // 0x39  ADD HL, SP
+        int op_JR_Cn();                                             // 0x38  JR C, n            // TODO: Implement
+        int op_ADD_HLSP();                                          // 0x39  ADD HL, SP         // TODO: Implement
         int op_LD_AHLdec();                                         // 0x3A  LD A, (HL-)
         int op_DEC_SP();                                            // 0x3B  DEC SP
         int op_INC_A();                                             // 0x3C  INC A
@@ -153,6 +153,23 @@ class cpu
         int op_LD_LL();                                             // 0x6D  LD L, L
         int op_LD_LHL();                                            // 0x6E  LD L, (HL)
         int op_LD_LA();                                             // 0x6F  LD L, A
+
+        int op_LD_HLB();                                            // 0x70  LD (HL), B
+        int op_LD_HLC();                                            // 0x71  LD (HL), C
+        int op_LD_HLD();                                            // 0x72  LD (HL), D
+        int op_LD_HLE();                                            // 0x73  LD (HL), E
+        int op_LD_HLH();                                            // 0x74  LD (HL), H
+        int op_LD_HLL();                                            // 0x75  LD (HL), L
+        int op_HALT();                                              // 0x76  HALT
+        int op_LD_HLA();                                            // 0x77  LD (HL), A
+        int op_LD_AB();                                             // 0x78  LD A, B
+        int op_LD_AC();                                             // 0x79  LD A, C
+        int op_LD_AD();                                             // 0x7A  LD A, D
+        int op_LD_AE();                                             // 0x7B  LD A, E
+        int op_LD_AH();                                             // 0x7C  LD A, H
+        int op_LD_AL();                                             // 0x7D  LD A, L
+        int op_LD_AHL();                                            // 0x7E  LD A, (HL)
+        int op_LD_AA();                                             // 0x7F  LD A, A
 
         // Instructions (CB Prefix)
 };
