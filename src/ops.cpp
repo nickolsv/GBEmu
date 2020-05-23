@@ -1230,3 +1230,230 @@ int cpu::op_CCF(void)
 
     return 4;
 }
+
+int cpu::op_LD_BB(void)
+{
+    // opCode 0x40
+    // LD B, B
+    //
+    // Loads value in register B
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BC(void)
+{
+    // opCode 0x41
+    // LD B, C
+    //
+    // Loads value in register C
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BD(void)
+{
+    // opCode 0x42
+    // LD B, D
+    //
+    // Loads value in register D
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BE(void)
+{
+    // opCode 0x43
+    // LD B, E
+    //
+    // Loads value in register E
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BH(void)
+{
+    // opCode 0x44
+    // LD B, H
+    //
+    // Loads value in register H
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BL(void)
+{
+    // opCode 0x45
+    // LD B, L
+    //
+    // Loads value in register L
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_BHL(void)
+{
+    // opCode 0x46
+    // LD B, (HL)
+    //
+    // Loads value in memory address
+    // that register HL points to
+    // into register B
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_BA(void)
+{
+    // opCode 0x47
+    // LD B, A
+    //
+    // Loads value in register A
+    // into register B
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CB(void)
+{
+    // opCode 0x48
+    // LD C, B
+    //
+    // Loads value in register B
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CC(void)
+{
+    // opCode 0x49
+    // LD C, C
+    //
+    // Loads value in register C
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CD(void)
+{
+    // opCode 0x4A
+    // LD C, D
+    //
+    // Loads value in register D
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CE(void)
+{
+    // opCode 0x4B
+    // LD C, E
+    //
+    // Loads value in register E
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CH(void)
+{
+    // opCode 0x4C
+    // LD C, H
+    //
+    // Loads value in register H
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CL(void)
+{
+    // opCode 0x4D
+    // LD C, L
+    //
+    // Loads value in register L
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_CHL(void)
+{
+    // opCode 0x4E
+    // LD C, (HL)
+    //
+    // Loads value in memory address
+    // that register HL points to
+    // into register C
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_CA(void)
+{
+    // opCode 0x4F
+    // LD C, A
+    //
+    // Loads value in register A
+    // into register C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
