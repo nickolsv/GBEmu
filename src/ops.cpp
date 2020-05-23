@@ -843,7 +843,7 @@ int cpu::op_DEC_HL(void)
     // 8 Cycles, 1 byte
 
     registers["BC"]->decrementRegister();
-    
+
     return 8;
 }
 
@@ -859,7 +859,14 @@ int cpu::op_INC_L(void)
     //      - Sets H if bit 3 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["HL"]->incrementLowRegister();
+
+    uint8_t val = registers["HL"]->getLowValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 0 ) setFlag('H');
+
+    resetFlag('N');
 
     return 4;
 }
