@@ -1220,7 +1220,13 @@ int cpu::op_CCF(void)
     //      - Set/Reset C according to operation
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t CFlag = getFlag('C');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( CFlag == 0 )    setFlag('C');
+    else                resetFlag('C');
 
     return 4;
 }
