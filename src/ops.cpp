@@ -1064,10 +1064,12 @@ int cpu::op_SCF(void)
     // Flags:
     //      - Reset N
     //      - Reset H
-    //      - Set H
+    //      - Set C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    resetFlag('N');
+    resetFlag('H');
+    setFlag('C');
 
     return 4;
 }
