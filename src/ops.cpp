@@ -568,3 +568,253 @@ int cpu::op_RLA(void)
 
     return 4;
 }
+
+int cpu::op_JR_NZn(void)
+{
+    // opCode 0x20
+    // JR NZ, n
+    //
+    // If Z flag is reset
+    // Adds n to current address
+    // and jumps to it
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_HLnn(void)
+{
+    // opCode 0x21
+    // LD HL, nn
+    //
+    // Loads next 2 bytes of memory
+    // into HL register
+    // 12 Cycles, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_LD_HLincA(void)
+{
+    // opCode 0x22
+    // LD (HL+), A
+    //
+    // Loads value in register A into memory
+    // location pointed to by register HL
+    // Then, increments HL
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_HL(void)
+{
+    // opCode 0x23
+    // INC HL
+    //
+    // Increments value in register HL by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_H(void)
+{
+    // opCode 0x24
+    // INC H
+    //
+    // Increments value in register H by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_DEC_H(void)
+{
+    // opCode 0x25
+    // DEC H
+    //
+    // Decrements value in register H by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_Hn(void)
+{
+    // opCode 0x26
+    // LD H, n
+    //
+    // Loads next byte of memory
+    // into H register
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+    
+    return 8;
+}
+
+int cpu::op_DAA(void)
+{
+    // opCode 0x27
+    // DAA
+    //
+    // Adjusts register A so that
+    // the correct representation
+    // of Binary Coded Decimal is
+    // Obtained
+    // Flags:
+    //      - Sets Z if register A is 0
+    //      - Resets H
+    //      - Set/Reset C according to operation
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_JR_Zn(void)
+{
+    // opCode 0x28
+    // JR Z, n
+    //
+    // If Z flag is set
+    // Adds n to current address
+    // and jumps to it
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_ADD_HLHL(void)
+{
+    // opCode 0x29
+    // ADD HL, HL
+    //
+    // Adds HL to HL
+    // Flags: 
+    //      - Reset N
+    //      - Set H if bit 11 overflows
+    //      - Set C if bit 15 overflows
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_LD_AHLinc(void)
+{
+    // opCode 0x2A
+    // LD A, (HL+)
+    //
+    // Loads the value pointed to by
+    // register HL into register A
+    // Then, increments HL
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_DEC_HL(void)
+{
+    // opCode 0x2B
+    // DEC HL
+    //
+    // Decrements value in register HL by 1
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_INC_L(void)
+{
+    // opCode 0x2C
+    // INC L
+    //
+    // Increments value in register L by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 0
+    //      - Sets H if bit 3 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_DEC_L(void)
+{
+    // opCode 0x2D
+    // DEC L
+    //
+    // Decrements value in register L by 1
+    // Flags: 
+    //      - Sets Z if result is 0
+    //      - N to 1
+    //      - Sets H if borrows from bit 4
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_LD_Ln(void)
+{
+    // opCode 0x2E
+    // LD L, n
+    //
+    // Loads next byte of memory
+    // into E register
+    // 8 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_CPL(void)
+{
+    // opCode 0x2F
+    // CPL
+    //
+    // Complements A register
+    // ( Flips all bits )
+    // Flags:
+    //      - Sets N
+    //      - Sets H
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
