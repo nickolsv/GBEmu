@@ -1240,7 +1240,8 @@ int cpu::op_LD_BB(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["BC"]->getHighValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1254,7 +1255,8 @@ int cpu::op_LD_BC(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["BC"]->getLowValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1268,7 +1270,8 @@ int cpu::op_LD_BD(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["DE"]->getHighValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1282,7 +1285,8 @@ int cpu::op_LD_BE(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["DE"]->getLowValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1296,7 +1300,8 @@ int cpu::op_LD_BH(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["HL"]->getHighValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1310,7 +1315,8 @@ int cpu::op_LD_BL(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["HL"]->getLowValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1339,7 +1345,8 @@ int cpu::op_LD_BA(void)
     // into register B
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["AF"]->getHighValue();
+    registers["BC"]->setHighValue(src);
 
     return 4;
 }
@@ -1353,7 +1360,8 @@ int cpu::op_LD_CB(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["BC"]->getHighValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1367,7 +1375,8 @@ int cpu::op_LD_CC(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["BC"]->getLowValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1381,7 +1390,8 @@ int cpu::op_LD_CD(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["DE"]->getHighValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1395,7 +1405,8 @@ int cpu::op_LD_CE(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["DE"]->getLowValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1409,7 +1420,8 @@ int cpu::op_LD_CH(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["HL"]->getHighValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1423,7 +1435,8 @@ int cpu::op_LD_CL(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["HL"]->getLowValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
@@ -1452,7 +1465,8 @@ int cpu::op_LD_CA(void)
     // into register C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t src = registers["AF"]->getHighValue();
+    registers["BC"]->setLowValue(src);
 
     return 4;
 }
