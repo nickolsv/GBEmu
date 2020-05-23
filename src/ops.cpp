@@ -921,7 +921,14 @@ int cpu::op_CPL(void)
     //      - Sets H
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val = registers["AF"]->getHighValue();
+
+    val = val^0xFF;
+
+    registers["AF"]->setHighValue(val);
+
+    setFlag('N');
+    setFlag('H');
 
     return 4;
 }
