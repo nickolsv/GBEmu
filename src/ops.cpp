@@ -4,6 +4,7 @@ int cpu::op_NOOP(void)
 {
     // opCode 0x00
     // NOOP
+    //
     // Does Nothing
     // 4 Cycles, 1 byte
 
@@ -14,6 +15,7 @@ int cpu::op_LD_BCnn(void)
 {
     // opCode 0x01
     // LD BC, nn
+    //
     // Loads next 2 bytes of memory
     // into BC register
     // 12 Cycles, 3 bytes
@@ -33,6 +35,7 @@ int cpu::op_LD_BCA(void)
 {
     // opCode 0x02
     // LD (BC), A
+    //
     // Loads value in register A into memory
     // location pointed to by register BC
     // 8 Cycles, 1 byte
@@ -52,6 +55,7 @@ int cpu::op_INC_BC(void)
 {
     // opCode 0x03
     // INC BC
+    //
     // Increments value in register BC by 1
     // 8 Cycles, 1 byte
 
@@ -64,6 +68,7 @@ int cpu::op_INC_B(void)
 {
     // opCode 0x04
     // INC B
+    //
     // Increments value in register B by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -88,6 +93,8 @@ int cpu::op_INC_B(void)
 int cpu::op_DEC_B(void)
 {
     // opCode 0x05
+    // DEC B
+    //
     // Decrements value in register B by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -113,6 +120,8 @@ int cpu::op_DEC_B(void)
 int cpu::op_LD_Bn(void)
 {
     // opCode 0x06
+    // LD B, n
+    //
     // Loads next byte of memory
     // into B register
     // 8 Cycles, 2 bytes
@@ -126,7 +135,9 @@ int cpu::op_LD_Bn(void)
 int cpu::op_RLC_A(void)
 {
     // opCode 0x07
-    // Rotate register A left
+    // RLCA
+    //
+    // Rotates register A left
     // by 1 bit
     // Flags: 
     //      - Sets Z if result is 0
@@ -151,6 +162,8 @@ int cpu::op_RLC_A(void)
 int cpu::op_LD_aaSP(void)
 {
     // opCode 0x08
+    // LD nn, SP
+    //
     // Loads SP into address aa
     // 20 Cycles, 3 bytes
 
@@ -173,7 +186,8 @@ int cpu::op_LD_aaSP(void)
 int cpu::op_ADD_HLBC(void)
 {
     // opCode 0x09
-    // Add BC to HL
+    // ADD HL, BC
+    // Adds BC to HL
     // Flags: 
     //      - Reset N
     //      - Set H if bit 11 overflows
@@ -188,6 +202,8 @@ int cpu::op_ADD_HLBC(void)
 int cpu::op_LD_ABC(void)
 {
     // opCode 0x0A
+    // LD A, BC
+    //
     // Loads the value pointed to by
     // register BC into register A
     // 8 Cycles, 1 byte
@@ -203,6 +219,8 @@ int cpu::op_LD_ABC(void)
 int cpu::op_DEC_BC(void)
 {
     // opCode 0x0B
+    // DEC BC
+    //
     // Decrements value in register BC by 1
     // 8 Cycles, 1 byte
 
@@ -214,6 +232,8 @@ int cpu::op_DEC_BC(void)
 int cpu::op_INC_C(void)
 {
     // opCode 0x0C
+    // INC C
+    //
     // Increments value in register C by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -236,6 +256,8 @@ int cpu::op_INC_C(void)
 int cpu::op_DEC_C(void)
 {
     // opCode 0x0D
+    // DEC C
+    //
     // Decrements value in register C by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -259,6 +281,8 @@ int cpu::op_DEC_C(void)
 int cpu::op_LD_Cn(void)
 {
     // opCode 0x0E
+    // LD C, n
+    //
     // Loads next byte of memory
     // into C register
     // 8 Cycles, 2 bytes
@@ -272,7 +296,9 @@ int cpu::op_LD_Cn(void)
 int cpu::op_RRC_A(void)
 {
     // opCode 0x0F
-    // Rotate register A right
+    // RRCA
+    //
+    // Rotates register A right
     // by 1 bit
     // Flags: 
     //      - Sets Z if result is 0
@@ -297,9 +323,11 @@ int cpu::op_RRC_A(void)
 int cpu::op_STOP(void)
 {
     // opCode 0x10
+    // STOP 0
+    //
     // Halt CPU & LCD Display until button pressed
-    // 4 Cycles , 2 bytes
     // Note: Actually is a 2 byte instruction: 0x10 0x00
+    // 4 Cycles , 2 bytes
 
     // TODO: Implement
 
@@ -310,6 +338,7 @@ int cpu::op_LD_DEnn(void)
 {
     // opCode 0x11
     // LD DE, nn
+    //
     // Loads next 2 bytes of memory
     // into DE register
     // 12 Cycles, 3 bytes
@@ -329,6 +358,7 @@ int cpu::op_LD_DEA(void)
 {
     // opCode 0x12
     // LD (DE), A
+    //
     // Loads value in register A into memory
     // location pointed to by register DE
     // 8 Cycles, 1 byte
@@ -348,6 +378,7 @@ int cpu::op_INC_DE(void)
 {
     // opCode 0x13
     // INC DE
+    //
     // Increments value in register DE by 1
     // 8 Cycles, 1 byte
 
@@ -360,6 +391,7 @@ int cpu::op_INC_D(void)
 {
     // opCode 0x14
     // INC D
+    //
     // Increments value in register D by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -384,6 +416,8 @@ int cpu::op_INC_D(void)
 int cpu::op_DEC_D(void)
 {
     // opCode 0x15
+    // DEC D
+    //
     // Decrements value in register D by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -409,6 +443,8 @@ int cpu::op_DEC_D(void)
 int cpu::op_LD_Dn(void)
 {
     // opCode 0x16
+    // LD D, n
+    //
     // Loads next byte of memory
     // into D register
     // 8 Cycles, 2 bytes
@@ -422,7 +458,9 @@ int cpu::op_LD_Dn(void)
 int cpu::op_RLA(void)
 {
     // opCode 0x17
-    // Rotate register A left
+    // RLA
+    //
+    // Rotates register A left
     // by 1 bit. Previous C flag
     // value written to new bit 0
     // Flags: 
@@ -440,8 +478,10 @@ int cpu::op_RLA(void)
 int cpu::op_JR_n(void)
 {
     // opCode 0x18
-    // Add n to current address
-    // and jump to it
+    // JR n
+    //
+    // Adds n to current address
+    // and jumps to it
     // 12 Cycles, 2 bytes
 
     // TODO: Implement
@@ -452,7 +492,9 @@ int cpu::op_JR_n(void)
 int cpu::op_ADD_HLDE(void)
 {
     // opCode 0x19
-    // Add DE to HL
+    // ADD HL, DE
+    //
+    // Adds DE to HL
     // Flags: 
     //      - Reset N
     //      - Set H if bit 11 overflows
@@ -467,6 +509,8 @@ int cpu::op_ADD_HLDE(void)
 int cpu::op_LD_ADE(void)
 {
     // opCode 0x1A
+    // LD A, DE
+    //
     // Loads the value pointed to by
     // register DE into register A
     // 8 Cycles, 1 byte
@@ -481,6 +525,8 @@ int cpu::op_LD_ADE(void)
 int cpu::op_DEC_DE(void)
 {
     // opCode 0x1B
+    // DEC DE
+    //
     // Decrements value in register DE by 1
     // 8 Cycles, 1 byte
 
@@ -492,6 +538,8 @@ int cpu::op_DEC_DE(void)
 int cpu::op_INC_E(void)
 {
     // opCode 0x1C
+    // INC E
+    //
     // Increments value in register E by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -516,6 +564,8 @@ int cpu::op_INC_E(void)
 int cpu::op_DEC_E(void)
 {
     // opCode 0x1D
+    // DEC E
+    //
     // Decrements value in register E by 1
     // Flags: 
     //      - Sets Z if result is 0
@@ -541,6 +591,8 @@ int cpu::op_DEC_E(void)
 int cpu::op_LD_En(void)
 {
     // opCode 0x1E
+    // LD E. n
+    //
     // Loads next byte of memory
     // into E register
     // 8 Cycles, 2 bytes
@@ -554,7 +606,9 @@ int cpu::op_LD_En(void)
 int cpu::op_RLA(void)
 {
     // opCode 0x1F
-    // Rotate register A right
+    // RLA
+    //
+    // Rotates register A right
     // by 1 bit. Previous C flag
     // value written to new bit 7
     // Flags: 
