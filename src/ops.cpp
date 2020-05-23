@@ -1331,7 +1331,13 @@ int cpu::op_LD_BHL(void)
     // into register B
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
+
+    registers["BC"]->setHighValue(val);
 
     return 8;
 }
@@ -1451,8 +1457,13 @@ int cpu::op_LD_CHL(void)
     // into register C
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
 
+    registers["BC"]->setLowValue(val);
     return 8;
 }
 
