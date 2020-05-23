@@ -175,10 +175,8 @@ int cpu::op_LD_aaSP(void)
 
     uint16_t addr = hAddr;
     addr = addr << 8;
-    addr = addr + lAddr;
+    addr = addr + lAddr;    return 4;
 
-    mainMemory.writeToAddress(addr,low);
-    mainMemory.writeToAddress(addr + 1,high);
 
     return 20;
 }
@@ -1049,7 +1047,22 @@ int cpu::op_INC_HLaddr(void)
     //      - Sets H if bit 3 overflows
     // 12 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t val;
+    uint16_t addr;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
+
+    val++;
+
+    mainMemory.writeToAddress(addr,val);
+
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
+                                                        // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
+    resetFlag('N');
 
     return 12;
 }
@@ -1067,7 +1080,23 @@ int cpu::op_DEC_HLaddr(void)
     //      - Sets H if borrows from bit 4
     // 12 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t val;
+    uint16_t addr;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
+
+    val--;
+
+    mainMemory.writeToAddress(addr,val);
+
+    if( val == 0 )              setFlag('Z');
+    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
+                                                        // bit 4 is borrowed from is when a number of the form
+                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // the result mod 16 equals 15
+
+    setFlag('N');
 
     return 12;
 }
