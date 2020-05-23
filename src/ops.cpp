@@ -1201,7 +1201,8 @@ int cpu::op_LD_An(void)
     // into A register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val = getNextByte();
+    registers["AF"]->setHighValue(val);
 
     return 8;
 }
