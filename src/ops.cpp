@@ -274,7 +274,6 @@ int cpu::op_DEC_C(void)
 
     setFlag('N');
 
-
     return 4;
 }
 
@@ -883,7 +882,14 @@ int cpu::op_DEC_L(void)
     //      - Sets H if borrows from bit 4
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["HL"]->decrementLowRegister();
+
+    uint8_t val = registers["HL"]->getLowValue();
+
+    if( val == 0 )          setFlag('Z');
+    else if( val % 8 == 7 ) setFlag('H');
+
+    setFlag('N');
 
     return 4;
 }
