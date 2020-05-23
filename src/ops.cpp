@@ -1134,7 +1134,7 @@ int cpu::op_DEC_SP(void)
     // Decrements value in register SP by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["SP"]->decrementRegister();
 
     return 8;
 }
