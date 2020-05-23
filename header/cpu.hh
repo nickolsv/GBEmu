@@ -79,12 +79,29 @@ class cpu
         int op_DAA();                                               // 0x27  DAA
         int op_JR_Zn();                                             // 0x28  JR Z, n
         int op_ADD_HLHL();                                          // 0x29  ADD HL, HL
-        int op_LD_AHLinc();                                         // 0x2A  LD A, HL+
+        int op_LD_AHLinc();                                         // 0x2A  LD A, (HL-)
         int op_DEC_HL();                                            // 0x2B  DEC HL
         int op_INC_L();                                             // 0x2C  INC L
         int op_DEC_L();                                             // 0x2D  DEC L
         int op_LD_Ln();                                             // 0x2E  LD L, n
         int op_CPL();                                               // 0x2F  CPL
+
+        int op_JR_NCn();                                            // 0x30  JR NC, n
+        int op_LD_SPnn();                                           // 0x31  LD SP, nn
+        int op_LD_HLdecA();                                         // 0x32  LD HL-, A
+        int op_INC_SP();                                            // 0x33  INC SP
+        int op_INC_HLaddr();                                        // 0x34  INC (HL)
+        int op_DEC_HLaddr();                                        // 0x35  DEC (HL)
+        int op_LD_HLaddrn();                                        // 0x36  LD (HL), n
+        int op_SCF();                                               // 0x37  SCF
+        int op_JR_Cn();                                             // 0x38  JR C, n
+        int op_ADD_HLSP();                                          // 0x39  ADD HL, SP
+        int op_LD_AHLdec();                                         // 0x3A  LD A, (HL-)
+        int op_DEC_SP();                                            // 0x3B  DEC SP
+        int op_INC_A();                                             // 0x3C  INC A
+        int op_DEC_A();                                             // 0x3D  DEC A
+        int op_LD_An();                                             // 0x3E  LD A, n
+        int op_CCF();                                               // 0x3F  CCF
 
         // Instructions (CB Prefix)
 };
