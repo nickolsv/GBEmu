@@ -756,7 +756,8 @@ int cpu::op_LD_Hn(void)
     // into H register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val = getNextByte();
+    registers["HL"]->setHighValue(val);
     
     return 8;
 }
