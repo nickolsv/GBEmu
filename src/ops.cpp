@@ -689,7 +689,7 @@ int cpu::op_INC_HL(void)
     // Increments value in register HL by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["HL"]->incrementRegister();
 
     return 8;
 }
