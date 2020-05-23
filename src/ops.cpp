@@ -900,10 +900,11 @@ int cpu::op_LD_Ln(void)
     // LD L, n
     //
     // Loads next byte of memory
-    // into E register
+    // into L register
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val = getNextByte();
+    registers["HL"]->setLowValue(val);
 
     return 8;
 }
