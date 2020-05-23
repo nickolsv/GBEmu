@@ -842,8 +842,8 @@ int cpu::op_DEC_HL(void)
     // Decrements value in register HL by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
-
+    registers["BC"]->decrementRegister();
+    
     return 8;
 }
 
