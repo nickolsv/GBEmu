@@ -999,7 +999,7 @@ int cpu::op_INC_SP(void)
     // Increments value in register SP by 1
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    registers["SP"]->incrementRegister();
 
     return 8;
 }
