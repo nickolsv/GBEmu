@@ -978,7 +978,15 @@ int cpu::op_LD_HLdecA(void)
     // Then, decrements HL
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr;
+    uint8_t val;
+
+    addr = registers["HL"]->getTotalValue();
+    val = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
+
+    registers["HL"]->decrementRegister();
 
     return 8;
 }
