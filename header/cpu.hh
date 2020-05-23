@@ -67,7 +67,7 @@ class cpu
         int op_INC_E();                                             // 0x1C  INC E
         int op_DEC_E();                                             // 0x1D  DEC E
         int op_LD_En();                                             // 0x1E  LD E, n
-        int op_RRA();                                               // 0x1F  RRA                // TODO: Implement
+        int op_RRA();                                               // 0x1F  RRA
 
         int op_JR_NZn();                                            // 0x20  JR NZ, n           // TODO: Implement
         int op_LD_HLnn();                                           // 0x21  LD HL, nn

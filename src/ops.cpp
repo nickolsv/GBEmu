@@ -602,10 +602,10 @@ int cpu::op_LD_En(void)
     return 8;
 }
 
-int cpu::op_RLA(void)
+int cpu::op_RRA(void)
 {
     // opCode 0x1F
-    // RLA
+    // RRA
     //
     // Rotates register A right
     // by 1 bit. Previous C flag
@@ -617,7 +617,21 @@ int cpu::op_RLA(void)
     //      - C Contains old bit 0 data
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t bit0, val, flag;
+
+    bit0 = registers["AF"]->rotateHighRight();
+    val  = registers["AF"]->getHighValue();
+    flag = getFlag('C');
+
+    if( flag == 0 )     val = val & 0x7F;
+    else                val = val | 0x80;
+
+    if( val == 0 )  resetFlag('Z');
+    resetFlag('N');
+    resetFlag('H');
+
+    if( bit0 == 0 )     resetFlag('C');
+    else                setFlag('C');
 
     return 4;
 }
