@@ -824,7 +824,12 @@ int cpu::op_LD_AHLinc(void)
     // Then, increments HL
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr = registers["HL"]->getTotalValue();
+    uint8_t  val  = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
+
+    registers["HL"]->incrementRegister();
 
     return 8;
 }
