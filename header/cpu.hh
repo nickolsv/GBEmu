@@ -59,7 +59,7 @@ class cpu
         int op_INC_D();                                             // 0x14  INC D
         int op_DEC_D();                                             // 0x15  DEC D
         int op_LD_Dn();                                             // 0x16  LD D, n
-        int op_RLA();                                               // 0x17  RLA                // TODO: Implement
+        int op_RLA();                                               // 0x17  RLA
         int op_JR_n();                                              // 0x18  JR n               // TODO: Implement
         int op_ADD_HLDE();                                          // 0x19  ADD HL, DE         // TODO: Implement
         int op_LD_ADE();                                            // 0x1A  LD A, DE

@@ -469,7 +469,23 @@ int cpu::op_RLA(void)
     //      - C Contains old bit 7 data
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t bit7, val, flag;
+
+    bit7 = registers["AF"]->rotateHighLeft();
+    val  = registers["AF"]->getHighValue();
+    flag = getFlag('C');
+
+    if( flag == 0 )     val = val & 0xFE;
+    else                val = val | 0x01;
+
+    registers["AF"]->setHighValue(val);
+
+    if( val == 0 )  resetFlag('Z');
+    resetFlag('N');
+    resetFlag('H');
+
+    if( bit7 == 0 )     resetFlag('C');
+    else                setFlag('C');
 
     return 4;
 }
@@ -625,6 +641,8 @@ int cpu::op_RRA(void)
 
     if( flag == 0 )     val = val & 0x7F;
     else                val = val | 0x80;
+
+    registers["AF"]->setHighValue(val);
 
     if( val == 0 )  resetFlag('Z');
     resetFlag('N');
