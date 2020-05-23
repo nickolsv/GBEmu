@@ -1116,7 +1116,12 @@ int cpu::op_LD_AHLdec(void)
     // Then, decrements HL
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint16_t addr = registers["HL"]->getTotalValue();
+    uint8_t  val  = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
+
+    registers["HL"]->decrementRegister();
 
     return 8;
 }
