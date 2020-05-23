@@ -647,7 +647,13 @@ int cpu::op_LD_HLnn(void)
     // into HL register
     // 12 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t val;
+
+    val = getNextByte();
+    registers["HL"]->setLowValue(val);
+
+    val = getNextByte();
+    registers["HL"]->setHighValue(val);
 
     return 12;
 }
