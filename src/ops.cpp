@@ -192,8 +192,8 @@ int cpu::op_ADD_HLBC(void)
     // Adds BC to HL
     // Flags: 
     //      - Reset N
-    //      - Set H if bit 11 overflows
-    //      - Set C if bit 15 overflows
+    //      - Set H if bit 11 overflows; Otherwise Reset
+    //      - Set C if bit 15 overflows; Otherwise Reset
     // 8 Cycles, 1 byte
 
     uint8_t flags;
@@ -209,10 +209,16 @@ int cpu::op_ADD_HLBC(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
@@ -546,8 +552,8 @@ int cpu::op_ADD_HLDE(void)
     // Adds DE to HL
     // Flags: 
     //      - Reset N
-    //      - Set H if bit 11 overflows
-    //      - Set C if bit 15 overflows
+    //      - Set H if bit 11 overflows; Otherwise Reset
+    //      - Set C if bit 15 overflows; Otherwise Reset
     // 8 Cycles, 1 byte
 
     uint8_t flags;
@@ -563,15 +569,20 @@ int cpu::op_ADD_HLDE(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
 
-    return 8;
     return 8;
 }
 
@@ -898,8 +909,8 @@ int cpu::op_ADD_HLHL(void)
     // Adds HL to HL
     // Flags: 
     //      - Reset N
-    //      - Set H if bit 11 overflows
-    //      - Set C if bit 15 overflows
+    //      - Set H if bit 11 overflows; Otherwise Reset
+    //      - Set C if bit 15 overflows; Otherwise Reset
     // 8 Cycles, 1 byte
 
     uint8_t flags;
@@ -915,10 +926,16 @@ int cpu::op_ADD_HLHL(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
@@ -1261,8 +1278,8 @@ int cpu::op_ADD_HLSP(void)
     // Adds SP to HL
     // Flags: 
     //      - Reset N
-    //      - Set H if bit 11 overflows
-    //      - Set C if bit 15 overflows
+    //      - Set H if bit 11 overflows; Otherwise Reset
+    //      - Set C if bit 15 overflows; Otherwise Reset
     // 8 Cycles, 1 byte
 
     uint8_t flags;
@@ -1278,15 +1295,20 @@ int cpu::op_ADD_HLSP(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
 
-    return 8;
     return 8;
 }
 
