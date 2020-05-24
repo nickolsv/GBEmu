@@ -501,7 +501,7 @@ int cpu::op_RLA(void)
     // by 1 bit. Previous C flag
     // value written to new bit 0
     // Flags: 
-    //      - Sets Z if result is 0
+    //      - Reset Z
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
@@ -518,7 +518,7 @@ int cpu::op_RLA(void)
 
     registers["AF"]->setHighValue(val);
 
-    if( val == 0 )  resetFlag('Z');
+    resetFlag('Z');
     resetFlag('N');
     resetFlag('H');
 
@@ -694,7 +694,7 @@ int cpu::op_RRA(void)
     // by 1 bit. Previous C flag
     // value written to new bit 7
     // Flags: 
-    //      - Sets Z if result is 0
+    //      - Reset Z
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
@@ -711,7 +711,7 @@ int cpu::op_RRA(void)
 
     registers["AF"]->setHighValue(val);
 
-    if( val == 0 )  resetFlag('Z');
+    resetFlag('Z');
     resetFlag('N');
     resetFlag('H');
 
