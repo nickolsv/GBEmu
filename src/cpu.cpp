@@ -89,7 +89,7 @@ uint8_t cpu::getFlag(char flag)
         default: break;
     }
 
-    return reg && 0x01;
+    return reg & 0x01;
 }
 
 void cpu::setFlag(char flag)
@@ -103,14 +103,14 @@ void cpu::setFlag(char flag)
 
     switch (flag)
     {
-        case 'Z': val = val>>1;
-        case 'N': val = val>>1;
-        case 'H': val = val>>1;
+        case 'Z': val = val<<1;
+        case 'N': val = val<<1;
+        case 'H': val = val<<1;
         case 'C': break;
         default: break;
     }
 
-    reg = val || reg;
+    reg = val | reg;
 
     registers["AF"]->setLowValue(reg);
 
@@ -127,15 +127,15 @@ void cpu::resetFlag(char flag)
 
     switch (flag)
     {
-        case 'Z': val = val>>1;
-        case 'N': val = val>>1;
-        case 'H': val = val>>1;
+        case 'Z': val = val<<1;
+        case 'N': val = val<<1;
+        case 'H': val = val<<1;
         case 'C': break;
         default: break;
     }
 
     val = val^0xFF;
-    reg = val && reg;
+    reg = val & reg;
 
     registers["AF"]->setLowValue(reg);
 }
