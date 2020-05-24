@@ -192,7 +192,24 @@ int cpu::op_ADD_HLBC(void)
     //      - Set C if bit 15 overflows
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+
+    flags = add16Bit("BC","HL");
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 8;
 }
@@ -514,8 +531,26 @@ int cpu::op_ADD_HLDE(void)
     //      - Set C if bit 15 overflows
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
 
+    flags = add16Bit("DE","HL");
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
+
+    return 8;
     return 8;
 }
 
@@ -838,8 +873,26 @@ int cpu::op_ADD_HLHL(void)
     //      - Set C if bit 15 overflows
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
 
+    flags = add16Bit("HL","HL");
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
+
+    return 8;
     return 8;
 }
 
@@ -1169,8 +1222,26 @@ int cpu::op_ADD_HLSP(void)
     //      - Set C if bit 15 overflows
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
 
+    flags = add16Bit("SP","HL");
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
+
+    return 8;
     return 8;
 }
 

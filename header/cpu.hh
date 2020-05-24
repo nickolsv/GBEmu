@@ -25,7 +25,7 @@ class cpu
         void load16BitRegister(std::string, uint16_t);
 
         uint8_t getNextByte();
-
+        uint8_t add16Bit(std::string srcReg, std::string destReg);
 
         // Flag Access Methods
 
@@ -44,7 +44,7 @@ class cpu
         int op_LD_Bn();                                             // 0x06  LD B, n
         int op_RLC_A();                                             // 0x07  RLCA
         int op_LD_aaSP();                                           // 0x08  LD aa, SP
-        int op_ADD_HLBC();                                          // 0x09  ADD HL, BC         // TODO: Implement
+        int op_ADD_HLBC();                                          // 0x09  ADD HL, BC
         int op_LD_ABC();                                            // 0x0A  LD A, BC
         int op_DEC_BC();                                            // 0x0B  DEC BC
         int op_INC_C();                                             // 0x0C  INC C
@@ -61,7 +61,7 @@ class cpu
         int op_LD_Dn();                                             // 0x16  LD D, n
         int op_RLA();                                               // 0x17  RLA
         int op_JR_n();                                              // 0x18  JR n               // TODO: Implement
-        int op_ADD_HLDE();                                          // 0x19  ADD HL, DE         // TODO: Implement
+        int op_ADD_HLDE();                                          // 0x19  ADD HL, DE
         int op_LD_ADE();                                            // 0x1A  LD A, DE
         int op_DEC_DE();                                            // 0x1B  DEC DE
         int op_INC_E();                                             // 0x1C  INC E
@@ -78,7 +78,7 @@ class cpu
         int op_LD_Hn();                                             // 0x26  LD H, n
         int op_DAA();                                               // 0x27  DAA                // TODO: Implement
         int op_JR_Zn();                                             // 0x28  JR Z, n            // TODO: Implement
-        int op_ADD_HLHL();                                          // 0x29  ADD HL, HL         // TODO: Implement
+        int op_ADD_HLHL();                                          // 0x29  ADD HL, HL
         int op_LD_AHLinc();                                         // 0x2A  LD A, (HL-)
         int op_DEC_HL();                                            // 0x2B  DEC HL
         int op_INC_L();                                             // 0x2C  INC L
@@ -95,7 +95,7 @@ class cpu
         int op_LD_HLaddrn();                                        // 0x36  LD (HL), n
         int op_SCF();                                               // 0x37  SCF
         int op_JR_Cn();                                             // 0x38  JR C, n            // TODO: Implement
-        int op_ADD_HLSP();                                          // 0x39  ADD HL, SP         // TODO: Implement
+        int op_ADD_HLSP();                                          // 0x39  ADD HL, SP
         int op_LD_AHLdec();                                         // 0x3A  LD A, (HL-)
         int op_DEC_SP();                                            // 0x3B  DEC SP
         int op_INC_A();                                             // 0x3C  INC A
