@@ -144,7 +144,7 @@ int cpu::op_RLC_A(void)
     // Rotates register A left
     // by 1 bit
     // Flags: 
-    //      - Sets Z if result is 0
+    //      - Resets Z
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
@@ -152,8 +152,7 @@ int cpu::op_RLC_A(void)
 
     uint8_t carry = registers["AF"]->rotateHighLeft();
 
-    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
-    
+    resetFlag('Z');
     resetFlag('N');
     resetFlag('H');
 
