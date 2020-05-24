@@ -899,7 +899,6 @@ int cpu::op_ADD_HLHL(void)
     resetFlag('N');
 
     return 8;
-    return 8;
 }
 
 int cpu::op_LD_AHLinc(void)
@@ -2431,7 +2430,26 @@ int cpu::op_ADD_AB(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getHighValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2450,7 +2468,26 @@ int cpu::op_ADD_AC(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getLowValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2469,7 +2506,26 @@ int cpu::op_ADD_AD(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getHighValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2488,7 +2544,26 @@ int cpu::op_ADD_AE(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getLowValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2507,7 +2582,26 @@ int cpu::op_ADD_AH(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getHighValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2526,7 +2620,26 @@ int cpu::op_ADD_AL(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getLowValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
@@ -2546,8 +2659,29 @@ int cpu::op_ADD_AHL(void)
     //      - Set C if bit 7 overflows
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+    uint16_t addr;
 
+    addr = registers["HL"]->getTotalValue();
+    srcVal = mainMemory.readAddress(addr);
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
+    
     return 8;
 }
 
@@ -2565,7 +2699,26 @@ int cpu::op_ADD_AA(void)
     //      - Set C if bit 7 overflows
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["AF"]->getHighValue();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+    }
+
+    resetFlag('N');
 
     return 4;
 }
