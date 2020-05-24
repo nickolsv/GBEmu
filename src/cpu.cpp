@@ -221,13 +221,16 @@ uint8_t cpu::add8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo)
     uint8_t destVal, totalVal;
     uint8_t halfCarry = 0, carry = 0, flags = 0;
 
-    srcVal++;
+    if( getFlag('C') != 0 )
+    {
+        srcVal++;
 
-    if( srcVal == 0)            carry = 2;
-    else if( srcVal % 16 == 0)  halfCarry = 1;          // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
-                                                        // XXX01111 is incremented to XXX10000, therefore
-                                                        // the result mod 16 equals 0
+        if( srcVal == 0)            carry = 2;
+        else if( srcVal % 16 == 0)  halfCarry = 1;          // When incrementing a number, the only case
+                                                            // bit 3 can overflow is when a number of the form
+                                                            // XXX01111 is incremented to XXX10000, therefore
+                                                            // the result mod 16 equals 0
+    }
 
     flags = add8Bit(srcVal, destReg, hiLo);
 

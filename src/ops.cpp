@@ -2488,10 +2488,10 @@ int cpu::op_ADD_AB(void)
     // Adds value in register B
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2535,10 +2535,10 @@ int cpu::op_ADD_AC(void)
     // Adds value in register C
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2582,10 +2582,10 @@ int cpu::op_ADD_AD(void)
     // Adds value in register D
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2629,10 +2629,10 @@ int cpu::op_ADD_AE(void)
     // Adds value in register E
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2676,10 +2676,10 @@ int cpu::op_ADD_AH(void)
     // Adds value in register H
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2723,10 +2723,10 @@ int cpu::op_ADD_AL(void)
     // Adds value in register L
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2771,10 +2771,10 @@ int cpu::op_ADD_AHL(void)
     // that register HL points to
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 8 Cycles, 1 byte
 
     uint8_t flags;
@@ -2820,10 +2820,10 @@ int cpu::op_ADD_AA(void)
     // Adds value in register A
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
     uint8_t flags;
@@ -2868,13 +2868,41 @@ int cpu::op_ADC_AB(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getHighValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2888,13 +2916,41 @@ int cpu::op_ADC_AC(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getLowValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2908,13 +2964,41 @@ int cpu::op_ADC_AD(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getHighValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2928,13 +3012,41 @@ int cpu::op_ADC_AE(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getLowValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2948,13 +3060,41 @@ int cpu::op_ADC_AH(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getHighValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2968,13 +3108,41 @@ int cpu::op_ADC_AL(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getLowValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2989,10 +3157,10 @@ int cpu::op_ADC_AHL(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 8 Cycles, 1 byte
 
     // TODO: Implement
@@ -3009,13 +3177,41 @@ int cpu::op_ADC_AA(void)
     // plus the Carry Flag
     // into register A
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Set H if bit 3 overflows
-    //      - Set C if bit 7 overflows
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["AF"]->getHighValue();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
