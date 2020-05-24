@@ -170,3 +170,37 @@ uint8_t cpu::add16Bit(uint16_t srcVal, std::string destReg)
 
     return halfCarry + carry;
 }
+
+uint8_t cpu::add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo)
+{
+    // Adds srcVal to destReg, either to the high or low order byte,
+    // depending on whether hiLo is 1 (hi) or 0 (lo)
+    // Note: Should probably be only invoked as add8Bit(srcVal,"AF",1);
+    // Since all ADD instruction add to the A register
+    // Return values:
+    //          0 if no Carry and no Half-Carry
+    //          1 if no Carry and Half-Carry
+    //          2 if Carry and no Half-Carry
+    //          3 if Carry and Half-Carry
+
+    uint8_t destVal, totalVal;
+    uint8_t halfCarry = 0, carry = 0;
+
+    if( hiLo == 0 ) destVal = registers[destReg]->getLowValue();
+    else            destVal = registers[destReg]->getHighValue();
+
+    totalVal = srcVal + destVal;
+
+    // Check for Half-Carry
+    if( ( ( ( srcVal & 0x0F ) + ( destVal & 0x0F ) ) & 0x10 ) == 0x10 )
+        halfCarry = 1;
+
+    // Check for Carry
+    if( srcVal > totalVal || destVal > totalVal)
+        carry = 2;
+
+    if( hiLo == 0 ) registers[destReg]->setLowValue(totalVal);
+    else            registers[destReg]->setHighValue(totalVal);
+
+    return halfCarry + carry; 
+}

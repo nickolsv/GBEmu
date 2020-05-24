@@ -14,11 +14,14 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
+
         std::map<uint8_t, int (cpu::*)()> instructionTable;
-        void initializeInstructionTable();\
+        void initializeInstructionTable();
 
         uint8_t getNextByte();
+
         uint8_t add16Bit(uint16_t srcVal, std::string destReg);
+        uint8_t add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
 
         // Flag Access Methods
 
@@ -33,8 +36,6 @@ class cpu
         void runFrame();
         int executeInstruction();
         void load16BitRegister(std::string, uint16_t);
-
-
 
         // Instruction Set
 
