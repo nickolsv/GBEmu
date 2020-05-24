@@ -174,9 +174,9 @@ uint8_t cpu::add16Bit(uint16_t srcVal, std::string destReg)
 uint8_t cpu::add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo)
 {
     // Adds srcVal to destReg, either to the high or low order byte,
-    // depending on whether hiLo is 1 (hi) or 0 (lo)
+    // depending on whether hiLo is 1 (high) or 0 (low)
     // Note: Should probably be only invoked as add8Bit(srcVal,"AF",1);
-    // Since all ADD instruction add to the A register
+    // Since all ADD instructions add to the A register
     // Return values:
     //          0 if no Carry and no Half-Carry
     //          1 if no Carry and Half-Carry
@@ -203,4 +203,33 @@ uint8_t cpu::add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo)
     else            registers[destReg]->setHighValue(totalVal);
 
     return halfCarry + carry; 
+}
+
+uint8_t cpu::add8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo)
+{
+    // Adds srcVal plus the value of the carry flag
+    // to destReg, either to the high or low order byte,
+    // depending on whether hiLo is 1 (high) or 0 (low)
+    // Note: Should probably be only invoked as add8BitWithCarry(srcVal,"AF",1);
+    // Since all ADC instructions add to the A register
+    // Return values:
+    //          0 if no Carry and no Half-Carry
+    //          1 if no Carry and Half-Carry
+    //          2 if Carry and no Half-Carry
+    //          3 if Carry and Half-Carry
+
+    uint8_t destVal, totalVal;
+    uint8_t halfCarry = 0, carry = 0, flags = 0;
+
+    srcVal++;
+
+    if( srcVal == 0)            carry = 2;
+    else if( srcVal % 16 == 0)  halfCarry = 1;          // When incrementing a number, the only case
+                                                        // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
+
+    flags = add8Bit(srcVal, destReg, hiLo);
+
+    return ( flags | (carry + halfCarry) );
 }
