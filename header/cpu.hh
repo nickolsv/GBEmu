@@ -26,18 +26,24 @@ class cpu
 
         void load16BitRegister(std::string, uint16_t);
 
-        // Flag Access Methods
-
-        uint8_t getFlag(char);
-        void setFlag(char);
-        void resetFlag(char);
-
     public:
         cpu();
         ~cpu();
 
         void runFrame();
         int executeInstruction();
+
+        uint8_t getFlag(char);
+        void setFlag(char);
+        void resetFlag(char);
+        uint8_t getByteAtAddress(uint16_t);
+        void setByteAtAddress(uint16_t, uint8_t);
+        uint8_t  getHighRegisterValue(std::string);
+        uint8_t  getLowRegisterValue(std::string);
+        uint16_t getRegisterValue(std::string);
+        void setHighRegisterValue(std::string, uint8_t);
+        void setLowRegisterValue(std::string, uint8_t);
+        void setRegisterValue(std::string, uint16_t);
 
         // Instruction Set
 

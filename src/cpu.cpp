@@ -138,7 +138,46 @@ void cpu::resetFlag(char flag)
     reg = val && reg;
 
     registers["AF"]->setLowValue(reg);
-    
+}
+
+uint8_t cpu::getByteAtAddress(uint16_t addr)
+{
+    return mainMemory.readAddress(addr);
+}
+
+void cpu::setByteAtAddress(uint16_t addr, uint8_t val)
+{
+    mainMemory.writeToAddress(addr,val);
+}
+
+uint8_t cpu::getHighRegisterValue(std::string regName)
+{
+    return registers[regName]->getHighValue();
+}
+
+uint8_t cpu::getLowRegisterValue(std::string regName)
+{
+    return registers[regName]->getLowValue();
+}
+
+uint16_t cpu::getRegisterValue(std::string regName)
+{
+    return registers[regName]->getTotalValue();
+}
+
+void cpu::setHighRegisterValue(std::string regName, uint8_t val)
+{
+    registers[regName]->setHighValue(val);
+}
+
+void cpu::setLowRegisterValue(std::string regName, uint8_t val)
+{
+    registers[regName]->setLowValue(val);
+}
+
+void cpu::setRegisterValue(std::string regName, uint16_t val)
+{
+    registers[regName]->setTotalValue(val);
 }
 
 uint8_t cpu::add16Bit(uint16_t srcVal, std::string destReg)
