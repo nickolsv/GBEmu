@@ -2690,7 +2690,7 @@ int cpu::op_ADC_AL(void)
     return 4;
 }
 
-int cpu::op_ADC_AB(void)
+int cpu::op_ADC_AHL(void)
 {
     // opCode 0x8E
     // ADC A, (HL)
@@ -2708,7 +2708,7 @@ int cpu::op_ADC_AB(void)
 
     // TODO: Implement
 
-    return 4;
+    return 8;
 }
 
 int cpu::op_ADC_AA(void)
