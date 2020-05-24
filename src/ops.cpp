@@ -3245,3 +3245,317 @@ int cpu::op_ADC_AA(void)
 
     return 4;
 }
+
+int cpu::op_SUB_B(void)
+{
+    // opCode 0x90
+    // SUB B
+    //
+    // Subtracts value in register B
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_C(void)
+{
+    // opCode 0x91
+    // SUB C
+    //
+    // Subtracts value in register C
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_D(void)
+{
+    // opCode 0x92
+    // SUB D
+    //
+    // Subtracts value in register D
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_E(void)
+{
+    // opCode 0x93
+    // SUB E
+    //
+    // AdSubtractsds value in register E
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_H(void)
+{
+    // opCode 0x94
+    // SUB H
+    //
+    // Subtracts value in register H
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_L(void)
+{
+    // opCode 0x95
+    // SUB L
+    //
+    // Subtracts value in register L
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SUB_HL(void)
+{
+    // opCode 0x96
+    // SUB (HL)
+    //
+    // Subtracts value in memory address
+    // that register HL points to
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_SUB_A(void)
+{
+    // opCode 0x97
+    // SUB A
+    //
+    // Subtracts value in register A
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_B(void)
+{
+    // opCode 0x98
+    // SBC B
+    //
+    // Subtracts value in register B
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_C(void)
+{
+    // opCode 0x99
+    // SBC C
+    //
+    // Subtracts value in register C
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_D(void)
+{
+    // opCode 0x9A
+    // SBC D
+    //
+    // Subtracts value in register D
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_E(void)
+{
+    // opCode 0x9B
+    // SBC E
+    //
+    // AdSubtractsds value in register E
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_H(void)
+{
+    // opCode 0x9C
+    // SBC H
+    //
+    // Subtracts value in register H
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_L(void)
+{
+    // opCode 0x9D
+    // SBC L
+    //
+    // Subtracts value in register L
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_SBC_HL(void)
+{
+    // opCode 0x9E
+    // SBC (HL)
+    //
+    // Subtracts value in memory address
+    // that register HL points to
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_SBC_A(void)
+{
+    // opCode 0x9F
+    // SBC A
+    //
+    // Subtracts value in register A
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
