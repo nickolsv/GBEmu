@@ -2416,3 +2416,317 @@ int cpu::op_LD_AA(void)
 
     return 4;
 }
+
+int cpu::op_ADD_AB(void)
+{
+    // opCode 0x80
+    // ADD A, B
+    //
+    // Adds value in register B
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AC(void)
+{
+    // opCode 0x81
+    // ADD A, C
+    //
+    // Adds value in register C
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AD(void)
+{
+    // opCode 0x82
+    // ADD A, D
+    //
+    // Adds value in register D
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AE(void)
+{
+    // opCode 0x83
+    // ADD A, E
+    //
+    // Adds value in register E
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AH(void)
+{
+    // opCode 0x84
+    // ADD A, H
+    //
+    // Adds value in register H
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AL(void)
+{
+    // opCode 0x85
+    // ADD A, L
+    //
+    // Adds value in register L
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADD_AHL(void)
+{
+    // opCode 0x86
+    // ADD A, (HL)
+    //
+    // Adds value in memory address
+    // that register HL points to
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_ADD_AA(void)
+{
+    // opCode 0x87
+    // ADD A, A
+    //
+    // Adds value in register A
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AB(void)
+{
+    // opCode 0x88
+    // ADC A, B
+    //
+    // Adds value in register B
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AC(void)
+{
+    // opCode 0x89
+    // ADC A, C
+    //
+    // Adds value in register C
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AD(void)
+{
+    // opCode 0x8A
+    // ADC A, D
+    //
+    // Adds value in register D
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AE(void)
+{
+    // opCode 0x8B
+    // ADC A, E
+    //
+    // Adds value in register E
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AH(void)
+{
+    // opCode 0x8C
+    // ADC A, H
+    //
+    // Adds value in register H
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AL(void)
+{
+    // opCode 0x8D
+    // ADC A, L
+    //
+    // Adds value in register L
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AB(void)
+{
+    // opCode 0x8E
+    // ADC A, (HL)
+    //
+    // Adds value in memory address
+    // that register HL points to
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_ADC_AA(void)
+{
+    // opCode 0x8F
+    // ADC A, A
+    //
+    // Adds value in register A
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0
+    //      - Resets N
+    //      - Set H if bit 3 overflows
+    //      - Set C if bit 7 overflows
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
