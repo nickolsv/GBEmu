@@ -3773,7 +3773,7 @@ int cpu::op_AND_L()
 int cpu::op_AND_HL()
 {
     // opCode 0xA6
-    // AND L
+    // AND (HL)
     //
     // Takes the logical AND of
     // the contents of THE memory address
@@ -4056,7 +4056,7 @@ int cpu::op_XOR_L()
 int cpu::op_XOR_HL()
 {
     // opCode 0xAE
-    // XOR L
+    // XOR (HL)
     //
     // Takes the logical XOR of
     // the contents of THE memory address
@@ -4339,10 +4339,10 @@ int cpu::op_OR_L()
 int cpu::op_OR_HL()
 {
     // opCode 0xB6
-    // OR L
+    // OR (HL)
     //
     // Takes the logical OR of
-    // the contents of THE memory address
+    // the contents of the memory address
     // that register HL points to
     // and register A and places
     // the result into register A
@@ -4405,6 +4405,175 @@ int cpu::op_OR_A()
     resetFlag('N');
     resetFlag('H');
     resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_CP_B()
+{
+    // opCode 0xB8
+    // CP B
+    //
+    // Compares the contents of register B
+    // with the contents of register A
+    // Note: Same as SUB B
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_C()
+{
+    // opCode 0xB9
+    // CP C
+    //
+    // Compares the contents of register C
+    // with the contents of register A
+    // Note: Same as SUB C
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_D()
+{
+    // opCode 0xBA
+    // CP D
+    //
+    // Compares the contents of register D
+    // with the contents of register A
+    // Note: Same as SUB D
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_E()
+{
+    // opCode 0xBB
+    // CP E
+    //
+    // Compares the contents of register E
+    // with the contents of register A
+    // Note: Same as SUB E
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_H()
+{
+    // opCode 0xBC
+    // CP H
+    //
+    // Compares the contents of register H
+    // with the contents of register A
+    // Note: Same as SUB H
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_L()
+{
+    // opCode 0xBD
+    // CP L
+    //
+    // Compares the contents of register L
+    // with the contents of register A
+    // Note: Same as SUB L
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_CP_HL()
+{
+    // opCode 0xBE
+    // CP (HL)
+    //
+    // Compares the contents of the memory
+    // address that register HL points to
+    // with the contents of register A
+    // Note: Same as SUB (HL)
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_CP_A()
+{
+    // opCode 0xBF
+    // CP A
+    //
+    // Compares the contents of register L
+    // with the contents of register A
+    // Note: Same as SUB A
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 4 Cycles, 1 byte
+    
+    // TODO: Implement
 
     return 4;
 }
