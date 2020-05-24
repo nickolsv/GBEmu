@@ -194,6 +194,57 @@ class cpu
         int op_ADC_AHL();                                           // 0x8E  ADC A, (HL)
         int op_ADC_AA();                                            // 0x8F  ADC A, A
 
+        int op_SUB_B();                                             // 0x90  SUB B              // TODO: Implement
+        int op_SUB_C();                                             // 0x91  SUB C              // TODO: Implement
+        int op_SUB_D();                                             // 0x92  SUB D              // TODO: Implement
+        int op_SUB_E();                                             // 0x93  SUB E              // TODO: Implement
+        int op_SUB_H();                                             // 0x94  SUB H              // TODO: Implement
+        int op_SUB_L();                                             // 0x95  SUB L              // TODO: Implement
+        int op_SUB_HL();                                            // 0x96  SUB (HL)           // TODO: Implement
+        int op_SUB_A();                                             // 0x97  SUB A              // TODO: Implement
+        int op_SBC_B();                                             // 0x98  SBC B              // TODO: Implement
+        int op_SBC_C();                                             // 0x99  SBC C              // TODO: Implement
+        int op_SBC_D();                                             // 0x9A  SBC D              // TODO: Implement
+        int op_SBC_E();                                             // 0x9B  SBC E              // TODO: Implement
+        int op_SBC_H();                                             // 0x9C  SBC H              // TODO: Implement
+        int op_SBC_L();                                             // 0x9D  SBC L              // TODO: Implement
+        int op_SBC_HL();                                            // 0x9E  SBC (HL)           // TODO: Implement
+        int op_SBC_A();                                             // 0x9F  SBC A              // TODO: Implement
+
+        int op_AND_B();                                             // 0xA0  AND B
+        int op_AND_C();                                             // 0xA1  AND C
+        int op_AND_D();                                             // 0xA2  AND D
+        int op_AND_E();                                             // 0xA3  AND E
+        int op_AND_H();                                             // 0xA4  AND H
+        int op_AND_L();                                             // 0xA5  AND L
+        int op_AND_HL();                                            // 0xA6  AND (HL)
+        int op_AND_A();                                             // 0xA7  AND A
+        int op_XOR_B();                                             // 0xA8  XOR B
+        int op_XOR_C();                                             // 0xA9  XOR C
+        int op_XOR_D();                                             // 0xAA  XOR D
+        int op_XOR_E();                                             // 0xAB  XOR E
+        int op_XOR_H();                                             // 0xAC  XOR H
+        int op_XOR_L();                                             // 0xAD  XOR L
+        int op_XOR_HL();                                            // 0xAE  XOR (HL)
+        int op_XOR_A();                                             // 0xAF  XOR A
+        
+        int op_OR_B();                                              // 0xB0  OR B
+        int op_OR_C();                                              // 0xB1  OR C
+        int op_OR_D();                                              // 0xB2  OR D
+        int op_OR_E();                                              // 0xB3  OR E
+        int op_OR_H();                                              // 0xB4  OR H
+        int op_OR_L();                                              // 0xB5  OR L
+        int op_OR_HL();                                             // 0xB6  OR (HL)
+        int op_OR_A();                                              // 0xB7  OR A
+        int op_CP_B();                                              // 0xB8  CP B
+        int op_CP_C();                                              // 0xB9  CP C
+        int op_CP_D();                                              // 0xBA  CP D
+        int op_CP_E();                                              // 0xBB  CP E
+        int op_CP_H();                                              // 0xBC  CP H
+        int op_CP_L();                                              // 0xBD  CP L
+        int op_CP_HL();                                             // 0xBE  CP (HL)
+        int op_CP_A();                                              // 0xBF  CP A
+        
         // Instructions (CB Prefix)
 };
 
