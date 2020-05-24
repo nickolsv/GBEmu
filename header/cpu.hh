@@ -15,14 +15,7 @@ class cpu
         memory mainMemory;
         int frameCycles;
         std::map<uint8_t, int (cpu::*)()> instructionTable;
-        void initializeInstructionTable();
-    public:
-        cpu();
-        ~cpu();
-
-        void runFrame();
-        int executeInstruction();
-        void load16BitRegister(std::string, uint16_t);
+        void initializeInstructionTable();\
 
         uint8_t getNextByte();
         uint8_t add16Bit(uint16_t srcVal, std::string destReg);
@@ -32,6 +25,16 @@ class cpu
         uint8_t getFlag(char);
         void setFlag(char);
         void resetFlag(char);
+
+    public:
+        cpu();
+        ~cpu();
+
+        void runFrame();
+        int executeInstruction();
+        void load16BitRegister(std::string, uint16_t);
+
+
 
         // Instruction Set
 
