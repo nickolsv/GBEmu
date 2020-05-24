@@ -25,7 +25,7 @@ class cpu
         void load16BitRegister(std::string, uint16_t);
 
         uint8_t getNextByte();
-        uint8_t add16Bit(std::string srcReg, std::string destReg);
+        uint8_t add16Bit(uint16_t srcVal, std::string destReg);
 
         // Flag Access Methods
 

@@ -193,8 +193,10 @@ int cpu::op_ADD_HLBC(void)
     // 8 Cycles, 1 byte
 
     uint8_t flags;
+    uint16_t srcVal;
 
-    flags = add16Bit("BC","HL");
+    srcVal = registers["BC"]->getTotalValue();
+    flags  = add16Bit(srcVal,"HL");
 
     switch (flags)
     {
@@ -532,8 +534,10 @@ int cpu::op_ADD_HLDE(void)
     // 8 Cycles, 1 byte
 
     uint8_t flags;
+    uint16_t srcVal;
 
-    flags = add16Bit("DE","HL");
+    srcVal = registers["DE"]->getTotalValue();
+    flags  = add16Bit(srcVal,"HL");
 
     switch (flags)
     {
@@ -874,8 +878,10 @@ int cpu::op_ADD_HLHL(void)
     // 8 Cycles, 1 byte
 
     uint8_t flags;
+    uint16_t srcVal;
 
-    flags = add16Bit("HL","HL");
+    srcVal = registers["HL"]->getTotalValue();
+    flags  = add16Bit(srcVal,"HL");
 
     switch (flags)
     {
@@ -1223,8 +1229,10 @@ int cpu::op_ADD_HLSP(void)
     // 8 Cycles, 1 byte
 
     uint8_t flags;
+    uint16_t srcVal;
 
-    flags = add16Bit("SP","HL");
+    srcVal = registers["SP"]->getTotalValue();
+    flags  = add16Bit(srcVal,"HL");
 
     switch (flags)
     {
