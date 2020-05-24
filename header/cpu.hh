@@ -236,14 +236,14 @@ class cpu
         int op_OR_L();                                              // 0xB5  OR L
         int op_OR_HL();                                             // 0xB6  OR (HL)
         int op_OR_A();                                              // 0xB7  OR A
-        int op_CP_B();                                              // 0xB8  CP B
-        int op_CP_C();                                              // 0xB9  CP C
-        int op_CP_D();                                              // 0xBA  CP D
-        int op_CP_E();                                              // 0xBB  CP E
-        int op_CP_H();                                              // 0xBC  CP H
-        int op_CP_L();                                              // 0xBD  CP L
-        int op_CP_HL();                                             // 0xBE  CP (HL)
-        int op_CP_A();                                              // 0xBF  CP A
+        int op_CP_B();                                              // 0xB8  CP B               // TODO: Implement
+        int op_CP_C();                                              // 0xB9  CP C               // TODO: Implement
+        int op_CP_D();                                              // 0xBA  CP D               // TODO: Implement
+        int op_CP_E();                                              // 0xBB  CP E               // TODO: Implement
+        int op_CP_H();                                              // 0xBC  CP H               // TODO: Implement
+        int op_CP_L();                                              // 0xBD  CP L               // TODO: Implement
+        int op_CP_HL();                                             // 0xBE  CP (HL)            // TODO: Implement
+        int op_CP_A();                                              // 0xBF  CP A               // TODO: Implement
         
         // Instructions (CB Prefix)
 };

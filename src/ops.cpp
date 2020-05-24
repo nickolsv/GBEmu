@@ -3855,7 +3855,7 @@ int cpu::op_XOR_B()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -3872,7 +3872,7 @@ int cpu::op_XOR_B()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C'); 
 
     return 4;
@@ -3890,7 +3890,7 @@ int cpu::op_XOR_C()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -3907,7 +3907,7 @@ int cpu::op_XOR_C()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C'); 
 
     return 4;
@@ -3925,7 +3925,7 @@ int cpu::op_XOR_D()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -3942,7 +3942,7 @@ int cpu::op_XOR_D()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C'); 
 
     return 4;
@@ -3960,7 +3960,7 @@ int cpu::op_XOR_E()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -3977,7 +3977,7 @@ int cpu::op_XOR_E()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C'); 
 
     return 4;
@@ -3995,7 +3995,7 @@ int cpu::op_XOR_H()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -4012,7 +4012,7 @@ int cpu::op_XOR_H()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C');
 
     return 4;
@@ -4030,7 +4030,7 @@ int cpu::op_XOR_L()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -4047,7 +4047,7 @@ int cpu::op_XOR_L()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C');
 
     return 4;
@@ -4066,7 +4066,7 @@ int cpu::op_XOR_HL()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 8 Cycles, 1 byte
 
@@ -4085,7 +4085,7 @@ int cpu::op_XOR_HL()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C'); 
 
     return 8;
@@ -4103,7 +4103,7 @@ int cpu::op_XOR_A()
     // Flags:
     //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H
+    //      - Resets H
     //      - Resets C
     // 4 Cycles, 1 byte
 
@@ -4120,8 +4120,291 @@ int cpu::op_XOR_A()
     else                resetFlag('Z');
 
     resetFlag('N');
-    setFlag('H');
+    resetFlag('H');
     resetFlag('C');
+
+    return 4;
+}
+
+int cpu::op_OR_B()
+{
+    // opCode 0xB0
+    // OR B
+    //
+    // Takes the logical OR of
+    // the contents of register B
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["BC"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_C()
+{
+    // opCode 0xB1
+    // OR C
+    //
+    // Takes the logical OR of
+    // the contents of register C
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["BC"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_D()
+{
+    // opCode 0xB2
+    // OR D
+    //
+    // Takes the logical OR of
+    // the contents of register D
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["DE"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_E()
+{
+    // opCode 0xB3
+    // OR E
+    //
+    // Takes the logical OR of
+    // the contents of register E
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["DE"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_H()
+{
+    // opCode 0xB4
+    // OR H
+    //
+    // Takes the logical OR of
+    // the contents of register H
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["HL"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_L()
+{
+    // opCode 0xB5
+    // OR L
+    //
+    // Takes the logical OR of
+    // the contents of register L
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["HL"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 4;
+}
+
+int cpu::op_OR_HL()
+{
+    // opCode 0xB6
+    // OR L
+    //
+    // Takes the logical OR of
+    // the contents of THE memory address
+    // that register HL points to
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 8 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val1 = mainMemory.readAddress(addr);
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
+
+    return 8;
+}
+
+int cpu::op_OR_A()
+{
+    // opCode 0xB7
+    // OR A
+    //
+    // Takes the logical OR of
+    // the contents of register A
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    uint8_t val1, val2, res;
+
+    val1 = registers["AF"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C'); 
 
     return 4;
 }
