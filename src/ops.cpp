@@ -2507,13 +2507,22 @@ int cpu::op_ADD_AB(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2545,13 +2554,22 @@ int cpu::op_ADD_AC(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2583,13 +2601,22 @@ int cpu::op_ADD_AD(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2621,13 +2648,22 @@ int cpu::op_ADD_AE(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2659,13 +2695,22 @@ int cpu::op_ADD_AH(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2697,13 +2742,22 @@ int cpu::op_ADD_AL(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -2738,13 +2792,22 @@ int cpu::op_ADD_AHL(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 8;
 }
@@ -2776,13 +2839,22 @@ int cpu::op_ADD_AA(void)
             setFlag('C');
             break;
         case 2:
+            resetFlag('H');
             setFlag('C');
             break;
         case 1:
             setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
     }
 
     resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
