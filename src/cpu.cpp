@@ -141,7 +141,7 @@ void cpu::resetFlag(char flag)
     
 }
 
-uint8_t cpu::add16Bit(std::string srcReg, std::string destReg)
+uint8_t cpu::add16Bit(uint16_t srcVal, std::string destReg)
 {
     // Adds value of srcReg to destReg
     // Return values:
@@ -150,10 +150,9 @@ uint8_t cpu::add16Bit(std::string srcReg, std::string destReg)
     //          2 if Carry and no Half-Carry
     //          3 if Carry and Half-Carry
 
-    uint16_t srcVal, destVal, totalVal;
+    uint16_t destVal, totalVal;
     uint8_t halfCarry = 0, carry = 0;
-
-    srcVal = registers[srcReg]->getTotalValue(); 
+ 
     destVal = registers[destReg]->getTotalValue();
 
     totalVal = srcVal + destVal;
