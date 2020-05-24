@@ -3397,10 +3397,10 @@ int cpu::op_SUB_A(void)
     return 4;
 }
 
-int cpu::op_SBC_B(void)
+int cpu::op_SBC_AB(void)
 {
     // opCode 0x98
-    // SBC B
+    // SBC A, B
     //
     // Subtracts value in register B
     // plus the Carry Flag
@@ -3417,10 +3417,10 @@ int cpu::op_SBC_B(void)
     return 4;
 }
 
-int cpu::op_SBC_C(void)
+int cpu::op_SBC_AC(void)
 {
     // opCode 0x99
-    // SBC C
+    // SBC A, C
     //
     // Subtracts value in register C
     // plus the Carry Flag
@@ -3437,10 +3437,10 @@ int cpu::op_SBC_C(void)
     return 4;
 }
 
-int cpu::op_SBC_D(void)
+int cpu::op_SBC_AD(void)
 {
     // opCode 0x9A
-    // SBC D
+    // SBC A, D
     //
     // Subtracts value in register D
     // plus the Carry Flag
@@ -3457,10 +3457,10 @@ int cpu::op_SBC_D(void)
     return 4;
 }
 
-int cpu::op_SBC_E(void)
+int cpu::op_SBC_AE(void)
 {
     // opCode 0x9B
-    // SBC E
+    // SBC A, E
     //
     // AdSubtractsds value in register E
     // plus the Carry Flag
@@ -3477,10 +3477,10 @@ int cpu::op_SBC_E(void)
     return 4;
 }
 
-int cpu::op_SBC_H(void)
+int cpu::op_SBC_AH(void)
 {
     // opCode 0x9C
-    // SBC H
+    // SBC A, H
     //
     // Subtracts value in register H
     // plus the Carry Flag
@@ -3497,10 +3497,10 @@ int cpu::op_SBC_H(void)
     return 4;
 }
 
-int cpu::op_SBC_L(void)
+int cpu::op_SBC_AL(void)
 {
     // opCode 0x9D
-    // SBC L
+    // SBC A, L
     //
     // Subtracts value in register L
     // plus the Carry Flag
@@ -3517,10 +3517,10 @@ int cpu::op_SBC_L(void)
     return 4;
 }
 
-int cpu::op_SBC_HL(void)
+int cpu::op_SBC_AHL(void)
 {
     // opCode 0x9E
-    // SBC (HL)
+    // SBC A, (HL)
     //
     // Subtracts value in memory address
     // that register HL points to
@@ -3538,10 +3538,10 @@ int cpu::op_SBC_HL(void)
     return 8;
 }
 
-int cpu::op_SBC_A(void)
+int cpu::op_SBC_AA(void)
 {
     // opCode 0x9F
-    // SBC A
+    // SBC A, A
     //
     // Subtracts value in register A
     // plus the Carry Flag
