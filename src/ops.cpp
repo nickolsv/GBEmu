@@ -3804,7 +3804,7 @@ int cpu::op_AND_HL()
     resetFlag('N');
     setFlag('H');
     resetFlag('C'); 
-    
+
     return 8;
 }
 
@@ -3859,7 +3859,21 @@ int cpu::op_XOR_B()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["BC"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C'); 
 
     return 4;
 }
@@ -3880,7 +3894,21 @@ int cpu::op_XOR_C()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["BC"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C'); 
 
     return 4;
 }
@@ -3901,7 +3929,21 @@ int cpu::op_XOR_D()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["DE"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C'); 
 
     return 4;
 }
@@ -3922,7 +3964,21 @@ int cpu::op_XOR_E()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["DE"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C'); 
 
     return 4;
 }
@@ -3943,7 +3999,21 @@ int cpu::op_XOR_H()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["HL"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C');
 
     return 4;
 }
@@ -3964,7 +4034,21 @@ int cpu::op_XOR_L()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["HL"]->getLowValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C');
 
     return 4;
 }
@@ -3986,7 +4070,23 @@ int cpu::op_XOR_HL()
     //      - Resets C
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val1 = mainMemory.readAddress(addr);
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C'); 
 
     return 8;
 }
@@ -4007,7 +4107,21 @@ int cpu::op_XOR_A()
     //      - Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t val1, val2, res;
+
+    val1 = registers["AF"]->getHighValue();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C');
 
     return 4;
 }
