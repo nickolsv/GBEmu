@@ -23,6 +23,9 @@ class cpu
         uint8_t add16Bit(uint16_t srcVal, std::string destReg);
         uint8_t add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         uint8_t add8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo);
+
+        void load16BitRegister(std::string, uint16_t);
+
         // Flag Access Methods
 
         uint8_t getFlag(char);
@@ -35,7 +38,6 @@ class cpu
 
         void runFrame();
         int executeInstruction();
-        void load16BitRegister(std::string, uint16_t);
 
         // Instruction Set
 

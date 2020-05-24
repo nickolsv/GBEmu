@@ -71,9 +71,9 @@ int cpu::op_INC_B(void)
     //
     // Increments value in register B by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["BC"]->incrementHighRegister();
@@ -81,8 +81,10 @@ int cpu::op_INC_B(void)
     uint8_t val = registers["BC"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -97,9 +99,9 @@ int cpu::op_DEC_B(void)
     //
     // Decrements value in register B by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["BC"]->decrementHighRegister();
@@ -107,8 +109,10 @@ int cpu::op_DEC_B(void)
     uint8_t val = registers["BC"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -253,18 +257,22 @@ int cpu::op_INC_C(void)
     //
     // Increments value in register C by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["BC"]->incrementLowRegister();
 
     uint8_t val = registers["BC"]->getLowValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 0 ) setFlag('H');
+    if( val == 0 )              setFlag('Z');
+    else                        resetFlag('Z');
 
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
     resetFlag('N');
 
     return 4;
@@ -277,17 +285,22 @@ int cpu::op_DEC_C(void)
     //
     // Decrements value in register C by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["BC"]->decrementLowRegister();
 
     uint8_t val = registers["BC"]->getLowValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 7 ) setFlag('H');
+    if( val == 0 )              setFlag('Z');
+    else                        resetFlag('Z');
+    
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
+                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // the result mod 16 equals 15
 
     setFlag('N');
 
@@ -410,9 +423,9 @@ int cpu::op_INC_D(void)
     //
     // Increments value in register D by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["DE"]->incrementHighRegister();
@@ -420,8 +433,10 @@ int cpu::op_INC_D(void)
     uint8_t val = registers["DE"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -436,9 +451,9 @@ int cpu::op_DEC_D(void)
     //
     // Decrements value in register D by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["DE"]->decrementHighRegister();
@@ -446,8 +461,10 @@ int cpu::op_DEC_D(void)
     uint8_t val = registers["DE"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -594,9 +611,9 @@ int cpu::op_INC_E(void)
     //
     // Increments value in register E by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["DE"]->incrementLowRegister();
@@ -604,8 +621,10 @@ int cpu::op_INC_E(void)
     uint8_t val = registers["DE"]->getLowValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -620,18 +639,20 @@ int cpu::op_DEC_E(void)
     //
     // Decrements value in register E by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["DE"]->decrementLowRegister();
 
-    uint8_t val = registers["DE"]->getHighValue();
+    uint8_t val = registers["DE"]->getLowValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+    
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -769,9 +790,9 @@ int cpu::op_INC_H(void)
     //
     // Increments value in register H by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["HL"]->incrementHighRegister();
@@ -779,8 +800,10 @@ int cpu::op_INC_H(void)
     uint8_t val = registers["HL"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -795,9 +818,9 @@ int cpu::op_DEC_H(void)
     //
     // Decrements value in register H by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["HL"]->decrementHighRegister();
@@ -805,8 +828,10 @@ int cpu::op_DEC_H(void)
     uint8_t val = registers["HL"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -941,18 +966,22 @@ int cpu::op_INC_L(void)
     //
     // Increments value in register L by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["HL"]->incrementLowRegister();
 
     uint8_t val = registers["HL"]->getLowValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 0 ) setFlag('H');
+    if( val == 0 )              setFlag('Z');
+    else                        resetFlag('Z');
 
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
+                                                        // XXX01111 is incremented to XXX10000, therefore
+                                                        // the result mod 16 equals 0
     resetFlag('N');
 
     return 4;
@@ -965,17 +994,22 @@ int cpu::op_DEC_L(void)
     //
     // Decrements value in register L by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["HL"]->decrementLowRegister();
 
     uint8_t val = registers["HL"]->getLowValue();
 
-    if( val == 0 )          setFlag('Z');
-    else if( val % 8 == 7 ) setFlag('H');
+    if( val == 0 )              setFlag('Z');
+    else                        resetFlag('Z');
+    
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
+                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // the result mod 16 equals 15
 
     setFlag('N');
 
@@ -1100,9 +1134,9 @@ int cpu::op_INC_HLaddr(void)
     // Increments value at memory address
     // register HL points to
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Resets N
-    //      - Sets H if bit 3 overflows
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 12 Cycles, 1 byte
     
     uint8_t val;
@@ -1116,8 +1150,10 @@ int cpu::op_INC_HLaddr(void)
     mainMemory.writeToAddress(addr,val);
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -1133,9 +1169,9 @@ int cpu::op_DEC_HLaddr(void)
     // Decrements value at memory address
     // register HL points to
     // Flags:
-    //      - Sets Z if result is 0
+    //      - Sets Z if result is 0; Otherwise Resets Z
     //      - Sets N
-    //      - Sets H if borrows from bit 4
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 12 Cycles, 1 byte
     
     uint8_t val;
@@ -1149,8 +1185,10 @@ int cpu::op_DEC_HLaddr(void)
     mainMemory.writeToAddress(addr,val);
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+    
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -1292,9 +1330,9 @@ int cpu::op_INC_A(void)
     //
     // Increments value in register A by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 0
-    //      - Sets H if bit 3 overflows
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["AF"]->incrementHighRegister();
@@ -1302,8 +1340,10 @@ int cpu::op_INC_A(void)
     uint8_t val = registers["AF"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 0 )    setFlag('H');           // When incrementing a number, the only case
-                                                        // bit 3 can overflow is when a number of the form
+    else                        resetFlag('Z');
+
+    if( val % 16 == 0 )         setFlag('H');           // When incrementing a number, the only case
+    else                        resetFlag('H');         // bit 3 can overflow is when a number of the form
                                                         // XXX01111 is incremented to XXX10000, therefore
                                                         // the result mod 16 equals 0
     resetFlag('N');
@@ -1318,9 +1358,9 @@ int cpu::op_DEC_A(void)
     //
     // Decrements value in register A by 1
     // Flags: 
-    //      - Sets Z if result is 0
-    //      - N to 1
-    //      - Sets H if borrows from bit 4
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if borrows from bit 4; Otherwise Resets H
     // 4 Cycles, 1 byte
 
     registers["AF"]->decrementHighRegister();
@@ -1328,8 +1368,10 @@ int cpu::op_DEC_A(void)
     uint8_t val = registers["AF"]->getHighValue();
 
     if( val == 0 )              setFlag('Z');
-    else if( val % 16 == 15 )   setFlag('H');           // When decrementing a number, the only case
-                                                        // bit 4 is borrowed from is when a number of the form
+    else                        resetFlag('Z');
+    
+    if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
+    else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
                                                         // XXX10000 is decremented to XXX01111, therefore
                                                         // the result mod 16 equals 15
 
@@ -2681,7 +2723,7 @@ int cpu::op_ADD_AHL(void)
     }
 
     resetFlag('N');
-    
+
     return 8;
 }
 
