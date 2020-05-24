@@ -178,8 +178,10 @@ int cpu::op_LD_aaSP(void)
 
     uint16_t addr = hAddr;
     addr = addr << 8;
-    addr = addr + lAddr;    return 4;
+    addr = addr + lAddr;
 
+    mainMemory.writeToAddress(addr,low);
+    mainMemory.writeToAddress(addr + 1, high);
 
     return 20;
 }
