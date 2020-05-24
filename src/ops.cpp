@@ -3559,3 +3559,341 @@ int cpu::op_SBC_A(void)
 
     return 4;
 }
+
+int cpu::op_AND_B()
+{
+    // opCode 0xA0
+    // AND B
+    //
+    // Takes the logical AND of
+    // the contents of register B
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_C()
+{
+    // opCode 0xA1
+    // AND C
+    //
+    // Takes the logical AND of
+    // the contents of register C
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_D()
+{
+    // opCode 0xA2
+    // AND D
+    //
+    // Takes the logical AND of
+    // the contents of register D
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_E()
+{
+    // opCode 0xA3
+    // AND E
+    //
+    // Takes the logical AND of
+    // the contents of register E
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_H()
+{
+    // opCode 0xA4
+    // AND H
+    //
+    // Takes the logical AND of
+    // the contents of register H
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_L()
+{
+    // opCode 0xA5
+    // AND L
+    //
+    // Takes the logical AND of
+    // the contents of register L
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_AND_HL()
+{
+    // opCode 0xA6
+    // AND L
+    //
+    // Takes the logical AND of
+    // the contents of THE memory address
+    // that register HL points to
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_AND_A()
+{
+    // opCode 0xA7
+    // AND A
+    //
+    // Takes the logical AND of
+    // the contents of register A
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_B()
+{
+    // opCode 0xA8
+    // XOR B
+    //
+    // Takes the logical XOR of
+    // the contents of register B
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_C()
+{
+    // opCode 0xA9
+    // XOR C
+    //
+    // Takes the logical XOR of
+    // the contents of register C
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_D()
+{
+    // opCode 0xAA
+    // XOR D
+    //
+    // Takes the logical XOR of
+    // the contents of register D
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_E()
+{
+    // opCode 0xAB
+    // XOR E
+    //
+    // Takes the logical XOR of
+    // the contents of register E
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_H()
+{
+    // opCode 0xAC
+    // XOR H
+    //
+    // Takes the logical XOR of
+    // the contents of register H
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_L()
+{
+    // opCode 0xAD
+    // XOR L
+    //
+    // Takes the logical XOR of
+    // the contents of register L
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+int cpu::op_XOR_HL()
+{
+    // opCode 0xAE
+    // XOR L
+    //
+    // Takes the logical XOR of
+    // the contents of THE memory address
+    // that register HL points to
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_XOR_A()
+{
+    // opCode 0xAF
+    // XOR A
+    //
+    // Takes the logical XOR of
+    // the contents of register A
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
