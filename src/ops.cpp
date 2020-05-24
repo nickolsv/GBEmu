@@ -335,7 +335,7 @@ int cpu::op_RRC_A(void)
     // Rotates register A right
     // by 1 bit
     // Flags: 
-    //      - Sets Z if result is 0
+    //      - Reset Z
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
@@ -343,8 +343,7 @@ int cpu::op_RRC_A(void)
 
     uint8_t carry = registers["AF"]->rotateHighRight();
 
-    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
-    
+    resetFlag('Z');
     resetFlag('N');
     resetFlag('H');
 
