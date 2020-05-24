@@ -3163,7 +3163,37 @@ int cpu::op_ADC_AHL(void)
     //      - Set C if bit 7 overflows; Otherwise Resets C
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    srcVal = mainMemory.readAddress(addr);
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 8;
 }
