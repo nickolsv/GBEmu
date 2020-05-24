@@ -140,3 +140,34 @@ void cpu::resetFlag(char flag)
     registers["AF"]->setLowValue(reg);
     
 }
+
+uint8_t cpu::add16Bit(std::string srcReg, std::string destReg)
+{
+    // Adds value of srcReg to destReg
+    // Return values:
+    //          0 if no Carry and no Half-Carry
+    //          1 if no Carry and Half-Carry
+    //          2 if Carry and no Half-Carry
+    //          3 if Carry and Half-Carry
+
+    uint16_t srcVal, destVal, totalVal;
+    uint8_t halfCarry = 0, carry = 0;
+
+    srcVal = registers[srcReg]->getTotalValue(); 
+    destVal = registers[destReg]->getTotalValue();
+
+    totalVal = srcVal + destVal;
+
+    // Check for Half-Carry
+    if( ( ( ( srcVal & 0x0FFF ) + ( destVal & 0x0FFF ) ) & 0x1000 ) == 0x1000 )
+        halfCarry = 1;
+
+    // Check for Carry
+    if( srcVal > totalVal || destVal > totalVal)
+        carry = 2;
+    
+
+    registers[destReg]->setTotalValue(totalVal);
+
+    return halfCarry + carry;
+}
