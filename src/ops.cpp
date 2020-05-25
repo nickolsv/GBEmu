@@ -4877,7 +4877,24 @@ int cpu::op_CP_B()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getHighValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -4898,7 +4915,24 @@ int cpu::op_CP_C()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getLowValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -4919,7 +4953,24 @@ int cpu::op_CP_D()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getHighValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -4940,7 +4991,24 @@ int cpu::op_CP_E()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getLowValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -4961,7 +5029,24 @@ int cpu::op_CP_H()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getHighValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -4982,7 +5067,24 @@ int cpu::op_CP_L()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getLowValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
@@ -5004,7 +5106,26 @@ int cpu::op_CP_HL()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    srcVal = mainMemory.readAddress(addr);
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 8;
 }
@@ -5025,7 +5146,24 @@ int cpu::op_CP_A()
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
     
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["AF"]->getHighValue();
+    flags = subtract8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
 
     return 4;
 }
