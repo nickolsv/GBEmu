@@ -211,14 +211,14 @@ class cpu
         int op_SUB_L();                                             // 0x95  SUB L
         int op_SUB_HL();                                            // 0x96  SUB (HL)
         int op_SUB_A();                                             // 0x97  SUB A
-        int op_SBC_AB();                                            // 0x98  SBC A, B           // TODO: Implement
-        int op_SBC_AC();                                            // 0x99  SBC A, C           // TODO: Implement
-        int op_SBC_AD();                                            // 0x9A  SBC A, D           // TODO: Implement
-        int op_SBC_AE();                                            // 0x9B  SBC A, E           // TODO: Implement
-        int op_SBC_AH();                                            // 0x9C  SBC A, H           // TODO: Implement
-        int op_SBC_AL();                                            // 0x9D  SBC A, L           // TODO: Implement
-        int op_SBC_AHL();                                           // 0x9E  SBC A, (HL)        // TODO: Implement
-        int op_SBC_AA();                                            // 0x9F  SBC A, A           // TODO: Implement
+        int op_SBC_AB();                                            // 0x98  SBC A, B
+        int op_SBC_AC();                                            // 0x99  SBC A, C
+        int op_SBC_AD();                                            // 0x9A  SBC A, D
+        int op_SBC_AE();                                            // 0x9B  SBC A, E
+        int op_SBC_AH();                                            // 0x9C  SBC A, H
+        int op_SBC_AL();                                            // 0x9D  SBC A, L
+        int op_SBC_AHL();                                           // 0x9E  SBC A, (HL)
+        int op_SBC_AA();                                            // 0x9F  SBC A, A
 
         int op_AND_B();                                             // 0xA0  AND B
         int op_AND_C();                                             // 0xA1  AND C

@@ -3640,7 +3640,35 @@ int cpu::op_SBC_AB(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getHighValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3660,7 +3688,35 @@ int cpu::op_SBC_AC(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["BC"]->getLowValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3680,7 +3736,35 @@ int cpu::op_SBC_AD(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getHighValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3700,7 +3784,35 @@ int cpu::op_SBC_AE(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["DE"]->getLowValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3720,7 +3832,35 @@ int cpu::op_SBC_AH(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getHighValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3740,7 +3880,35 @@ int cpu::op_SBC_AL(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["HL"]->getLowValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
@@ -3761,7 +3929,37 @@ int cpu::op_SBC_AHL(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    srcVal = mainMemory.readAddress(addr);
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 8;
 }
@@ -3781,7 +3979,35 @@ int cpu::op_SBC_AA(void)
     //      - Sets C if there is a borrow; Otherwise Resets C
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = registers["AF"]->getHighValue();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    setFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 4;
 }
