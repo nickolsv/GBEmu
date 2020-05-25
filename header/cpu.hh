@@ -24,6 +24,8 @@ class cpu
         uint8_t add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         uint8_t add8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo);
 
+        uint8_t subtract8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
+
         void load16BitRegister(std::string, uint16_t);
 
     public:
@@ -200,14 +202,14 @@ class cpu
         int op_ADC_AHL();                                           // 0x8E  ADC A, (HL)
         int op_ADC_AA();                                            // 0x8F  ADC A, A
 
-        int op_SUB_B();                                             // 0x90  SUB B              // TODO: Implement
-        int op_SUB_C();                                             // 0x91  SUB C              // TODO: Implement
-        int op_SUB_D();                                             // 0x92  SUB D              // TODO: Implement
-        int op_SUB_E();                                             // 0x93  SUB E              // TODO: Implement
-        int op_SUB_H();                                             // 0x94  SUB H              // TODO: Implement
-        int op_SUB_L();                                             // 0x95  SUB L              // TODO: Implement
-        int op_SUB_HL();                                            // 0x96  SUB (HL)           // TODO: Implement
-        int op_SUB_A();                                             // 0x97  SUB A              // TODO: Implement
+        int op_SUB_B();                                             // 0x90  SUB B
+        int op_SUB_C();                                             // 0x91  SUB C
+        int op_SUB_D();                                             // 0x92  SUB D
+        int op_SUB_E();                                             // 0x93  SUB E
+        int op_SUB_H();                                             // 0x94  SUB H
+        int op_SUB_L();                                             // 0x95  SUB L
+        int op_SUB_HL();                                            // 0x96  SUB (HL)
+        int op_SUB_A();                                             // 0x97  SUB A
         int op_SBC_AB();                                            // 0x98  SBC A, B           // TODO: Implement
         int op_SBC_AC();                                            // 0x99  SBC A, C           // TODO: Implement
         int op_SBC_AD();                                            // 0x9A  SBC A, D           // TODO: Implement
