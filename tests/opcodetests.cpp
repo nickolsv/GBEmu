@@ -73,7 +73,55 @@ TEST_CASE("Instruction 0x0X Testing")
     REQUIRE( test.getByteAtAddress(0x3413) == 0x56 );
     test.op_LD_aaSP();
     REQUIRE( test.getByteAtAddress(0x7856) == 0x12 );
-    REQUIRE( test.getByteAtAddress(0x7857) == 0x56 ); 
+    REQUIRE( test.getByteAtAddress(0x7857) == 0x56 );
 
+    // 0x09
+    
+    test.setRegisterValue("HL",0x0000);
+    test.setRegisterValue("BC",0xFFFF);
+    test.op_ADD_HLBC();
+    REQUIRE( test.getRegisterValue("HL") == 0xFFFF);
+    REQUIRE( ( test.getFlag('C') == 0 && test.getFlag('H') == 0 && test.getFlag('N') == 0 ));
+
+    test.op_ADD_HLBC();
+    REQUIRE( test.getRegisterValue("HL") == 0xFFFE);
+    REQUIRE( ( test.getFlag('C') == 1 && test.getFlag('H') == 1 && test.getFlag('N') == 0 ));
+
+    // 0x0A
+
+    test.setByteAtAddress(0x1234, 0xDD);
+    test.setRegisterValue("BC",0x1234);
+    test.op_LD_ABC();
+    REQUIRE( test.getHighRegisterValue("AF") == 0xDD );
+
+    // 0x0B
+
+    test.op_DEC_BC();
+    REQUIRE( test.getRegisterValue("BC") == 0x1233 );
+
+    test.setRegisterValue("BC",0x0000);
+    test.op_DEC_BC();
+    REQUIRE( test.getRegisterValue("BC") == 0xFFFF );
+
+    // 0x0C
+
+    test.setLowRegisterValue("BC", 0xFF);
+    test.op_INC_C();
+    REQUIRE( test.getLowRegisterValue("BC") == 0x00 );
+    REQUIRE( (test.getFlag('H') == 1 ));
+
+    test.setLowRegisterValue("BC", 0x0F);
+    test.op_INC_C();
+    REQUIRE( (test.getFlag('Z') == 0 && test.getFlag('H') == 1  && test.getFlag('N') == 0));
+
+    // 0x0D
+
+    test.op_DEC_C();
+    REQUIRE( (test.getFlag('N') == 1 && test.getFlag('Z') == 0 && test.getFlag('H') == 1) );
+    REQUIRE(test.getLowRegisterValue("BC") == 0x0F);
+
+    // 0x0E
+
+    
 
 }
