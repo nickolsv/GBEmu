@@ -2,11 +2,13 @@
 #include <unistd.h>
 #include "../header/cpu.hh"
 #include "../header/registers.hh"
+
 cpu::cpu()
 {
     for( int i = 0 ; i < 6 ; i++)
         registers.insert(std::make_pair(regnames[i],new register16()));
     frameCycles = 0;
+    boolIncrementPC = 1;
     initializeInstructionTable();
 }
 
@@ -382,4 +384,26 @@ uint8_t cpu::compare8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo)
         zero = 4;
 
     return zero + halfCarry + carry; 
+}
+
+void cpu::popToRegister(std::string destReg)
+{
+    // Pops contents of stack into register destReg
+    // Copies byte SP points to into the low register
+    // then the next byte into the high register
+    // also increments SP by 2
+
+    uint8_t low, high;
+    uint16_t addr = registers["SP"]->getTotalValue();
+
+    low = mainMemory.readAddress(addr);
+    addr++;
+
+    high = mainMemory.readAddress(addr);
+    addr++;
+
+    registers[destReg]->setLowValue(low);
+    registers[destReg]->setHighValue(high);
+
+    registers["SP"]->setTotalValue(addr);
 }

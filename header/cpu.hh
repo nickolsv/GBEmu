@@ -14,6 +14,7 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
+        int boolIncrementPC;
 
         std::map<uint8_t, int (cpu::*)()> instructionTable;
         void initializeInstructionTable();
@@ -28,7 +29,7 @@ class cpu
         uint8_t subtract8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         uint8_t compare8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         
-
+        void popToRegister(std::string destReg);
         void load16BitRegister(std::string, uint16_t);
 
     public:
@@ -247,14 +248,14 @@ class cpu
         int op_OR_L();                                              // 0xB5  OR L
         int op_OR_HL();                                             // 0xB6  OR (HL)
         int op_OR_A();                                              // 0xB7  OR A
-        int op_CP_B();                                              // 0xB8  CP B               // TODO: Implement
-        int op_CP_C();                                              // 0xB9  CP C               // TODO: Implement
-        int op_CP_D();                                              // 0xBA  CP D               // TODO: Implement
-        int op_CP_E();                                              // 0xBB  CP E               // TODO: Implement
-        int op_CP_H();                                              // 0xBC  CP H               // TODO: Implement
-        int op_CP_L();                                              // 0xBD  CP L               // TODO: Implement
-        int op_CP_HL();                                             // 0xBE  CP (HL)            // TODO: Implement
-        int op_CP_A();                                              // 0xBF  CP A               // TODO: Implement
+        int op_CP_B();                                              // 0xB8  CP B
+        int op_CP_C();                                              // 0xB9  CP C
+        int op_CP_D();                                              // 0xBA  CP D
+        int op_CP_E();                                              // 0xBB  CP E
+        int op_CP_H();                                              // 0xBC  CP H
+        int op_CP_L();                                              // 0xBD  CP L
+        int op_CP_HL();                                             // 0xBE  CP (HL)
+        int op_CP_A();                                              // 0xBF  CP A
 
         int op_RET_NZ();                                            // 0xC0  RET NZ             // TODO: Implement
         int op_POP_BC();                                            // 0xC1  POP BC             // TODO: Implement
