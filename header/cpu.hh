@@ -26,6 +26,8 @@ class cpu
 
         uint8_t subtract8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         uint8_t subtract8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo);
+        uint8_t compare8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
+        
 
         void load16BitRegister(std::string, uint16_t);
 

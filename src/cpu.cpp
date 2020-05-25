@@ -341,3 +341,36 @@ uint8_t cpu::subtract8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t 
 
     return ( flags | (carry + halfCarry) );  
 }
+
+uint8_t cpu::compare8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo)
+{
+    // Compares srcVal with the contents of destReg, either with the high or
+    // low order byte, depengind on whether hiLo is 1 (high) or 0 (low)
+    // Works exactly like subtract8Bit, however the result is discarded
+    // and only the flag changes apply
+    // Note: Should probably be only invoked as compare8Bit(srcVal,"AF",1);
+    // Since all CP instructions compare with the A register
+    // Return values:
+    //          0 if no Carry and no Half-Carry
+    //          1 if no Carry and Half-Carry
+    //          2 if Carry and no Half-Carry
+    //          3 if Carry and Half-Carry
+
+    uint8_t destVal, totalVal;
+    uint8_t halfCarry = 0, carry = 0;
+
+    if( hiLo == 0 ) destVal = registers[destReg]->getLowValue();
+    else            destVal = registers[destReg]->getHighValue();
+
+    totalVal = destVal - srcVal;
+
+    // Check for Half-Carry
+    if( ( srcVal & 0x0F ) > ( destVal & 0x0F ) )
+        halfCarry = 1;
+
+    // Check for Carry
+    if( totalVal > destVal )
+        carry = 2;
+
+    return halfCarry + carry; 
+}
