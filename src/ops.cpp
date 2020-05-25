@@ -5167,3 +5167,250 @@ int cpu::op_CP_A()
 
     return 4;
 }
+
+int cpu::op_RET_NZ(void)
+{
+    // opCode 0xC0
+    // RET NZ
+    // 
+    // If flag Z is reset,
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_POP_BC(void)
+{
+    // opCode 0xC1
+    // POP BC
+    //
+    // Pops contents from the memory stack
+    // into register BC
+    // Also increments SP by 2
+    // 12 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_JP_NZnn(void)
+{
+    // opCode 0xC2
+    // JP NZ, nn
+    //
+    // Jumps to immediate memory address
+    // If Z flag is reset
+    // 16 Cycles if Jump, 12 if not Jump, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_JP_nn(void)
+{
+    // opCode 0xC3
+    // JP nn
+    //
+    // Jumps to immediate memory address
+    // 16 Cycles, 3 bytes
+
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_CALL_NCnn(void)
+{
+    // opCode 0xC4
+    // CALL NC, nn
+    //
+    // If flag C is reset,
+    // Pushes the PC value corresponding to the instruction
+    // after CALL to the memory stack
+    // Decrements Stack Pointer by 2
+    // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_PUSH_BC(void)
+{
+    // opCode 0xC5
+    // PUSH BC
+    //
+    // Pushes contents of BC
+    // into the memory stack
+    // Decrements SP by 2
+    // 16 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_ADD_An(void)
+{
+    // opCode 0xC6
+    // ADD A, n
+    //
+    // Adds next byte in memory
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
+    // 8 Cycles, 2 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_RST_00H(void)
+{
+    // opCode 0xC7
+    // RST 00H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0000
+    // 16 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_RET_Z(void)
+{
+    // opCode 0xC8
+    // RET Z
+    // 
+    // If flag Z is set,
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_RET(void)
+{
+    // opCode 0xC9
+    // RET
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // 16 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_JP_Znn(void)
+{
+    // opCode 0xCA
+    // JP NZ, nn
+    //
+    // Jumps to immediate memory address
+    // If Z flag is reset
+    // 16 Cycles if Jump, 12 if not Jump, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_PREFIX_CB(void)
+{
+    // opCode 0xCB
+    // 
+    // First byte of 2-byte opCodes
+    // Reads next byte(s) in memory
+    // and calls the respective instruction
+    // from CB table
+
+    // TODO: Implement
+
+    return 0;
+}
+
+int cpu::op_CALL_Znn(void)
+{
+    // opCode 0xCC
+    // CALL Z, nn
+    //
+    // If flag Z is set,
+    // Pushes the PC value corresponding to the instruction
+    // after CALL to the memory stack
+    // Decrements Stack Pointer by 2
+    // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
+
+    // TODO: Implement
+
+    return 12;
+}
+
+int cpu::op_CALL_nn(void)
+{
+    // opCode 0xCD
+    // CALL nn
+    //
+    // Pushes the PC value corresponding to the instruction
+    // after CALL to the memory stack
+    // Decrements Stack Pointer by 2
+    // 24 Cycles, 3 bytes
+
+    // TODO: Implement
+
+    return 24;
+}
+
+int cpu::op_ADC_An(void)
+{
+    // opCode 0xCE
+    // ADC A, n
+    //
+    // Adds next value in memory
+    // plus the Carry Flag
+    // into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Set H if bit 3 overflows; Otherwise Resets H
+    //      - Set C if bit 7 overflows; Otherwise Resets C
+    // 8 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 8;
+}
+
+int cpu::op_RST_08H(void)
+{
+    // opCode 0xCF
+    // RST 08H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0008
+    // 16 Cycles, 1 byte
+    
+    // TODO: Implement
+
+    return 16;
+}
