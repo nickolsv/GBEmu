@@ -237,9 +237,9 @@ int cpu::op_LD_ABC(void)
     // 8 Cycles, 1 byte
 
     uint16_t addr = registers["BC"]->getTotalValue();
-    uint8_t  val  = registers["AF"]->getHighValue();
+    uint8_t  val  = mainMemory.readAddress(addr);
 
-    mainMemory.writeToAddress(addr,val);
+    registers["AF"]->setHighValue(val);
 
     return 8;
 }
