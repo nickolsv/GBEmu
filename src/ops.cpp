@@ -1,4 +1,5 @@
 #include "../header/cpu.hh"
+#include <cstring>
 
 int cpu::op_NOOP(void)
 {
@@ -539,7 +540,16 @@ int cpu::op_JR_n(void)
     // and jumps to it
     // 12 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
+
+    val = getNextByte();
+    totalVal = registers["PC"]->getTotalValue();
+
+    if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+    else                    totalVal += val;
+
+    registers["PC"]->setTotalValue(totalVal);
 
     return 12;
 }
@@ -731,10 +741,25 @@ int cpu::op_JR_NZn(void)
     // If Z flag is not set
     // Adds n to current address
     // and jumps to it
-    // 8 Cycles, 2 bytes
+    // 12 Cycles if Jump, 8 Cycles if not Jump, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
 
+    if( getFlag('Z') == 0 )
+    {
+        val = getNextByte();
+        totalVal = registers["PC"]->getTotalValue();
+
+        if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+        else                    totalVal += val;
+
+        registers["PC"]->setTotalValue(totalVal);
+
+        return 12;
+    }
+
+    registers["PC"]->incrementRegister();
     return 8;
 }
 
@@ -896,8 +921,23 @@ int cpu::op_JR_Zn(void)
     // and jumps to it
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
 
+    if( getFlag('Z') == 1 )
+    {
+        val = getNextByte();
+        totalVal = registers["PC"]->getTotalValue();
+
+        if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+        else                    totalVal += val;
+
+        registers["PC"]->setTotalValue(totalVal);
+
+        return 12;
+    }
+
+    registers["PC"]->incrementRegister();
     return 8;
 }
 
@@ -1082,8 +1122,23 @@ int cpu::op_JR_NCn(void)
     // and jumps to it
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
 
+    if( getFlag('C') == 0 )
+    {
+        val = getNextByte();
+        totalVal = registers["PC"]->getTotalValue();
+
+        if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+        else                    totalVal += val;
+
+        registers["PC"]->setTotalValue(totalVal);
+
+        return 12;
+    }
+
+    registers["PC"]->incrementRegister();
     return 8;
 }
 
@@ -1265,8 +1320,23 @@ int cpu::op_JR_Cn(void)
     // and jumps to it
     // 8 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
 
+    if( getFlag('C') == 1 )
+    {
+        val = getNextByte();
+        totalVal = registers["PC"]->getTotalValue();
+
+        if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+        else                    totalVal += val;
+
+        registers["PC"]->setTotalValue(totalVal);
+
+        return 12;
+    }
+
+    registers["PC"]->incrementRegister();
     return 8;
 }
 

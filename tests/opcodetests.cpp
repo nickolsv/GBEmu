@@ -122,6 +122,4 @@ TEST_CASE("Instruction 0x0X Testing")
 
     // 0x0E
 
-    
-
 }

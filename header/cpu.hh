@@ -79,7 +79,7 @@ class cpu
         int op_DEC_D();                                             // 0x15  DEC D
         int op_LD_Dn();                                             // 0x16  LD D, n
         int op_RLA();                                               // 0x17  RLA
-        int op_JR_n();                                              // 0x18  JR n               // TODO: Implement
+        int op_JR_n();                                              // 0x18  JR n
         int op_ADD_HLDE();                                          // 0x19  ADD HL, DE
         int op_LD_ADE();                                            // 0x1A  LD A, DE
         int op_DEC_DE();                                            // 0x1B  DEC DE
@@ -88,7 +88,7 @@ class cpu
         int op_LD_En();                                             // 0x1E  LD E, n
         int op_RRA();                                               // 0x1F  RRA
 
-        int op_JR_NZn();                                            // 0x20  JR NZ, n           // TODO: Implement
+        int op_JR_NZn();                                            // 0x20  JR NZ, n
         int op_LD_HLnn();                                           // 0x21  LD HL, nn
         int op_LD_HLincA();                                         // 0x22  LD HL+, A
         int op_INC_HL();                                            // 0x23  INC HL
@@ -96,7 +96,7 @@ class cpu
         int op_DEC_H();                                             // 0x25  DEC H
         int op_LD_Hn();                                             // 0x26  LD H, n
         int op_DAA();                                               // 0x27  DAA                // TODO: Implement
-        int op_JR_Zn();                                             // 0x28  JR Z, n            // TODO: Implement
+        int op_JR_Zn();                                             // 0x28  JR Z, n
         int op_ADD_HLHL();                                          // 0x29  ADD HL, HL
         int op_LD_AHLinc();                                         // 0x2A  LD A, (HL-)
         int op_DEC_HL();                                            // 0x2B  DEC HL
@@ -105,7 +105,7 @@ class cpu
         int op_LD_Ln();                                             // 0x2E  LD L, n
         int op_CPL();                                               // 0x2F  CPL
 
-        int op_JR_NCn();                                            // 0x30  JR NC, n           // TODO: Implement
+        int op_JR_NCn();                                            // 0x30  JR NC, n
         int op_LD_SPnn();                                           // 0x31  LD SP, nn
         int op_LD_HLdecA();                                         // 0x32  LD HL-, A
         int op_INC_SP();                                            // 0x33  INC SP
@@ -113,7 +113,7 @@ class cpu
         int op_DEC_HLaddr();                                        // 0x35  DEC (HL)
         int op_LD_HLaddrn();                                        // 0x36  LD (HL), n
         int op_SCF();                                               // 0x37  SCF
-        int op_JR_Cn();                                             // 0x38  JR C, n            // TODO: Implement
+        int op_JR_Cn();                                             // 0x38  JR C, n
         int op_ADD_HLSP();                                          // 0x39  ADD HL, SP
         int op_LD_AHLdec();                                         // 0x3A  LD A, (HL-)
         int op_DEC_SP();                                            // 0x3B  DEC SP
