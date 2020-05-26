@@ -4881,7 +4881,7 @@ int cpu::op_CP_B(void)
     uint8_t srcVal;
 
     srcVal = registers["BC"]->getHighValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -4919,7 +4919,7 @@ int cpu::op_CP_C(void)
     uint8_t srcVal;
 
     srcVal = registers["BC"]->getLowValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -4957,7 +4957,7 @@ int cpu::op_CP_D(void)
     uint8_t srcVal;
 
     srcVal = registers["DE"]->getHighValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -4995,7 +4995,7 @@ int cpu::op_CP_E(void)
     uint8_t srcVal;
 
     srcVal = registers["DE"]->getLowValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -5033,7 +5033,7 @@ int cpu::op_CP_H(void)
     uint8_t srcVal;
 
     srcVal = registers["HL"]->getHighValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -5071,7 +5071,7 @@ int cpu::op_CP_L(void)
     uint8_t srcVal;
 
     srcVal = registers["HL"]->getLowValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -5112,7 +5112,7 @@ int cpu::op_CP_HL(void)
 
     addr = registers["HL"]->getTotalValue();
     srcVal = mainMemory.readAddress(addr);
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -5150,7 +5150,7 @@ int cpu::op_CP_A(void)
     uint8_t srcVal;
 
     srcVal = registers["AF"]->getHighValue();
-    flags = subtract8Bit(srcVal,"AF",1);
+    flags = compare8Bit(srcVal,"AF",1);
 
     if( flags % 2 == 0 )        resetFlag('H');
     else                        setFlag('H');
@@ -6071,10 +6071,11 @@ int cpu::op_ADD_SPn(void)
     //      - Resets N
     //      - Sets H if bit 3 overflows; Otherwise Resets H
     //      - Sets C if bit 7 overflows; Otherwise Resets C
+    // 16 Cycles, 2 bytes
 
     // TODO: Implement
 
-    // 16 Cycles, 2 bytes
+    return 16;
 }
 
 int cpu::op_JP_HLaddr(void)
