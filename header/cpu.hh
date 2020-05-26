@@ -346,6 +346,260 @@ class cpu
         int op_RRC_HLaddr();                                        // 0xCB 0x0E  RRC (HL)
         int op_RRC_A();                                             // 0xCB 0x0F  RRC A
 
+        int op_RL_B();                                              // 0xCB 0x10  RL B
+        int op_RL_C();                                              // 0xCB 0x11  RL C
+        int op_RL_D();                                              // 0xCB 0x12  RL D
+        int op_RL_E();                                              // 0xCB 0x13  RL E
+        int op_RL_H();                                              // 0xCB 0x14  RL H
+        int op_RL_L();                                              // 0xCB 0x15  RL L
+        int op_RL_HLaddr();                                         // 0xCB 0x16  RL (HL)
+        int op_RL_A();                                              // 0xCB 0x17  RL A
+        int op_RR_B();                                              // 0xCB 0x18  RR B
+        int op_RR_C();                                              // 0xCB 0x19  RR C
+        int op_RR_D();                                              // 0xCB 0x1A  RR D
+        int op_RR_E();                                              // 0xCB 0x1B  RR E
+        int op_RR_H();                                              // 0xCB 0x1C  RR H
+        int op_RR_L();                                              // 0xCB 0x1D  RR L
+        int op_RR_HLaddr();                                         // 0xCB 0x1E  RR (HL)
+        int op_RR_A();                                              // 0xCB 0x1F  RR A
+
+        int op_SLA_B();                                             // 0xCB 0x20  SLA B
+        int op_SLA_C();                                             // 0xCB 0x21  SLA C
+        int op_SLA_D();                                             // 0xCB 0x22  SLA D
+        int op_SLA_E();                                             // 0xCB 0x23  SLA E
+        int op_SLA_H();                                             // 0xCB 0x24  SLA H
+        int op_SLA_L();                                             // 0xCB 0x25  SLA L
+        int op_SLA_HLaddr();                                        // 0xCB 0x26  SLA (HL)
+        int op_SLA_A();                                             // 0xCB 0x27  SLA A
+        int op_SRA_B();                                             // 0xCB 0x28  SRA B
+        int op_SRA_C();                                             // 0xCB 0x29  SRA C
+        int op_SRA_D();                                             // 0xCB 0x2A  SRA D
+        int op_SRA_E();                                             // 0xCB 0x2B  SRA E
+        int op_SRA_H();                                             // 0xCB 0x2C  SRA H
+        int op_SRA_L();                                             // 0xCB 0x2D  SRA L
+        int op_SRA_HLaddr();                                        // 0xCB 0x2E  SRA (HL)
+        int op_SRA_A();                                             // 0xCB 0x2F  SRA A
+
+        int op_SWAP_B();                                            // 0xCB 0x30  SWAP B
+        int op_SWAP_C();                                            // 0xCB 0x31  SWAP C
+        int op_SWAP_D();                                            // 0xCB 0x32  SWAP D
+        int op_SWAP_E();                                            // 0xCB 0x33  SWAP E
+        int op_SWAP_H();                                            // 0xCB 0x34  SWAP H
+        int op_SWAP_L();                                            // 0xCB 0x35  SWAP L
+        int op_SWAP_HLaddr();                                       // 0xCB 0x36  SWAP (HL)
+        int op_SWAP_A();                                            // 0xCB 0x37  SWAP A
+        int op_SRL_B();                                             // 0xCB 0x38  SRL B
+        int op_SRL_C();                                             // 0xCB 0x39  SRL C
+        int op_SRL_D();                                             // 0xCB 0x3A  SRL D
+        int op_SRL_E();                                             // 0xCB 0x3B  SRL E
+        int op_SRL_H();                                             // 0xCB 0x3C  SRL H
+        int op_SRL_L();                                             // 0xCB 0x3D  SRL L
+        int op_SRL_HLaddr();                                        // 0xCB 0x3E  SRL (HL)
+        int op_SRL_A();                                             // 0xCB 0x3F  SRL A
+
+        int op_BIT_0B();                                            // 0xCB 0x48  BIT 0, B
+        int op_BIT_0C();                                            // 0xCB 0x49  BIT 0, C
+        int op_BIT_0D();                                            // 0xCB 0x4A  BIT 0, D
+        int op_BIT_0E();                                            // 0xCB 0x4B  BIT 0, E
+        int op_BIT_0H();                                            // 0xCB 0x4C  BIT 0, H
+        int op_BIT_0L();                                            // 0xCB 0x4D  BIT 0, L
+        int op_BIT_0HLaddr();                                       // 0xCB 0x4E  BIT 0, (HL)
+        int op_BIT_0A();                                            // 0xCB 0x4F  BIT 0, A
+        int op_BIT_1B();                                            // 0xCB 0x48  BIT 1, B
+        int op_BIT_1C();                                            // 0xCB 0x49  BIT 1, C
+        int op_BIT_1D();                                            // 0xCB 0x4A  BIT 1, D
+        int op_BIT_1E();                                            // 0xCB 0x4B  BIT 1, E
+        int op_BIT_1H();                                            // 0xCB 0x4C  BIT 1, H
+        int op_BIT_1L();                                            // 0xCB 0x4D  BIT 1, L
+        int op_BIT_1HLaddr();                                       // 0xCB 0x4E  BIT 1, (HL)
+        int op_BIT_1A();                                            // 0xCB 0x4F  BIT 1, A
+
+        int op_BIT_2B();                                            // 0xCB 0x58  BIT 2, B
+        int op_BIT_2C();                                            // 0xCB 0x59  BIT 2, C
+        int op_BIT_2D();                                            // 0xCB 0x5A  BIT 2, D
+        int op_BIT_2E();                                            // 0xCB 0x5B  BIT 2, E
+        int op_BIT_2H();                                            // 0xCB 0x5C  BIT 2, H
+        int op_BIT_2L();                                            // 0xCB 0x5D  BIT 2, L
+        int op_BIT_2HLaddr();                                       // 0xCB 0x5E  BIT 2, (HL)
+        int op_BIT_2A();                                            // 0xCB 0x5F  BIT 2, A
+        int op_BIT_3B();                                            // 0xCB 0x58  BIT 3, B
+        int op_BIT_3C();                                            // 0xCB 0x59  BIT 3, C
+        int op_BIT_3D();                                            // 0xCB 0x5A  BIT 3, D
+        int op_BIT_3E();                                            // 0xCB 0x5B  BIT 3, E
+        int op_BIT_3H();                                            // 0xCB 0x5C  BIT 3, H
+        int op_BIT_3L();                                            // 0xCB 0x5D  BIT 3, L
+        int op_BIT_3HLaddr();                                       // 0xCB 0x5E  BIT 3, (HL)
+        int op_BIT_3A();                                            // 0xCB 0x5F  BIT 3, A
+
+        int op_BIT_4B();                                            // 0xCB 0x68  BIT 4, B
+        int op_BIT_4C();                                            // 0xCB 0x69  BIT 4, C
+        int op_BIT_4D();                                            // 0xCB 0x6A  BIT 4, D
+        int op_BIT_4E();                                            // 0xCB 0x6B  BIT 4, E
+        int op_BIT_4H();                                            // 0xCB 0x6C  BIT 4, H
+        int op_BIT_4L();                                            // 0xCB 0x6D  BIT 4, L
+        int op_BIT_4HLaddr();                                       // 0xCB 0x6E  BIT 4, (HL)
+        int op_BIT_4A();                                            // 0xCB 0x6F  BIT 4, A
+        int op_BIT_5B();                                            // 0xCB 0x68  BIT 5, B
+        int op_BIT_5C();                                            // 0xCB 0x69  BIT 5, C
+        int op_BIT_5D();                                            // 0xCB 0x6A  BIT 5, D
+        int op_BIT_5E();                                            // 0xCB 0x6B  BIT 5, E
+        int op_BIT_5H();                                            // 0xCB 0x6C  BIT 5, H
+        int op_BIT_5L();                                            // 0xCB 0x6D  BIT 5, L
+        int op_BIT_5HLaddr();                                       // 0xCB 0x6E  BIT 5, (HL)
+        int op_BIT_5A();                                            // 0xCB 0x6F  BIT 5, A
+
+        int op_BIT_6B();                                            // 0xCB 0x78  BIT 6, B
+        int op_BIT_6C();                                            // 0xCB 0x79  BIT 6, C
+        int op_BIT_6D();                                            // 0xCB 0x7A  BIT 6, D
+        int op_BIT_6E();                                            // 0xCB 0x7B  BIT 6, E
+        int op_BIT_6H();                                            // 0xCB 0x7C  BIT 6, H
+        int op_BIT_6L();                                            // 0xCB 0x7D  BIT 6, L
+        int op_BIT_6HLaddr();                                       // 0xCB 0x7E  BIT 6, (HL)
+        int op_BIT_6A();                                            // 0xCB 0x7F  BIT 6, A
+        int op_BIT_7B();                                            // 0xCB 0x78  BIT 7, B
+        int op_BIT_7C();                                            // 0xCB 0x79  BIT 7, C
+        int op_BIT_7D();                                            // 0xCB 0x7A  BIT 7, D
+        int op_BIT_7E();                                            // 0xCB 0x7B  BIT 7, E
+        int op_BIT_7H();                                            // 0xCB 0x7C  BIT 7, H
+        int op_BIT_7L();                                            // 0xCB 0x7D  BIT 7, L
+        int op_BIT_7HLaddr();                                       // 0xCB 0x7E  BIT 7, (HL)
+        int op_BIT_7A();                                            // 0xCB 0x7F  BIT 7, A
+
+        int op_RES_0B();                                            // 0xCB 0x88  RES 0, B
+        int op_RES_0C();                                            // 0xCB 0x89  RES 0, C
+        int op_RES_0D();                                            // 0xCB 0x8A  RES 0, D
+        int op_RES_0E();                                            // 0xCB 0x8B  RES 0, E
+        int op_RES_0H();                                            // 0xCB 0x8C  RES 0, H
+        int op_RES_0L();                                            // 0xCB 0x8D  RES 0, L
+        int op_RES_0HLaddr();                                       // 0xCB 0x8E  RES 0, (HL)
+        int op_RES_0A();                                            // 0xCB 0x8F  RES 0, A
+        int op_RES_1B();                                            // 0xCB 0x88  RES 1, B
+        int op_RES_1C();                                            // 0xCB 0x89  RES 1, C
+        int op_RES_1D();                                            // 0xCB 0x8A  RES 1, D
+        int op_RES_1E();                                            // 0xCB 0x8B  RES 1, E
+        int op_RES_1H();                                            // 0xCB 0x8C  RES 1, H
+        int op_RES_1L();                                            // 0xCB 0x8D  RES 1, L
+        int op_RES_1HLaddr();                                       // 0xCB 0x8E  RES 1, (HL)
+        int op_RES_1A();                                            // 0xCB 0x8F  RES 1, A
+
+        int op_RES_2B();                                            // 0xCB 0x98  RES 2, B
+        int op_RES_2C();                                            // 0xCB 0x99  RES 2, C
+        int op_RES_2D();                                            // 0xCB 0x9A  RES 2, D
+        int op_RES_2E();                                            // 0xCB 0x9B  RES 2, E
+        int op_RES_2H();                                            // 0xCB 0x9C  RES 2, H
+        int op_RES_2L();                                            // 0xCB 0x9D  RES 2, L
+        int op_RES_2HLaddr();                                       // 0xCB 0x9E  RES 2, (HL)
+        int op_RES_2A();                                            // 0xCB 0x9F  RES 2, A
+        int op_RES_3B();                                            // 0xCB 0x98  RES 3, B
+        int op_RES_3C();                                            // 0xCB 0x99  RES 3, C
+        int op_RES_3D();                                            // 0xCB 0x9A  RES 3, D
+        int op_RES_3E();                                            // 0xCB 0x9B  RES 3, E
+        int op_RES_3H();                                            // 0xCB 0x9C  RES 3, H
+        int op_RES_3L();                                            // 0xCB 0x9D  RES 3, L
+        int op_RES_3HLaddr();                                       // 0xCB 0x9E  RES 3, (HL)
+        int op_RES_3A();                                            // 0xCB 0x9F  RES 3, A
+
+        int op_RES_4B();                                            // 0xCB 0xA8  RES 4, B
+        int op_RES_4C();                                            // 0xCB 0xA9  RES 4, C
+        int op_RES_4D();                                            // 0xCB 0xAA  RES 4, D
+        int op_RES_4E();                                            // 0xCB 0xAB  RES 4, E
+        int op_RES_4H();                                            // 0xCB 0xAC  RES 4, H
+        int op_RES_4L();                                            // 0xCB 0xAD  RES 4, L
+        int op_RES_4HLaddr();                                       // 0xCB 0xAE  RES 4, (HL)
+        int op_RES_4A();                                            // 0xCB 0xAF  RES 4, A
+        int op_RES_5B();                                            // 0xCB 0xA8  RES 5, B
+        int op_RES_5C();                                            // 0xCB 0xA9  RES 5, C
+        int op_RES_5D();                                            // 0xCB 0xAA  RES 5, D
+        int op_RES_5E();                                            // 0xCB 0xAB  RES 5, E
+        int op_RES_5H();                                            // 0xCB 0xAC  RES 5, H
+        int op_RES_5L();                                            // 0xCB 0xAD  RES 5, L
+        int op_RES_5HLaddr();                                       // 0xCB 0xAE  RES 5, (HL)
+        int op_RES_5A();                                            // 0xCB 0xAF  RES 5, A
+
+        int op_RES_6B();                                            // 0xCB 0xB8  RES 6, B
+        int op_RES_6C();                                            // 0xCB 0xB9  RES 6, C
+        int op_RES_6D();                                            // 0xCB 0xBA  RES 6, D
+        int op_RES_6E();                                            // 0xCB 0xBB  RES 6, E
+        int op_RES_6H();                                            // 0xCB 0xBC  RES 6, H
+        int op_RES_6L();                                            // 0xCB 0xBD  RES 6, L
+        int op_RES_6HLaddr();                                       // 0xCB 0xBE  RES 6, (HL)
+        int op_RES_6A();                                            // 0xCB 0xBF  RES 6, A
+        int op_RES_7B();                                            // 0xCB 0xB8  RES 7, B
+        int op_RES_7C();                                            // 0xCB 0xB9  RES 7, C
+        int op_RES_7D();                                            // 0xCB 0xBA  RES 7, D
+        int op_RES_7E();                                            // 0xCB 0xBB  RES 7, E
+        int op_RES_7H();                                            // 0xCB 0xBC  RES 7, H
+        int op_RES_7L();                                            // 0xCB 0xBD  RES 7, L
+        int op_RES_7HLaddr();                                       // 0xCB 0xBE  RES 7, (HL)
+        int op_RES_7A();                                            // 0xCB 0xBF  RES 7, A
+
+        int op_SET_0B();                                            // 0xCB 0xC8  SET 0, B
+        int op_SET_0C();                                            // 0xCB 0xC9  SET 0, C
+        int op_SET_0D();                                            // 0xCB 0xCA  SET 0, D
+        int op_SET_0E();                                            // 0xCB 0xCB  SET 0, E
+        int op_SET_0H();                                            // 0xCB 0xCC  SET 0, H
+        int op_SET_0L();                                            // 0xCB 0xCD  SET 0, L
+        int op_SET_0HLaddr();                                       // 0xCB 0xCE  SET 0, (HL)
+        int op_SET_0A();                                            // 0xCB 0xCF  SET 0, A
+        int op_SET_1B();                                            // 0xCB 0xC8  SET 1, B
+        int op_SET_1C();                                            // 0xCB 0xC9  SET 1, C
+        int op_SET_1D();                                            // 0xCB 0xCA  SET 1, D
+        int op_SET_1E();                                            // 0xCB 0xCB  SET 1, E
+        int op_SET_1H();                                            // 0xCB 0xCC  SET 1, H
+        int op_SET_1L();                                            // 0xCB 0xCD  SET 1, L
+        int op_SET_1HLaddr();                                       // 0xCB 0xCE  SET 1, (HL)
+        int op_SET_1A();                                            // 0xCB 0xCF  SET 1, A
+
+        int op_SET_2B();                                            // 0xCB 0xD8  SET 2, B
+        int op_SET_2C();                                            // 0xCB 0xD9  SET 2, C
+        int op_SET_2D();                                            // 0xCB 0xDA  SET 2, D
+        int op_SET_2E();                                            // 0xCB 0xDB  SET 2, E
+        int op_SET_2H();                                            // 0xCB 0xDC  SET 2, H
+        int op_SET_2L();                                            // 0xCB 0xDD  SET 2, L
+        int op_SET_2HLaddr();                                       // 0xCB 0xDE  SET 2, (HL)
+        int op_SET_2A();                                            // 0xCB 0xDF  SET 2, A
+        int op_SET_3B();                                            // 0xCB 0xD8  SET 3, B
+        int op_SET_3C();                                            // 0xCB 0xD9  SET 3, C
+        int op_SET_3D();                                            // 0xCB 0xDA  SET 3, D
+        int op_SET_3E();                                            // 0xCB 0xDB  SET 3, E
+        int op_SET_3H();                                            // 0xCB 0xDC  SET 3, H
+        int op_SET_3L();                                            // 0xCB 0xDD  SET 3, L
+        int op_SET_3HLaddr();                                       // 0xCB 0xDE  SET 3, (HL)
+        int op_SET_3A();                                            // 0xCB 0xDF  SET 3, A
+
+        int op_SET_4B();                                            // 0xCB 0xE8  SET 4, B
+        int op_SET_4C();                                            // 0xCB 0xE9  SET 4, C
+        int op_SET_4D();                                            // 0xCB 0xEA  SET 4, D
+        int op_SET_4E();                                            // 0xCB 0xEB  SET 4, E
+        int op_SET_4H();                                            // 0xCB 0xEC  SET 4, H
+        int op_SET_4L();                                            // 0xCB 0xED  SET 4, L
+        int op_SET_4HLaddr();                                       // 0xCB 0xEE  SET 4, (HL)
+        int op_SET_4A();                                            // 0xCB 0xEF  SET 4, A
+        int op_SET_5B();                                            // 0xCB 0xE8  SET 5, B
+        int op_SET_5C();                                            // 0xCB 0xE9  SET 5, C
+        int op_SET_5D();                                            // 0xCB 0xEA  SET 5, D
+        int op_SET_5E();                                            // 0xCB 0xEB  SET 5, E
+        int op_SET_5H();                                            // 0xCB 0xEC  SET 5, H
+        int op_SET_5L();                                            // 0xCB 0xED  SET 5, L
+        int op_SET_5HLaddr();                                       // 0xCB 0xEE  SET 5, (HL)
+        int op_SET_5A();                                            // 0xCB 0xEF  SET 5, A
+
+        int op_SET_6B();                                            // 0xCB 0xF8  SET 6, B
+        int op_SET_6C();                                            // 0xCB 0xF9  SET 6, C
+        int op_SET_6D();                                            // 0xCB 0xFA  SET 6, D
+        int op_SET_6E();                                            // 0xCB 0xFB  SET 6, E
+        int op_SET_6H();                                            // 0xCB 0xFC  SET 6, H
+        int op_SET_6L();                                            // 0xCB 0xFD  SET 6, L
+        int op_SET_6HLaddr();                                       // 0xCB 0xFE  SET 6, (HL)
+        int op_SET_6A();                                            // 0xCB 0xFF  SET 6, A
+        int op_SET_7B();                                            // 0xCB 0xF8  SET 7, B
+        int op_SET_7C();                                            // 0xCB 0xF9  SET 7, C
+        int op_SET_7D();                                            // 0xCB 0xFA  SET 7, D
+        int op_SET_7E();                                            // 0xCB 0xFB  SET 7, E
+        int op_SET_7H();                                            // 0xCB 0xFC  SET 7, H
+        int op_SET_7L();                                            // 0xCB 0xFD  SET 7, L
+        int op_SET_7HLaddr();                                       // 0xCB 0xFE  SET 7, (HL)
+        int op_SET_7A();                                            // 0xCB 0xFF  SET 7, A
 
 };
 
