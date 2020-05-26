@@ -8,7 +8,6 @@ cpu::cpu()
     for( int i = 0 ; i < 6 ; i++)
         registers.insert(std::make_pair(regnames[i],new register16()));
     frameCycles = 0;
-    boolIncrementPC = 1;
     initializeInstructionTable();
 }
 
@@ -48,6 +47,11 @@ void cpu::runFrame(void)
 void cpu::load16BitRegister(std::string registerName, uint16_t value)
 {
     registers[registerName]->setTotalValue(value);
+}
+
+uint8_t cpu::getOpCode(void)
+{
+    return getNextByte();
 }
 
 uint8_t cpu::getNextByte(void)
@@ -404,6 +408,22 @@ void cpu::popToRegister(std::string destReg)
 
     registers[destReg]->setLowValue(low);
     registers[destReg]->setHighValue(high);
+
+    registers["SP"]->setTotalValue(addr);
+}
+
+void cpu::pushByteToStack(uint8_t val)
+{
+    // Decrements SP by 1 then
+    // loads val into the memory address
+    // it points to
+
+    uint16_t addr;
+    
+    addr = registers["SP"]->getTotalValue();
+    addr--;
+
+    mainMemory.writeToAddress(addr, val);
 
     registers["SP"]->setTotalValue(addr);
 }
