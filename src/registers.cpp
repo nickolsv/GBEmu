@@ -120,6 +120,38 @@ uint8_t register16::rotateLowRight()
     return low.rotateRight();
 }
 
+uint8_t register16::shiftHighLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    
+    return high.shiftLeft();
+}
+
+uint8_t register16::shiftLowLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    
+    return low.shiftLeft();
+}
+
+uint8_t register16::shiftHighRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag 
+    
+    return high.shiftRight();
+}
+
+uint8_t register16::shiftLowRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag 
+    
+    return low.shiftRight();
+}
+
 register8::register8()
 {
     setValue(0);
@@ -180,6 +212,40 @@ uint8_t register8::rotateRight()
     temp = temp<<7;
 
     setValue(temp | val);
+
+    return temp;
+}
+
+uint8_t register8::shiftLeft()
+{
+    // Return value of previous bit 7
+    // to set the carry flag 
+    // Bit 0 set to 0
+    
+    uint8_t val  = getValue();
+    uint8_t temp = val & 0x80;
+
+    val = val<<1;
+    val = val & 0xFE;
+    setValue(val);
+
+    return temp;
+}
+
+uint8_t register8::shiftRight()
+{
+    // Return value of previous bit 0
+    // to set the carry flag   
+    // Bit 7 stays unchanged
+
+    uint8_t val  = getValue();
+    uint8_t temp = val & 0x01;
+    uint8_t bit7 = val & 0x80;
+
+    val = val>>1;
+    val = val & 0x7F;
+    val = val | bit7;
+    setValue(val);
 
     return temp;
 }
