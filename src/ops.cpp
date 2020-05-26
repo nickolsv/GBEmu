@@ -5249,12 +5249,12 @@ int cpu::op_JP_nn(void)
     return 16;
 }
 
-int cpu::op_CALL_NCnn(void)
+int cpu::op_CALL_NZnn(void)
 {
     // opCode 0xC4
-    // CALL NC, nn
+    // CALL NZ, nn
     //
-    // If flag C is reset,
+    // If flag Z is reset,
     // Pushes the PC value corresponding to the instruction
     // after CALL to the memory stack
     // then jumps to nn
@@ -5263,7 +5263,7 @@ int cpu::op_CALL_NCnn(void)
 
     uint8_t high, low;
 
-    if( getFlag('C') == 0 )
+    if( getFlag('Z') == 0 )
     {
         low = getNextByte();
         high = getNextByte();
@@ -5562,6 +5562,356 @@ int cpu::op_RST_08H(void)
     pushByteToStack(registers["PC"]->getLowValue());
 
     registers["PC"]->setTotalValue(0x0008);
+
+    return 16;
+}
+
+int cpu::op_RET_NC(void)
+{
+    // opCode 0xD0
+    // RET NC
+    // 
+    // If flag C is reset,
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
+
+    if( getFlag('C') == 0 )
+    {
+        popToRegister("PC");
+        return 20;
+    }
+
+    return 8;
+}
+
+int cpu::op_POP_DE(void)
+{
+    // opCode 0xD1
+    // POP DE
+    //
+    // Pops contents from the memory stack
+    // into register DE
+    // Also increments SP by 2
+    // 12 Cycles, 1 byte
+
+    popToRegister("DE");
+    return 12;
+}
+
+int cpu::op_JP_NCnn(void)
+{
+    // opCode 0xD2
+    // JP NC, nn
+    //
+    // If C flag is reset
+    // Jumps to immediate memory address
+    // 16 Cycles if Jump, 12 if not Jump, 3 bytes
+
+    uint8_t low, high;
+
+    if( getFlag('C') == 0 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        registers["PC"]->setLowValue(low);
+        registers["PC"]->setHighValue(low);
+
+        return 16;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
+
+    return 12;
+}
+
+// opCode 0xD3 Unused
+
+int cpu::op_CALL_NCnn(void)
+{
+    // opCode 0xD4
+    // CALL NC, nn
+    //
+    // If flag C is reset,
+    // Pushes the PC value corresponding to the instruction
+    // after CALL to the memory stack
+    // then jumps to nn
+    // Decrements Stack Pointer by 2
+    // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
+
+    uint8_t high, low;
+
+    if( getFlag('C') == 0 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        pushByteToStack(registers["PC"]->getHighValue());
+        pushByteToStack(registers["PC"]->getLowValue());
+
+        registers["PC"]->setHighValue(high);
+        registers["PC"]->setLowValue(low);
+        
+        return 24;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
+
+    return 12;
+}
+
+int cpu::op_PUSH_DE(void)
+{
+    // opCode 0xD5
+    // PUSH DE
+    //
+    // Pushes contents of DE
+    // into the memory stack
+    // Decrements SP by 2
+    // 16 Cycles, 1 byte
+
+    uint8_t high, low;
+
+    high = registers["DE"]->getHighValue();
+    low = registers["DE"]->getLowValue();
+
+    pushByteToStack(high);
+    pushByteToStack(low);
+
+    return 16;
+}
+
+int cpu::op_SUB_n(void)
+{
+    // opCode 0xD6
+    // SUB n
+    //
+    // Subtracts next byte in memory
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 8 Cycles, 2 byteS
+
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = getNextByte();
+    flags  = subtract8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
+    return 8;
+}
+
+int cpu::op_RST_10H(void)
+{
+    // opCode 0xD7
+    // RST 10H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0010
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0010);
+
+    return 16;
+}
+
+int cpu::op_RET_C(void)
+{
+    // opCode 0xD8
+    // RET C
+    // 
+    // If flag C is set,
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
+
+    if( getFlag('C') == 1 )
+    {
+        popToRegister("PC");
+        return 20;
+    }
+
+    return 8;
+}
+
+int cpu::op_RETI(void)
+{
+    // opCode 0xD9
+    // RETI
+    // Pops 2 bytes from the memory stack
+    // and into the PC
+    // Increments SP by 2
+    // Then, enable  interrupts
+    // 16 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_JP_Cnn(void)
+{
+    // opCode 0xDA
+    // JP NC, nn
+    //
+    // If C flag is set
+    // Jumps to immediate memory address
+    // 16 Cycles if Jump, 12 if not Jump, 3 bytes
+
+    uint8_t low, high;
+
+    if( getFlag('C') == 1 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        registers["PC"]->setLowValue(low);
+        registers["PC"]->setHighValue(low);
+
+        return 16;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
+
+    return 12;
+}
+
+// opCode 0xDB Unused
+
+int cpu::op_CALL_Cnn(void)
+{
+    // opCode 0xDC
+    // CALL C, nn
+    //
+    // If flag C is set,
+    // Pushes the PC value corresponding to the instruction
+    // after CALL to the memory stack
+    // Decrements Stack Pointer by 2
+    // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
+
+    uint8_t high, low;
+
+    if( getFlag('C') == 1 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        pushByteToStack(registers["PC"]->getHighValue());
+        pushByteToStack(registers["PC"]->getLowValue());
+
+        registers["PC"]->setHighValue(high);
+        registers["PC"]->setLowValue(low);
+        
+        return 24;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
+
+    return 12;
+}
+
+// opCode 0xDD Unused
+
+
+int cpu::op_SBC_An(void)
+{
+    // opCode 0xDE
+    // SBC A, n
+    //
+    // Subtracts next value in memory
+    // plus the Carry Flag
+    // from register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 8 Cycles, 1 byte
+
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = getNextByte();
+    flags = subtract8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
+
+    return 8;
+}
+
+int cpu::op_RST_18H(void)
+{
+    // opCode 0xDF
+    // RST 18H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0018
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0018);
 
     return 16;
 }

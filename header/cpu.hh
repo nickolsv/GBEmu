@@ -265,32 +265,32 @@ class cpu
         int op_CALL_NZnn();                                         // 0xC4  CALL NZ, nn
         int op_PUSH_BC();                                           // 0xC5  PUSH BC
         int op_ADD_An();                                            // 0xC6  ADD A, n
-        int op_RST_00H();                                           // 0xC7  RST 00H            // TODO: Implement
+        int op_RST_00H();                                           // 0xC7  RST 00H
         int op_RET_Z();                                             // 0xC8  RET Z
         int op_RET();                                               // 0xC9  RET
-        int op_JP_Znn();                                            // 0xCA  JP Z, n
+        int op_JP_Znn();                                            // 0xCA  JP Z, nn
         int op_PREFIX_CB();                                         // 0xCB  PREFIX CB          // TODO: Implement
         int op_CALL_Znn();                                          // 0xCC  CALL Z, nn
         int op_CALL_nn();                                           // 0xCD  CALL nn
         int op_ADC_An();                                            // 0xCE  ADC A, n
-        int op_RST_08H();                                           // 0xCF  RST 08H            // TODO: Implement
+        int op_RST_08H();                                           // 0xCF  RST 08H
 
-        int op_RET_NC();                                            // 0xD0  RET NC             // TODO: Implement
-        int op_POP_DE();                                            // 0xD1  POP DE             // TODO: Implement
-        int op_JP_NCnn();                                           // 0xD2  JP NC, nn          // TODO: Implement
+        int op_RET_NC();                                            // 0xD0  RET NC
+        int op_POP_DE();                                            // 0xD1  POP DE
+        int op_JP_NCnn();                                           // 0xD2  JP NC, nn
         // Unused Instruction 0xD3
-        int op_CALL_NCnn();                                         // 0xD4  CALL NC, nn        // TODO: Implement
-        int op_PUSH_DE();                                           // 0xD5  PUSH DE            // TODO: Implement
-        int op_SUB_n();                                             // 0xD6  SUB n              // TODO: Implement
-        int op_RST_10H();                                           // 0xD7  RST 10H            // TODO: Implement
-        int op_RET_C();                                             // 0xD8  RET C              // TODO: Implement
+        int op_CALL_NCnn();                                         // 0xD4  CALL NC, nn
+        int op_PUSH_DE();                                           // 0xD5  PUSH DE
+        int op_SUB_n();                                             // 0xD6  SUB n
+        int op_RST_10H();                                           // 0xD7  RST 10H
+        int op_RET_C();                                             // 0xD8  RET C
         int op_RETI();                                              // 0xD9  RETI               // TODO: Implement
-        int op_JP_Cnn();                                            // 0xDA  JP C, nn           // TODO: Implement
+        int op_JP_Cnn();                                            // 0xDA  JP C, nn
         // Unused Instruction 0xDB
-        int op_CALL_Cnn();                                          // 0xDC  CALL C, nn         // TODO: Implement
+        int op_CALL_Cnn();                                          // 0xDC  CALL C, nn
         // Unused Instruction 0xDD
-        int op_SBC_An();                                            // 0xDE  SBC A, n           // TODO: Implement
-        int op_RST_18H();                                           // 0xDF  RST 18H            // TODO: Implement
+        int op_SBC_An();                                            // 0xDE  SBC A, n
+        int op_RST_18H();                                           // 0xDF  RST 18H
 
         int op_LDH_nA();                                            // 0xE0  LDH n, A           // TODO: Implement
         int op_POP_HL();                                            // 0xE1  POP HL             // TODO: Implement
