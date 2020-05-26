@@ -61,7 +61,7 @@ class cpu
         int op_INC_B();                                             // 0x04  INC B
         int op_DEC_B();                                             // 0x05  DEC B
         int op_LD_Bn();                                             // 0x06  LD B, n
-        int op_RLC_A();                                             // 0x07  RLCA
+        int op_RLCA();                                              // 0x07  RLCA
         int op_LD_aaSP();                                           // 0x08  LD aa, SP
         int op_ADD_HLBC();                                          // 0x09  ADD HL, BC
         int op_LD_ABC();                                            // 0x0A  LD A, BC
@@ -69,7 +69,7 @@ class cpu
         int op_INC_C();                                             // 0x0C  INC C
         int op_DEC_C();                                             // 0x0D  DEC C
         int op_LD_Cn();                                             // 0x0E  LD C, n
-        int op_RRC_A();                                             // 0x0F  RRCA
+        int op_RRCA();                                              // 0x0F  RRCA
 
         int op_STOP();                                              // 0x10  STOP 0             // TODO: Implement
         int op_LD_DEnn();                                           // 0x11  LD DE, nn
@@ -326,9 +326,27 @@ class cpu
         int op_CP_n();                                              // 0xFE  CP n
         int op_RST_38H();                                           // 0xFF  RST 38H
 
+
         // Instructions (CB Prefix)
 
-        // TODO: Implement
+        int op_RLC_B();                                             // 0xCB 0x00  RLC B
+        int op_RLC_C();                                             // 0xCB 0x01  RLC C
+        int op_RLC_D();                                             // 0xCB 0x02  RLC D
+        int op_RLC_E();                                             // 0xCB 0x03  RLC E
+        int op_RLC_H();                                             // 0xCB 0x04  RLC H
+        int op_RLC_L();                                             // 0xCB 0x05  RLC L
+        int op_RLC_HLaddr();                                        // 0xCB 0x06  RLC (HL)
+        int op_RLC_A();                                             // 0xCB 0x07  RLC A
+        int op_RRC_B();                                             // 0xCB 0x08  RRC B
+        int op_RRC_C();                                             // 0xCB 0x09  RRC C
+        int op_RRC_D();                                             // 0xCB 0x0A  RRC D
+        int op_RRC_E();                                             // 0xCB 0x0B  RRC E
+        int op_RRC_H();                                             // 0xCB 0x0C  RRC H
+        int op_RRC_L();                                             // 0xCB 0x0D  RRC L
+        int op_RRC_HLaddr();                                        // 0xCB 0x0E  RRC (HL)
+        int op_RRC_A();                                             // 0xCB 0x0F  RRC A
+
+
 };
 
 #endif

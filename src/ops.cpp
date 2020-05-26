@@ -1,5 +1,4 @@
 #include "../header/cpu.hh"
-#include <cstring>
 
 int cpu::op_NOOP(void)
 {
@@ -137,7 +136,7 @@ int cpu::op_LD_Bn(void)
     return 8;
 }
 
-int cpu::op_RLC_A(void)
+int cpu::op_RLCA(void)
 {
     // opCode 0x07
     // RLCA
@@ -330,7 +329,7 @@ int cpu::op_LD_Cn(void)
     return 8;
 }
 
-int cpu::op_RRC_A(void)
+int cpu::op_RRCA(void)
 {
     // opCode 0x0F
     // RRCA
