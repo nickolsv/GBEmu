@@ -4012,7 +4012,7 @@ int cpu::op_SBC_AA(void)
     return 4;
 }
 
-int cpu::op_AND_B()
+int cpu::op_AND_B(void)
 {
     // opCode 0xA0
     // AND B
@@ -4047,7 +4047,7 @@ int cpu::op_AND_B()
     return 4;
 }
 
-int cpu::op_AND_C()
+int cpu::op_AND_C(void)
 {
     // opCode 0xA1
     // AND C
@@ -4082,7 +4082,7 @@ int cpu::op_AND_C()
     return 4;
 }
 
-int cpu::op_AND_D()
+int cpu::op_AND_D(void)
 {
     // opCode 0xA2
     // AND D
@@ -4117,7 +4117,7 @@ int cpu::op_AND_D()
     return 4;
 }
 
-int cpu::op_AND_E()
+int cpu::op_AND_E(void)
 {
     // opCode 0xA3
     // AND E
@@ -4152,7 +4152,7 @@ int cpu::op_AND_E()
     return 4;
 }
 
-int cpu::op_AND_H()
+int cpu::op_AND_H(void)
 {
     // opCode 0xA4
     // AND H
@@ -4187,7 +4187,7 @@ int cpu::op_AND_H()
     return 4;
 }
 
-int cpu::op_AND_L()
+int cpu::op_AND_L(void)
 {
     // opCode 0xA5
     // AND L
@@ -4222,7 +4222,7 @@ int cpu::op_AND_L()
     return 4;
 }
 
-int cpu::op_AND_HL()
+int cpu::op_AND_HL(void)
 {
     // opCode 0xA6
     // AND (HL)
@@ -4260,7 +4260,7 @@ int cpu::op_AND_HL()
     return 8;
 }
 
-int cpu::op_AND_A()
+int cpu::op_AND_A(void)
 {
     // opCode 0xA7
     // AND A
@@ -4295,7 +4295,7 @@ int cpu::op_AND_A()
     return 4;
 }
 
-int cpu::op_XOR_B()
+int cpu::op_XOR_B(void)
 {
     // opCode 0xA8
     // XOR B
@@ -4330,7 +4330,7 @@ int cpu::op_XOR_B()
     return 4;
 }
 
-int cpu::op_XOR_C()
+int cpu::op_XOR_C(void)
 {
     // opCode 0xA9
     // XOR C
@@ -4365,7 +4365,7 @@ int cpu::op_XOR_C()
     return 4;
 }
 
-int cpu::op_XOR_D()
+int cpu::op_XOR_D(void)
 {
     // opCode 0xAA
     // XOR D
@@ -4400,7 +4400,7 @@ int cpu::op_XOR_D()
     return 4;
 }
 
-int cpu::op_XOR_E()
+int cpu::op_XOR_E(void)
 {
     // opCode 0xAB
     // XOR E
@@ -4435,7 +4435,7 @@ int cpu::op_XOR_E()
     return 4;
 }
 
-int cpu::op_XOR_H()
+int cpu::op_XOR_H(void)
 {
     // opCode 0xAC
     // XOR H
@@ -4470,7 +4470,7 @@ int cpu::op_XOR_H()
     return 4;
 }
 
-int cpu::op_XOR_L()
+int cpu::op_XOR_L(void)
 {
     // opCode 0xAD
     // XOR L
@@ -4505,7 +4505,7 @@ int cpu::op_XOR_L()
     return 4;
 }
 
-int cpu::op_XOR_HL()
+int cpu::op_XOR_HL(void)
 {
     // opCode 0xAE
     // XOR (HL)
@@ -4543,7 +4543,7 @@ int cpu::op_XOR_HL()
     return 8;
 }
 
-int cpu::op_XOR_A()
+int cpu::op_XOR_A(void)
 {
     // opCode 0xAF
     // XOR A
@@ -4578,7 +4578,7 @@ int cpu::op_XOR_A()
     return 4;
 }
 
-int cpu::op_OR_B()
+int cpu::op_OR_B(void)
 {
     // opCode 0xB0
     // OR B
@@ -4613,7 +4613,7 @@ int cpu::op_OR_B()
     return 4;
 }
 
-int cpu::op_OR_C()
+int cpu::op_OR_C(void)
 {
     // opCode 0xB1
     // OR C
@@ -4648,7 +4648,7 @@ int cpu::op_OR_C()
     return 4;
 }
 
-int cpu::op_OR_D()
+int cpu::op_OR_D(void)
 {
     // opCode 0xB2
     // OR D
@@ -4683,7 +4683,7 @@ int cpu::op_OR_D()
     return 4;
 }
 
-int cpu::op_OR_E()
+int cpu::op_OR_E(void)
 {
     // opCode 0xB3
     // OR E
@@ -4718,7 +4718,7 @@ int cpu::op_OR_E()
     return 4;
 }
 
-int cpu::op_OR_H()
+int cpu::op_OR_H(void)
 {
     // opCode 0xB4
     // OR H
@@ -4753,7 +4753,7 @@ int cpu::op_OR_H()
     return 4;
 }
 
-int cpu::op_OR_L()
+int cpu::op_OR_L(void)
 {
     // opCode 0xB5
     // OR L
@@ -4788,7 +4788,7 @@ int cpu::op_OR_L()
     return 4;
 }
 
-int cpu::op_OR_HL()
+int cpu::op_OR_HL(void)
 {
     // opCode 0xB6
     // OR (HL)
@@ -4826,7 +4826,7 @@ int cpu::op_OR_HL()
     return 8;
 }
 
-int cpu::op_OR_A()
+int cpu::op_OR_A(void)
 {
     // opCode 0xB7
     // OR A
@@ -4861,7 +4861,7 @@ int cpu::op_OR_A()
     return 4;
 }
 
-int cpu::op_CP_B()
+int cpu::op_CP_B(void)
 {
     // opCode 0xB8
     // CP B
@@ -4899,7 +4899,7 @@ int cpu::op_CP_B()
     return 4;
 }
 
-int cpu::op_CP_C()
+int cpu::op_CP_C(void)
 {
     // opCode 0xB9
     // CP C
@@ -4937,7 +4937,7 @@ int cpu::op_CP_C()
     return 4;
 }
 
-int cpu::op_CP_D()
+int cpu::op_CP_D(void)
 {
     // opCode 0xBA
     // CP D
@@ -4975,7 +4975,7 @@ int cpu::op_CP_D()
     return 4;
 }
 
-int cpu::op_CP_E()
+int cpu::op_CP_E(void)
 {
     // opCode 0xBB
     // CP E
@@ -5013,7 +5013,7 @@ int cpu::op_CP_E()
     return 4;
 }
 
-int cpu::op_CP_H()
+int cpu::op_CP_H(void)
 {
     // opCode 0xBC
     // CP H
@@ -5051,7 +5051,7 @@ int cpu::op_CP_H()
     return 4;
 }
 
-int cpu::op_CP_L()
+int cpu::op_CP_L(void)
 {
     // opCode 0xBD
     // CP L
@@ -5089,7 +5089,7 @@ int cpu::op_CP_L()
     return 4;
 }
 
-int cpu::op_CP_HL()
+int cpu::op_CP_HL(void)
 {
     // opCode 0xBE
     // CP (HL)
@@ -5130,7 +5130,7 @@ int cpu::op_CP_HL()
     return 8;
 }
 
-int cpu::op_CP_A()
+int cpu::op_CP_A(void)
 {
     // opCode 0xBF
     // CP A
@@ -5912,6 +5912,271 @@ int cpu::op_RST_18H(void)
     pushByteToStack(registers["PC"]->getLowValue());
 
     registers["PC"]->setTotalValue(0x0018);
+
+    return 16;
+}
+
+int cpu::op_LDH_nA(void)
+{
+    // opCode 0xE0
+    // LDH n, A
+    //
+    // Reads next byte n in memory
+    // and puts the contents of 
+    // register A into memory
+    // address 0xFF00 + n
+    // 12 Cycles, 2 Bytes
+
+    uint8_t val, n;
+    uint16_t addr;
+
+    n = getNextByte();
+    addr = 0xFF00 + n;
+
+    val = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr, val);
+
+    return 12;
+}
+
+int cpu::op_POP_HL(void)
+{
+    // opCode 0xE1
+    // POP HL
+    //
+    // Pops contents from the memory stack
+    // into register HL
+    // Also increments SP by 2
+    // 12 Cycles, 1 byte
+
+    popToRegister("HL");
+    return 12;
+}
+
+int cpu::op_LD_CaddrA(void)
+{
+    // opCode 0xE2
+    // LD (C), A
+    //
+    // Reads value n of register C
+    // and puts the contents of 
+    // register A into memory
+    // address 0xFF00 + n
+    // 8 Cycles, 2 Bytes
+
+    uint8_t val, n;
+    uint16_t addr;
+
+    n = registers["BC"]->getLowValue();
+    addr = 0xFF00 + n;
+
+    val = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr, val);
+
+    return 8;
+}
+
+// opCode 0xE3 Unused
+
+// opCode 0xE4 Unused
+
+int cpu::op_PUSH_HL(void)
+{
+    // opCode 0xE5
+    // PUSH HL
+    //
+    // Pushes contents of HL
+    // into the memory stack
+    // Decrements SP by 2
+    // 16 Cycles, 1 byte
+
+    uint8_t high, low;
+
+    high = registers["HL"]->getHighValue();
+    low = registers["HL"]->getLowValue();
+
+    pushByteToStack(high);
+    pushByteToStack(low);
+
+    return 16;  
+}
+
+int cpu::op_AND_n(void)
+{
+    // opCode 0xE6
+    // AND n
+    //
+    // Takes the logical AND of
+    // the contents of the next byte in memory
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Sets H
+    //      - Resets C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val1, val2, res;
+
+    val1 = getNextByte();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 & val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    setFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_RST_20H(void)
+{
+    // opCode 0xE7
+    // RST 20H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0020
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0020);
+
+    return 16;
+}
+
+int cpu::op_ADD_SPn(void)
+{
+    // opCode 0xE8
+    // ADD SP, n
+    //
+    // Adds next byte in memory
+    // into SP
+    // Note: Interprets the byte
+    // as a signed value
+    //
+    // Flags:
+    //      - Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
+    //      - Sets C if bit 7 overflows; Otherwise Resets C
+
+    // TODO: Implement
+
+    // 16 Cycles, 2 bytes
+}
+
+int cpu::op_JP_HLaddr(void)
+{
+    // opCode 0xE9
+    // JP (HL)
+    //
+    // Jumps memory address contained in register HL
+    // 4 Cycles, 1 bytes
+
+    uint8_t low, high;
+
+    low = registers["HL"]->getLowValue();
+    high = registers["HL"]->getHighValue();
+
+    registers["PC"]->setLowValue(low);
+    registers["PC"]->setHighValue(low);
+
+    return 16;
+}
+
+int cpu::op_LD_nnA(void)
+{
+    // opCode 0xEA
+    // LD (nn), A
+    //
+    // Put value in register A
+    // into immediate memory address
+    // 16 Cycles, 3 bytes
+
+    uint8_t low, high, val;
+    uint16_t addr;
+
+    low = getNextByte();
+    high = getNextByte();
+
+    addr = high;
+    addr = addr<<8;
+    addr += low;
+
+    val = registers["AF"]->getHighValue();
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+// opCode 0xEB Unused
+
+// opCode 0xEC Unused
+
+// opCode 0xED Unused
+
+int cpu::op_XOR_n(void)
+{
+    // opCode 0xEE
+    // XOR n
+    //
+    // Takes the logical XOR of
+    // the contents of the next byte in memory
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val1, val2, res;
+
+    val1 = getNextByte();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 ^ val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_RST_28H(void)
+{
+    // opCode 0xEF
+    // RST 28H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0028
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0028);
 
     return 16;
 }

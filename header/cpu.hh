@@ -292,22 +292,22 @@ class cpu
         int op_SBC_An();                                            // 0xDE  SBC A, n
         int op_RST_18H();                                           // 0xDF  RST 18H
 
-        int op_LDH_nA();                                            // 0xE0  LDH n, A           // TODO: Implement
-        int op_POP_HL();                                            // 0xE1  POP HL             // TODO: Implement
-        int op_LD_CaddrA();                                         // 0xE2  LD (C), A          // TODO: Implement
+        int op_LDH_nA();                                            // 0xE0  LDH n, A
+        int op_POP_HL();                                            // 0xE1  POP HL
+        int op_LD_CaddrA();                                         // 0xE2  LD (C), A
         // Unused Instruction 0xE3
         // Unused Instruction 0xE4
-        int op_PUSH_HL();                                           // 0xE5  PUSH HL            // TODO: Implement
-        int op_AND_n();                                             // 0xE6  AND n              // TODO: Implement
-        int op_RST_20H();                                           // 0xE7  RST 20H            // TODO: Implement
-        int op_ADD_SPreg();                                         // 0xE8  ADD SP, r8         // TODO: Implement
-        int op_JP_HLaddr();                                         // 0xE9  JP (HL)            // TODO: Implement
-        int op_LD_nnA();                                            // 0xEA  LD (nn), A         // TODO: Implement
+        int op_PUSH_HL();                                           // 0xE5  PUSH HL
+        int op_AND_n();                                             // 0xE6  AND n
+        int op_RST_20H();                                           // 0xE7  RST 20H
+        int op_ADD_SPn();                                           // 0xE8  ADD SP, n          // TODO: Implement
+        int op_JP_HLaddr();                                         // 0xE9  JP (HL)
+        int op_LD_nnA();                                            // 0xEA  LD (nn), A
         // Unused Instruction 0xEB
         // Unused Instruction 0xEC
         // Unused Instruction 0xED
-        int op_XOR_n();                                             // 0xEE  XOR n              // TODO: Implement
-        int op_RST_28H();                                           // 0xEF  RST 28H            // TODO: Implement
+        int op_XOR_n();                                             // 0xEE  XOR n
+        int op_RST_28H();                                           // 0xEF  RST 28H
 
         int op_LDH_An();                                            // 0xF0  LDH A, n           // TODO: Implement
         int op_POP_AF();                                            // 0xF1  POP AF             // TODO: Implement
@@ -317,7 +317,7 @@ class cpu
         int op_PUSH_AF();                                           // 0xF5  PUSH AF            // TODO: Implement
         int op_OR_n();                                              // 0xF6  OR n               // TODO: Implement
         int op_RST_30H();                                           // 0xF7  RST 30H            // TODO: Implement
-        int op_LD_HLSPreg();                                        // 0xF8  LD HL, SP+r8       // TODO: Implement
+        int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n        // TODO: Implement
         int op_LD_SPHL();                                           // 0xF9  LD SP, HL          // TODO: Implement
         int op_LD_Ann();                                            // 0xFA  LD A, (nn)         // TODO: Implement
         int op_EI();                                                // 0xFB  EI                 // TODO: Implement
