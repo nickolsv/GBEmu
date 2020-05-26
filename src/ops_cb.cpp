@@ -1105,7 +1105,7 @@ int cpu::op_RR_A(void)
     // opCode 0xCB 0x1F
     // RR A
     //
-    // Rotates register A right
+    // Shifts register A right
     // by 1 bit. Previous C flag
     // value written to new bit 7
     // Flags: 
@@ -1136,4 +1136,526 @@ int cpu::op_RR_A(void)
     else                setFlag('C');
 
     return 8;    
+}
+
+int cpu::op_SLA_B(void)
+{
+    // opCode 0xCB 0x20
+    // SLA B
+    //
+    // Shifts register B left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftHighLeft();
+    val = registers["BC"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_C(void)
+{
+    // opCode 0xCB 0x21
+    // SLA C
+    //
+    // Shifts register C left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftLowLeft();
+    val = registers["BC"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_D(void)
+{
+    // opCode 0xCB 0x22
+    // SLA D
+    //
+    // Shifts register D left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftHighLeft();
+    val = registers["DE"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_E(void)
+{
+    // opCode 0xCB 0x23
+    // SLA E
+    //
+    // Shifts register E left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftLowLeft();
+    val = registers["DE"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_H(void)
+{
+    // opCode 0xCB 0x24
+    // SLA H
+    //
+    // Shifts register H left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftHighLeft();
+    val = registers["HL"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_L(void)
+{
+    // opCode 0xCB 0x25
+    // SLA L
+    //
+    // Shifts register L left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftLowLeft();
+    val = registers["HL"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SLA_HLaddr(void)
+{
+    // opCode 0xCB 0x26
+    // SLA (HL)
+    //
+    // Shifts the value at memory address
+    // register HL points to left by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val, temp;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+    
+    carry = val & 0x80;
+
+    val = val<<1;
+    val = val & 0xFE;
+
+    mainMemory.writeToAddress(addr, val);
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 16;
+}
+
+int cpu::op_SLA_A(void)
+{
+    // opCode 0xCB 0x27
+    // SLA A
+    //
+    // Shifts register A left
+    // by 1 bit
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["AF"]->shiftHighLeft();
+    val = registers["AF"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_B(void)
+{
+    // opCode 0xCB 0x28
+    // SRA B
+    //
+    // Shifts register B right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftHighRight();
+    val = registers["BC"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_C(void)
+{
+    // opCode 0xCB 0x29
+    // SRA C
+    //
+    // Shifts register C right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftLowRight();
+    val = registers["BC"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_D(void)
+{
+    // opCode 0xCB 0x2A
+    // SRA D
+    //
+    // Shifts register D right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftHighRight();
+    val = registers["DE"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_E(void)
+{
+    // opCode 0xCB 0x2B
+    // SRA E
+    //
+    // Shifts register E right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftLowRight();
+    val = registers["DE"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_H(void)
+{
+    // opCode 0xCB 0x2C
+    // SRA H
+    //
+    // Shifts register H right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftHighRight();
+    val = registers["HL"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_L(void)
+{
+    // opCode 0xCB 0x2D
+    // SRA L
+    //
+    // Shifts register L right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftLowRight();
+    val = registers["HL"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRA_HLaddr(void)
+{
+    // opCode 0xCB 0x2E
+    // SRA (HL)
+    //
+    // Shifts the value at memory address
+    // register HL points to right by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val, bit7;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+    
+    carry = val & 0x01;
+    bit7 = val & 0x80;
+
+    val = val>>1;
+    val = val & 0x7F;
+    val = val | bit7;
+
+    mainMemory.writeToAddress(addr, val);
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 16;
+}
+
+int cpu::op_SRA_A(void)
+{
+    // opCode 0xCB 0x2F
+    // SRA A
+    //
+    // Shifts register A right
+    // by 1 bit
+    // Contents of bit 7 are unchanged
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 byte
+
+    uint8_t carry, val;
+
+    carry = registers["AF"]->shiftHighRight();
+    val = registers["AF"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
 }
