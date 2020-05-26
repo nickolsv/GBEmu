@@ -6181,3 +6181,288 @@ int cpu::op_RST_28H(void)
 
     return 16;
 }
+
+int cpu::op_LDH_An(void)
+{
+    // opCode 0xF0
+    // LDH A, n
+    //
+    // Reads next byte n in memory
+    // and puts the contents of memory
+    // address 0xFF00 + n into register A
+    // 12 Cycles, 2 Bytes
+
+    uint8_t val, n;
+    uint16_t addr;
+
+    n = getNextByte();
+    addr = 0xFF00 + n;
+
+    val = mainMemory.readAddress(addr);
+
+    registers["AF"]->setHighValue(val);
+
+    return 12;
+}
+
+int cpu::op_POP_AF(void)
+{
+    // opCode 0xF1
+    // POP AF
+    //
+    // Pops contents from the memory stack
+    // into register AF
+    // Also increments SP by 2
+    // 12 Cycles, 1 byte
+
+    popToRegister("AF");
+    return 12;
+}
+
+int cpu::op_LD_ACaddr(void)
+{
+    // opCode 0xF2
+    // LD A, (C)
+    //
+    // Reads value n of register C
+    // and puts the contents of 
+    // memory  address 0xFF00 + n
+    // into register A
+    // 8 Cycles, 2 Bytes
+
+    uint8_t val, n;
+    uint16_t addr;
+
+    n = registers["BC"]->getLowValue();
+    addr = 0xFF00 + n;
+
+    val = mainMemory.readAddress(addr);
+
+    registers["AF"]->setHighValue(val);
+
+    return 8;
+}
+
+int cpu::op_DI(void)
+{
+    // opCode 0xF3
+    // DI
+    //
+    // Disables interrups after
+    // the next instruction is executed
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+// opCode 0xF4 Unused
+
+int cpu::op_PUSH_AF(void)
+{
+    // opCode 0xF5
+    // PUSH AF
+    //
+    // Pushes contents of AF
+    // into the memory stack
+    // Decrements SP by 2
+    // 16 Cycles, 1 byte
+
+    uint8_t high, low;
+
+    high = registers["AF"]->getHighValue();
+    low = registers["AF"]->getLowValue();
+
+    pushByteToStack(high);
+    pushByteToStack(low);
+
+    return 16;  
+}
+
+int cpu::op_OR_n(void)
+{
+    // opCode 0xF6
+    // OR n
+    //
+    // Takes the logical OR of
+    // the contents of the next byte in memory
+    // and register A and places
+    // the result into register A
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Resets N
+    //      - Resets H
+    //      - Resets C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val1, val2, res;
+
+    val1 = getNextByte();
+    val2 = registers["AF"]->getHighValue();
+
+    res  = val1 | val2;
+
+    registers["AF"]->setHighValue(res);
+
+    if( res == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_RST_30H(void)
+{
+    // opCode 0xF7
+    // RST 30H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0030
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0030);
+
+    return 16;
+}
+
+int cpu::op_LD_HLSPn(void)
+{
+    // opCode 0xF8
+    // LD HL SP+n
+    //
+    // Adds next byte in memory
+    // ands SP and loads the result into HL
+    // Note: Interprets the byte
+    // as a signed value
+    //
+    // Flags:
+    //      - Resets Z
+    //      - Resets N
+    //      - Sets H if bit 3 overflows; Otherwise Resets H
+    //      - Sets C if bit 7 overflows; Otherwise Resets C
+    // 16 Cycles, 2 bytes
+
+    // TODO: Implement
+
+    return 16;
+}
+
+int cpu::op_LD_SPHL(void)
+{
+    // opCode 0xF9
+    // LD SP, HL
+    //
+    // Loads HL into SP
+    // 8 Cycles, 1 byte
+
+    registers["SP"]->setTotalValue(registers["HL"]->getTotalValue());
+    return 8;
+}
+
+int cpu::op_LD_Ann(void)
+{
+    // opCode 0xFA
+    // LD A, (nn)
+    //
+    // Put value immediate memory 
+    // address points to into register A
+    // 16 Cycles, 3 bytes
+
+    uint8_t low, high, val;
+    uint16_t addr;
+
+    low = getNextByte();
+    high = getNextByte();
+
+    addr = high;
+    addr = addr<<8;
+    addr += low;
+
+    val = mainMemory.readAddress(addr);
+    registers["AF"]->setHighValue(val);
+
+    return 16;
+}
+
+int cpu::op_EI(void)
+{
+    // opCode 0xFB
+    // EI
+    //
+    // Enables interrups after
+    // the next instruction is executed
+    // 4 Cycles, 1 byte
+
+    // TODO: Implement
+
+    return 4;
+}
+
+// opCode 0xFC Unused
+
+// opCode 0xFD Unused
+
+int cpu::op_CP_n(void)
+{
+    // opCode 0xFE
+    // CP n
+    //
+    // Compares the contents of the
+    // next byte in memory with
+    // the contents of register A
+    // Note: Same as SUB n
+    // instruction but results are not saved
+    // Flags:
+    //      - Sets Z if result is 0; Otherwise Resets Z
+    //      - Sets N
+    //      - Sets H if there is a borrow from bit 4; Otherwise Resets H
+    //      - Sets C if there is a borrow; Otherwise Resets C
+    // 8 Cycles, 2 bytes
+    
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = getNextByte();
+    flags = compare8Bit(srcVal,"AF",1);
+
+    if( flags % 2 == 0 )        resetFlag('H');
+    else                        setFlag('H');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('C');
+    else                        setFlag('C');
+
+    flags = flags>>1;
+    if( flags % 2 == 0 )        resetFlag('Z');
+    else                        setFlag('Z');
+
+    setFlag('N');
+
+    return 8;
+}
+
+int cpu::op_RST_38H(void)
+{
+    // opCode 0xFF
+    // RST 38H
+    //
+    // Pushes current value of the PC
+    // into the memory stack
+    // then jumps to memory address  0x0038
+    // 16 Cycles, 1 byte
+    
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0038);
+
+    return 16;
+}
