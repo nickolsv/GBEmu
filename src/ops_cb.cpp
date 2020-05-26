@@ -1411,7 +1411,7 @@ int cpu::op_SRA_B(void)
 
     uint8_t carry, val;
 
-    carry = registers["BC"]->shiftHighRight();
+    carry = registers["BC"]->shiftHighRight(0);
     val = registers["BC"]->getHighValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1443,7 +1443,7 @@ int cpu::op_SRA_C(void)
 
     uint8_t carry, val;
 
-    carry = registers["BC"]->shiftLowRight();
+    carry = registers["BC"]->shiftLowRight(0);
     val = registers["BC"]->getLowValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1475,7 +1475,7 @@ int cpu::op_SRA_D(void)
 
     uint8_t carry, val;
 
-    carry = registers["DE"]->shiftHighRight();
+    carry = registers["DE"]->shiftHighRight(0);
     val = registers["DE"]->getHighValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1507,7 +1507,7 @@ int cpu::op_SRA_E(void)
 
     uint8_t carry, val;
 
-    carry = registers["DE"]->shiftLowRight();
+    carry = registers["DE"]->shiftLowRight(0);
     val = registers["DE"]->getLowValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1539,7 +1539,7 @@ int cpu::op_SRA_H(void)
 
     uint8_t carry, val;
 
-    carry = registers["HL"]->shiftHighRight();
+    carry = registers["HL"]->shiftHighRight(0);
     val = registers["HL"]->getHighValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1571,7 +1571,7 @@ int cpu::op_SRA_L(void)
 
     uint8_t carry, val;
 
-    carry = registers["HL"]->shiftLowRight();
+    carry = registers["HL"]->shiftLowRight(0);
     val = registers["HL"]->getLowValue();
 
     if( val == 0 )      setFlag('Z');
@@ -1645,7 +1645,7 @@ int cpu::op_SRA_A(void)
 
     uint8_t carry, val;
 
-    carry = registers["AF"]->shiftHighRight();
+    carry = registers["AF"]->shiftHighRight(0);
     val = registers["AF"]->getHighValue();
 
     if( val == 0 )      setFlag('Z');

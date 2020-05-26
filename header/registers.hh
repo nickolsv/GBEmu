@@ -20,7 +20,7 @@ class register8
         uint8_t rotateRight();
 
         uint8_t shiftLeft();
-        uint8_t shiftRight();
+        uint8_t shiftRight(uint8_t);
 
 };
 
@@ -62,9 +62,9 @@ class register16
         uint8_t rotateLowRight();
 
         uint8_t shiftHighLeft();
-        uint8_t shiftHighRight();
+        uint8_t shiftHighRight(uint8_t);
         uint8_t shiftLowLeft();
-        uint8_t shiftLowRight();
+        uint8_t shiftLowRight(uint8_t);
 
 };
 

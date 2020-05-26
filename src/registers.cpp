@@ -136,20 +136,24 @@ uint8_t register16::shiftLowLeft()
     return low.shiftLeft();
 }
 
-uint8_t register16::shiftHighRight()
+uint8_t register16::shiftHighRight(uint8_t arg)
 {
     // Return value of previous bit 0
     // to set the carry flag 
     
-    return high.shiftRight();
+    return high.shiftRight(arg);
 }
 
-uint8_t register16::shiftLowRight()
+uint8_t register16::shiftLowRight(uint8_t arg)
 {
     // Return value of previous bit 0
-    // to set the carry flag 
-    
-    return low.shiftRight();
+    // to set the carry flag
+    // If arg is 0 (SRA):
+    //  Bit 7 stays unchanged
+    // If arg is 1 (SRL):
+    //  Bit 7 is reset
+
+    return low.shiftRight(arg);
 }
 
 register8::register8()
@@ -232,11 +236,14 @@ uint8_t register8::shiftLeft()
     return temp;
 }
 
-uint8_t register8::shiftRight()
+uint8_t register8::shiftRight(uint8_t arg)
 {
     // Return value of previous bit 0
-    // to set the carry flag   
-    // Bit 7 stays unchanged
+    // to set the carry flag 
+    // If arg is 0 (SRA):
+    //  Bit 7 stays unchanged
+    // If arg is 1 (SRL):
+    //  Bit 7 is reset
 
     uint8_t val  = getValue();
     uint8_t temp = val & 0x01;
@@ -244,7 +251,7 @@ uint8_t register8::shiftRight()
 
     val = val>>1;
     val = val & 0x7F;
-    val = val | bit7;
+    if( arg == 0)   val = val | bit7;
     setValue(val);
 
     return temp;
