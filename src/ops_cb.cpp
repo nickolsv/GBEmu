@@ -12,7 +12,7 @@ int cpu::op_RLC_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -43,7 +43,7 @@ int cpu::op_RLC_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -74,7 +74,7 @@ int cpu::op_RLC_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -105,7 +105,7 @@ int cpu::op_RLC_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -136,7 +136,7 @@ int cpu::op_RLC_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -167,7 +167,7 @@ int cpu::op_RLC_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -198,7 +198,7 @@ int cpu::op_RLC_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val, temp;
     uint16_t addr;
@@ -238,7 +238,7 @@ int cpu::op_RLC_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -269,7 +269,7 @@ int cpu::op_RRC_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -300,7 +300,7 @@ int cpu::op_RRC_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -331,7 +331,7 @@ int cpu::op_RRC_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -362,7 +362,7 @@ int cpu::op_RRC_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -393,7 +393,7 @@ int cpu::op_RRC_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -424,7 +424,7 @@ int cpu::op_RRC_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -455,7 +455,7 @@ int cpu::op_RRC_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val, temp;
     uint16_t addr;
@@ -495,7 +495,7 @@ int cpu::op_RRC_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -527,7 +527,7 @@ int cpu::op_RL_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -565,7 +565,7 @@ int cpu::op_RL_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -603,7 +603,7 @@ int cpu::op_RL_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -641,7 +641,7 @@ int cpu::op_RL_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -679,7 +679,7 @@ int cpu::op_RL_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -717,7 +717,7 @@ int cpu::op_RL_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -755,7 +755,7 @@ int cpu::op_RL_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
     uint16_t addr;
@@ -801,7 +801,7 @@ int cpu::op_RL_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -839,7 +839,7 @@ int cpu::op_RR_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -877,7 +877,7 @@ int cpu::op_RR_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -915,7 +915,7 @@ int cpu::op_RR_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -953,7 +953,7 @@ int cpu::op_RR_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -991,7 +991,7 @@ int cpu::op_RR_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -1029,7 +1029,7 @@ int cpu::op_RR_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -1067,7 +1067,7 @@ int cpu::op_RR_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit0, val, flag;
     uint16_t addr;
@@ -1113,7 +1113,7 @@ int cpu::op_RR_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 0 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t bit7, val, flag;
 
@@ -1150,7 +1150,7 @@ int cpu::op_SLA_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1181,7 +1181,7 @@ int cpu::op_SLA_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1212,7 +1212,7 @@ int cpu::op_SLA_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1243,7 +1243,7 @@ int cpu::op_SLA_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1274,7 +1274,7 @@ int cpu::op_SLA_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1305,7 +1305,7 @@ int cpu::op_SLA_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1336,7 +1336,7 @@ int cpu::op_SLA_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val, temp;
     uint16_t addr;
@@ -1375,7 +1375,7 @@ int cpu::op_SLA_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1407,7 +1407,7 @@ int cpu::op_SRA_B(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1439,7 +1439,7 @@ int cpu::op_SRA_C(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1471,7 +1471,7 @@ int cpu::op_SRA_D(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1503,7 +1503,7 @@ int cpu::op_SRA_E(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1535,7 +1535,7 @@ int cpu::op_SRA_H(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1567,7 +1567,7 @@ int cpu::op_SRA_L(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
@@ -1599,7 +1599,7 @@ int cpu::op_SRA_HLaddr(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val, bit7;
     uint16_t addr;
@@ -1641,11 +1641,508 @@ int cpu::op_SRA_A(void)
     //      - Reset N
     //      - Reset H
     //      - C Contains old bit 7 data
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 bytes
 
     uint8_t carry, val;
 
     carry = registers["AF"]->shiftHighRight(0);
+    val = registers["AF"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_B(void)
+{
+    // opCode 0xCB 0x30
+    // SWAP B
+    // Swaps the 4 lower bits of register B
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["BC"]->swapNibblesHigh();
+    val = registers["BC"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_C(void)
+{
+    // opCode 0xCB 0x31
+    // SWAP C
+    // Swaps the 4 lower bits of register C
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["BC"]->swapNibblesLow();
+    val = registers["BC"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_D(void)
+{
+    // opCode 0xCB 0x32
+    // SWAP D
+    // Swaps the 4 lower bits of register D
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["DE"]->swapNibblesHigh();
+    val = registers["DE"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_E(void)
+{
+    // opCode 0xCB 0x33
+    // SWAP E
+    // Swaps the 4 lower bits of register E
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["DE"]->swapNibblesLow();
+    val = registers["DE"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_H(void)
+{
+    // opCode 0xCB 0x34
+    // SWAP H
+    // Swaps the 4 lower bits of register H
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["HL"]->swapNibblesHigh();
+    val = registers["HL"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_L(void)
+{
+    // opCode 0xCB 0x35
+    // SWAP L
+    // Swaps the 4 lower bits of register L
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["HL"]->swapNibblesLow();
+    val = registers["HL"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_HLaddr(void)
+{
+    // opCode 0xCB 0x36
+    // SWAP (HL)
+    // Swaps the 4 lower bits of value at address
+    // register HL points to with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val,temp;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = val & 0x0F;
+    val = val>>4;
+    temp = temp<<4;
+
+    val = ( ( val & 0x0F) & (temp & 0xF0) );
+
+    mainMemory.writeToAddress(addr,val);
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SWAP_A(void)
+{
+    // opCode 0xCB 0x37
+    // SWAP A
+    // Swaps the 4 lower bits of register A
+    // with its 4 higher bits
+    // Flags:
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - Reset C
+    // 8 Cycles, 2 bytes
+
+    uint8_t val;
+
+    registers["AF"]->swapNibblesHigh();
+    val = registers["AF"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+    resetFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_B(void)
+{
+    // opCode 0xCB 0x38
+    // SRL B
+    //
+    // Shifts register B right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftHighRight(1);
+    val = registers["BC"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_C(void)
+{
+    // opCode 0xCB 0x39
+    // SRL C
+    //
+    // Shifts register C right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["BC"]->shiftLowRight(1);
+    val = registers["BC"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_D(void)
+{
+    // opCode 0xCB 0x3A
+    // SRL D
+    //
+    // Shifts register D right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftHighRight(1);
+    val = registers["DE"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_E(void)
+{
+    // opCode 0xCB 0x3B
+    // SRL E
+    //
+    // Shifts register E right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["DE"]->shiftLowRight(1);
+    val = registers["DE"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_H(void)
+{
+    // opCode 0xCB 0x3C
+    // SRL H
+    //
+    // Shifts register H right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftHighRight(1);
+    val = registers["HL"]->getHighValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_L(void)
+{
+    // opCode 0xCB 0x3D
+    // SRL L
+    //
+    // Shifts register L right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["HL"]->shiftLowRight(1);
+    val = registers["HL"]->getLowValue();
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 8;
+}
+
+int cpu::op_SRL_HLaddr(void)
+{
+    // opCode 0xCB 0x3E
+    // SRL (HL)
+    //
+    // Shifts the value at memory address
+    // register HL points to right by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val, bit7;
+    uint16_t addr;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+    
+    carry = val & 0x01;
+
+    val = val>>1;
+    val = val & 0x7F;
+
+    mainMemory.writeToAddress(addr, val);
+
+    if( val == 0 )      setFlag('Z');
+    else                resetFlag('Z');
+
+    resetFlag('N');
+    resetFlag('H');
+
+    if( carry == 0 )    resetFlag('C');
+    else                setFlag('C');
+
+    return 16;
+}
+
+int cpu::op_SRL_A(void)
+{
+    // opCode 0xCB 0x3F
+    // SRL A
+    //
+    // Shifts register A right
+    // by 1 bit
+    // Contents of bit 7 are reset
+    // Flags: 
+    //      - Sets Z if results is Zero; Otherwise Resets
+    //      - Reset N
+    //      - Reset H
+    //      - C Contains old bit 7 data
+    // 8 Cycles, 2 bytes
+
+    uint8_t carry, val;
+
+    carry = registers["AF"]->shiftHighRight(1);
     val = registers["AF"]->getHighValue();
 
     if( val == 0 )      setFlag('Z');
