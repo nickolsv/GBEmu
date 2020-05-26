@@ -14,11 +14,11 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
-        int boolIncrementPC;
 
         std::map<uint8_t, int (cpu::*)()> instructionTable;
         void initializeInstructionTable();
 
+        uint8_t getOpCode();
         uint8_t getNextByte();
 
         uint8_t add16Bit(uint16_t srcVal, std::string destReg);
@@ -29,6 +29,7 @@ class cpu
         uint8_t subtract8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         uint8_t compare8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
         
+        void pushByteToStack(uint8_t byte);
         void popToRegister(std::string destReg);
         void load16BitRegister(std::string, uint16_t);
 
@@ -257,21 +258,21 @@ class cpu
         int op_CP_HL();                                             // 0xBE  CP (HL)
         int op_CP_A();                                              // 0xBF  CP A
 
-        int op_RET_NZ();                                            // 0xC0  RET NZ             // TODO: Implement
-        int op_POP_BC();                                            // 0xC1  POP BC             // TODO: Implement
-        int op_JP_NZnn();                                           // 0xC2  JP NZ, nn          // TODO: Implement
-        int op_JP_nn();                                             // 0xC3  JP nn              // TODO: Implement
-        int op_CALL_NZnn();                                         // 0xC4  CALL NZ, nn        // TODO: Implement
-        int op_PUSH_BC();                                           // 0xC5  PUSH BC            // TODO: Implement
-        int op_ADD_An();                                            // 0xC6  ADD A, n           // TODO: Implement
+        int op_RET_NZ();                                            // 0xC0  RET NZ
+        int op_POP_BC();                                            // 0xC1  POP BC
+        int op_JP_NZnn();                                           // 0xC2  JP NZ, nn
+        int op_JP_nn();                                             // 0xC3  JP nn
+        int op_CALL_NZnn();                                         // 0xC4  CALL NZ, nn
+        int op_PUSH_BC();                                           // 0xC5  PUSH BC
+        int op_ADD_An();                                            // 0xC6  ADD A, n
         int op_RST_00H();                                           // 0xC7  RST 00H            // TODO: Implement
-        int op_RET_Z();                                             // 0xC8  RET Z              // TODO: Implement
-        int op_RET();                                               // 0xC9  RET                // TODO: Implement
-        int op_JP_Znn();                                            // 0xCA  JP Z, n            // TODO: Implement
+        int op_RET_Z();                                             // 0xC8  RET Z
+        int op_RET();                                               // 0xC9  RET
+        int op_JP_Znn();                                            // 0xCA  JP Z, n
         int op_PREFIX_CB();                                         // 0xCB  PREFIX CB          // TODO: Implement
-        int op_CALL_Znn();                                          // 0xCC  CALL Z, nn         // TODO: Implement
-        int op_CALL_nn();                                           // 0xCD  CALL nn            // TODO: Implement
-        int op_ADC_An();                                            // 0xCE  ADC A, n           // TODO: Implement
+        int op_CALL_Znn();                                          // 0xCC  CALL Z, nn
+        int op_CALL_nn();                                           // 0xCD  CALL nn
+        int op_ADC_An();                                            // 0xCE  ADC A, n
         int op_RST_08H();                                           // 0xCF  RST 08H            // TODO: Implement
 
         int op_RET_NC();                                            // 0xD0  RET NC             // TODO: Implement

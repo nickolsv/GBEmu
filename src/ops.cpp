@@ -5179,7 +5179,11 @@ int cpu::op_RET_NZ(void)
     // Increments SP by 2
     // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
 
-    // TODO: Implement
+    if( getFlag('Z') == 0 )
+    {
+        popToRegister("PC");
+        return 20;
+    }
 
     return 8;
 }
@@ -5194,8 +5198,7 @@ int cpu::op_POP_BC(void)
     // Also increments SP by 2
     // 12 Cycles, 1 byte
 
-    // TODO: Implement
-
+    popToRegister("BC");
     return 12;
 }
 
@@ -5204,11 +5207,25 @@ int cpu::op_JP_NZnn(void)
     // opCode 0xC2
     // JP NZ, nn
     //
-    // Jumps to immediate memory address
     // If Z flag is reset
+    // Jumps to immediate memory address
     // 16 Cycles if Jump, 12 if not Jump, 3 bytes
 
-    // TODO: Implement
+    uint8_t low, high;
+
+    if( getFlag('Z') == 0 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        registers["PC"]->setLowValue(low);
+        registers["PC"]->setHighValue(low);
+
+        return 16;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     return 12;
 }
@@ -5221,7 +5238,13 @@ int cpu::op_JP_nn(void)
     // Jumps to immediate memory address
     // 16 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t low, high;
+
+    low = getNextByte();
+    high = getNextByte();
+
+    registers["PC"]->setLowValue(low);
+    registers["PC"]->setHighValue(low);
 
     return 16;
 }
@@ -5234,10 +5257,28 @@ int cpu::op_CALL_NCnn(void)
     // If flag C is reset,
     // Pushes the PC value corresponding to the instruction
     // after CALL to the memory stack
+    // then jumps to nn
     // Decrements Stack Pointer by 2
     // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
 
-    // TODO: Implement
+    uint8_t high, low;
+
+    if( getFlag('C') == 0 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        pushByteToStack(registers["PC"]->getHighValue());
+        pushByteToStack(registers["PC"]->getLowValue());
+
+        registers["PC"]->setHighValue(high);
+        registers["PC"]->setLowValue(low);
+        
+        return 24;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     return 12;
 }
@@ -5252,7 +5293,13 @@ int cpu::op_PUSH_BC(void)
     // Decrements SP by 2
     // 16 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t high, low;
+
+    high = registers["BC"]->getHighValue();
+    low = registers["BC"]->getLowValue();
+
+    pushByteToStack(high);
+    pushByteToStack(low);
 
     return 16;
 }
@@ -5269,10 +5316,37 @@ int cpu::op_ADD_An(void)
     //      - Resets N
     //      - Set H if bit 3 overflows; Otherwise Resets H
     //      - Set C if bit 7 overflows; Otherwise Resets C
-    // 8 Cycles, 2 byte
+    // 8 Cycles, 2 byteS
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
 
+    srcVal = getNextByte();
+    flags  = add8Bit(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
     return 8;
 }
 
@@ -5286,7 +5360,10 @@ int cpu::op_RST_00H(void)
     // then jumps to memory address  0x0000
     // 16 Cycles, 1 byte
     
-    // TODO: Implement
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0000);
 
     return 16;
 }
@@ -5302,7 +5379,11 @@ int cpu::op_RET_Z(void)
     // Increments SP by 2
     // 20 Cycles if jump, 8 Cycles if no jump, 1 byte
 
-    // TODO: Implement
+    if( getFlag('Z') == 1 )
+    {
+        popToRegister("PC");
+        return 20;
+    }
 
     return 8;
 }
@@ -5316,8 +5397,7 @@ int cpu::op_RET(void)
     // Increments SP by 2
     // 16 Cycles, 1 byte
 
-    // TODO: Implement
-
+    popToRegister("PC");
     return 16;
 }
 
@@ -5326,11 +5406,25 @@ int cpu::op_JP_Znn(void)
     // opCode 0xCA
     // JP NZ, nn
     //
+    // If Z flag is set
     // Jumps to immediate memory address
-    // If Z flag is reset
     // 16 Cycles if Jump, 12 if not Jump, 3 bytes
 
-    // TODO: Implement
+    uint8_t low, high;
+
+    if( getFlag('Z') == 1 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        registers["PC"]->setLowValue(low);
+        registers["PC"]->setHighValue(low);
+
+        return 16;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     return 12;
 }
@@ -5360,7 +5454,24 @@ int cpu::op_CALL_Znn(void)
     // Decrements Stack Pointer by 2
     // 24 Cycles if jump, 12 Cycles if no jump, 3 bytes
 
-    // TODO: Implement
+    uint8_t high, low;
+
+    if( getFlag('Z') == 1 )
+    {
+        low = getNextByte();
+        high = getNextByte();
+
+        pushByteToStack(registers["PC"]->getHighValue());
+        pushByteToStack(registers["PC"]->getLowValue());
+
+        registers["PC"]->setHighValue(high);
+        registers["PC"]->setLowValue(low);
+        
+        return 24;
+    }
+
+    registers["PC"]->incrementRegister();
+    registers["PC"]->incrementRegister();
 
     return 12;
 }
@@ -5375,8 +5486,17 @@ int cpu::op_CALL_nn(void)
     // Decrements Stack Pointer by 2
     // 24 Cycles, 3 bytes
 
-    // TODO: Implement
+    uint8_t high, low;
 
+    low = getNextByte();
+    high = getNextByte();
+
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setHighValue(high);
+    registers["PC"]->setLowValue(low);
+    
     return 24;
 }
 
@@ -5395,7 +5515,35 @@ int cpu::op_ADC_An(void)
     //      - Set C if bit 7 overflows; Otherwise Resets C
     // 8 Cycles, 1 byte
 
-    // TODO: Implement
+    uint8_t flags;
+    uint8_t srcVal;
+
+    srcVal = getNextByte();
+    flags = add8BitWithCarry(srcVal,"AF",1);
+
+    switch (flags)
+    {
+        case 3:
+            setFlag('H');
+            setFlag('C');
+            break;
+        case 2:
+            resetFlag('H');
+            setFlag('C');
+            break;
+        case 1:
+            setFlag('H');
+            resetFlag('C');
+            break;
+        case 0:
+            resetFlag('H');
+            resetFlag('C');
+    }
+
+    resetFlag('N');
+
+    if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
+    else                                        resetFlag('Z');
 
     return 8;
 }
@@ -5410,7 +5558,10 @@ int cpu::op_RST_08H(void)
     // then jumps to memory address  0x0008
     // 16 Cycles, 1 byte
     
-    // TODO: Implement
+    pushByteToStack(registers["PC"]->getHighValue());
+    pushByteToStack(registers["PC"]->getLowValue());
+
+    registers["PC"]->setTotalValue(0x0008);
 
     return 16;
 }
