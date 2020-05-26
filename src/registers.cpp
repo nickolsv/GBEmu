@@ -156,6 +156,16 @@ uint8_t register16::shiftLowRight(uint8_t arg)
     return low.shiftRight(arg);
 }
 
+void register16::swapNibblesHigh(void)
+{
+    high.swapNibbles();
+}
+
+void register16::swapNibblesLow(void)
+{
+    low.swapNibbles();
+}
+
 register8::register8()
 {
     setValue(0);
@@ -255,4 +265,20 @@ uint8_t register8::shiftRight(uint8_t arg)
     setValue(val);
 
     return temp;
+}
+
+void register8::swapNibbles(void)
+{
+    // Swaps 4 lower bits of register
+    // with its 4 higher  bits
+
+    uint8_t val  = getValue();
+    uint8_t temp = val & 0x0F;
+
+    val = val>>4;
+    temp = temp<<4;
+
+    val = ( ( val & 0x0F) & (temp & 0xF0) );
+
+    setValue(val);
 }
