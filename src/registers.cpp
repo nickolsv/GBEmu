@@ -166,6 +166,43 @@ void register16::swapNibblesLow(void)
     low.swapNibbles();
 }
 
+uint8_t register16::getnthBitLow(uint8_t n)
+{
+    // Returns the nth bit of the low register
+    return low.getnthBit(n);
+}
+
+uint8_t register16::getnthBitHigh(uint8_t n)
+{
+    // Returns the nth bit of the high register
+    return high.getnthBit(n);
+}
+
+void register16::setnthBitLow(uint8_t n)
+{
+    // Sets the nth bit of the low register
+    low.setnthBit(n);
+}
+
+void register16::setnthBitHigh(uint8_t n)
+{
+    // Sets the nth bit of the high register
+    high.setnthBit(n);
+}
+
+void register16::resetnthBitLow(uint8_t n)
+{
+    // Reset the nth bit of the low register
+    low.setnthBit(n);
+}
+
+void register16::resetnthBitHigh(uint8_t n)
+{
+    // Reset the nth bit of the high register
+    high.setnthBit(n);
+}
+
+
 register8::register8()
 {
     setValue(0);
@@ -282,3 +319,50 @@ void register8::swapNibbles(void)
 
     setValue(val);
 }
+
+uint8_t register8::getnthBit(uint8_t n)
+{
+    // Returns the value of the nth bit of register
+
+    uint8_t val;
+
+    val = getValue();
+    val = val>>n;
+    val = val & 0x01;
+
+    return val;
+}
+
+void register8::setnthBit(uint8_t n)
+{
+    // Sets the nth bit of register
+
+    uint8_t val, temp;
+
+    val = getValue();
+    
+    temp = 0x01;
+    temp = temp<<n;
+
+    val = val | temp;
+
+    setValue(val);
+}
+
+void register8::resetnthBit(uint8_t n)
+{
+    // Resets the nth bit of register
+
+    uint8_t val, temp;
+
+    val = getValue();
+
+    temp = 0x01;
+    temp = temp<<n;
+    temp = temp^0xFF;
+
+    val = val & temp;
+
+    setValue(val);
+}
+

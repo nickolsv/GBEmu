@@ -24,6 +24,10 @@ class register8
 
         void swapNibbles();
 
+        uint8_t getnthBit(uint8_t);
+        void setnthBit(uint8_t);
+        void resetnthBit(uint8_t);
+
 };
 
 // The Gameboy has eight 8-bit ( A,B,C,D,E,H,L )
@@ -70,6 +74,13 @@ class register16
 
         void swapNibblesHigh();
         void swapNibblesLow();
+
+        uint8_t getnthBitLow(uint8_t);
+        uint8_t getnthBitHigh(uint8_t);
+        void setnthBitLow(uint8_t);
+        void setnthBitHigh(uint8_t);
+        void resetnthBitLow(uint8_t);
+        void resetnthBitHigh(uint8_t);
 
 };
 
