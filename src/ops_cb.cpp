@@ -2987,3 +2987,419 @@ int cpu::op_BIT_3A(void)
 
     return 8;
 }
+
+int cpu::op_BIT_4B(void)
+{
+    // opCode 0xCB 0x50
+    // BIT 4, B
+    //
+    // Copies complement of bit 4
+    // of register B
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["BC"]->getnthBitHigh(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4C(void)
+{
+    // opCode 0xCB 0x61
+    // BIT 4, C
+    //
+    // Copies complement of bit 4
+    // of register C
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["BC"]->getnthBitLow(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4D(void)
+{
+    // opCode 0xCB 0x62
+    // BIT 4, D
+    //
+    // Copies complement of bit 4
+    // of register D
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["DE"]->getnthBitHigh(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4E(void)
+{
+    // opCode 0xCB 0x63
+    // BIT 4, E
+    //
+    // Copies complement of bit 4
+    // of register E
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["DE"]->getnthBitLow(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4H(void)
+{
+    // opCode 0xCB 0x64
+    // BIT 4, H
+    //
+    // Copies complement of bit 4
+    // of register H
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["HL"]->getnthBitHigh(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4L(void)
+{
+    // opCode 0xCB 0x65
+    // BIT 4, L
+    //
+    // Copies complement of bit 4
+    // of register L
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["HL"]->getnthBitLow(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_4HLaddr(void)
+{
+    // opCode 0xCB 0x66
+    // BIT 4, (Hl)
+    //
+    // Copies complement of bit 4
+    // of value in memory location
+    // register HL points to 
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t bit;
+
+    addr = registers["HL"]->getTotalValue();
+    bit = mainMemory.readAddress(addr);
+
+    bit = bit>>4;
+    bit = bit & 0x01;
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 16;
+}
+
+int cpu::op_BIT_4A(void)
+{
+    // opCode 0xCB 0x67
+    // BIT 4, A
+    //
+    // Copies complement of bit 4
+    // of register A
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["AF"]->getnthBitHigh(4);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5B(void)
+{
+    // opCode 0xCB 0x68
+    // BIT 5, B
+    //
+    // Copies complement of bit 5
+    // of register B
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["BC"]->getnthBitHigh(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5C(void)
+{
+    // opCode 0xCB 0x69
+    // BIT 5, C
+    //
+    // Copies complement of bit 5
+    // of register C
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["BC"]->getnthBitLow(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5D(void)
+{
+    // opCode 0xCB 0x6A
+    // BIT 5, D
+    //
+    // Copies complement of bit 5
+    // of register D
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["DE"]->getnthBitHigh(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5E(void)
+{
+    // opCode 0xCB 0x6B
+    // BIT 5, E
+    //
+    // Copies complement of bit 5
+    // of register E
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["DE"]->getnthBitLow(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5H(void)
+{
+    // opCode 0xCB 0x6C
+    // BIT 5, H
+    //
+    // Copies complement of bit 5
+    // of register H
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["HL"]->getnthBitHigh(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5L(void)
+{
+    // opCode 0xCB 0x6D
+    // BIT 5, L
+    //
+    // Copies complement of bit 5
+    // of register L
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["HL"]->getnthBitLow(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
+
+int cpu::op_BIT_5HLaddr(void)
+{
+    // opCode 0xCB 0x6E
+    // BIT 5, (Hl)
+    //
+    // Copies complement of bit 5
+    // of value in memory location
+    // register HL points to 
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t bit;
+
+    addr = registers["HL"]->getTotalValue();
+    bit = mainMemory.readAddress(addr);
+
+    bit = bit>>5;
+    bit = bit & 0x01;
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 16;
+}
+
+int cpu::op_BIT_5A(void)
+{
+    // opCode 0xCB 0x6F
+    // BIT 5, A
+    //
+    // Copies complement of bit 5
+    // of register A
+    // to flag Z
+    // Flags:
+    //      - Sets Z if 0; otherwise Reset
+    //      - Resets N
+    //      - Sets H
+    // 8 Cycles, 2 bytes
+
+    uint8_t bit = registers["AF"]->getnthBitHigh(5);
+
+    if( bit == 0 )      setFlag('C');
+    else                resetFlag('C');
+
+    resetFlag('N');
+    setFlag('H');
+
+    return 8;
+}
