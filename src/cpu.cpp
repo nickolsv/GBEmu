@@ -10,6 +10,7 @@ cpu::cpu()
     frameCycles = 0;
     initializeInstructionTable();
     initializeCBInstructionTable();
+    powerUpSequence();
 }
 
 cpu::~cpu()
@@ -569,6 +570,57 @@ void cpu::initializeCBInstructionTable(void)
     CBinstructionTable[0xFF] = &cpu::op_SET_7A;
 }
 
+void cpu::powerUpSequence(void)
+{
+    // The GB runs a 256 byte boot ROM on startup
+    // which runs some checks and initializes
+    // the CPU and HW Registers. Distribution
+    // of this boot ROM is illegal, so this function
+    // simply sets the emulator in the same state
+    // the boot ROM would if it were to be executed
+
+    // TODO: Possibly read the values from a file
+
+    registers["AF"]->setTotalValue(0x01B0);
+    registers["BC"]->setTotalValue(0x0013);
+    registers["DE"]->setTotalValue(0x00D8);
+    registers["HL"]->setTotalValue(0x014D);
+    registers["SP"]->setTotalValue(0x0FFE);
+    registers["PC"]->setTotalValue(0x0100);
+
+    mainMemory.writeToAddress(0xFF05, 0X00);
+    mainMemory.writeToAddress(0xFF06, 0X00);
+    mainMemory.writeToAddress(0xFF07, 0X00);
+    mainMemory.writeToAddress(0xFF10, 0X80);
+    mainMemory.writeToAddress(0xFF11, 0XBF);
+    mainMemory.writeToAddress(0xFF12, 0XF3);
+    mainMemory.writeToAddress(0xFF14, 0XBF);
+    mainMemory.writeToAddress(0xFF16, 0X3F);
+    mainMemory.writeToAddress(0xFF17, 0X00);
+    mainMemory.writeToAddress(0xFF19, 0XBF);
+    mainMemory.writeToAddress(0xFF1A, 0X7F);
+    mainMemory.writeToAddress(0xFF1B, 0XFF);
+    mainMemory.writeToAddress(0xFF1C, 0X9F);
+    mainMemory.writeToAddress(0xFF1E, 0XBF);
+    mainMemory.writeToAddress(0xFF20, 0XFF);
+    mainMemory.writeToAddress(0xFF21, 0X00);
+    mainMemory.writeToAddress(0xFF22, 0X00);
+    mainMemory.writeToAddress(0xFF23, 0XBF);
+    mainMemory.writeToAddress(0xFF24, 0X77);
+    mainMemory.writeToAddress(0xFF25, 0XF3);
+    mainMemory.writeToAddress(0xFF26, 0XF1);
+    mainMemory.writeToAddress(0xFF40, 0X91);
+    mainMemory.writeToAddress(0xFF42, 0X00);
+    mainMemory.writeToAddress(0xFF43, 0X00);
+    mainMemory.writeToAddress(0xFF45, 0X00);
+    mainMemory.writeToAddress(0xFF47, 0XFC);
+    mainMemory.writeToAddress(0xFF48, 0XFF);
+    mainMemory.writeToAddress(0xFF49, 0XFF);
+    mainMemory.writeToAddress(0xFF4A, 0X00);
+    mainMemory.writeToAddress(0xFF4B, 0X00);
+    mainMemory.writeToAddress(0xFFFF, 0X00);
+}
+
 void cpu::runFrame(void)
 {
     int opCycles = 0;
@@ -580,8 +632,6 @@ void cpu::runFrame(void)
     while( frameCycles < 70244)
     {
         opCycles = executeInstruction();
-
-        registers["PC"]->incrementRegister();
 
         frameCycles += opCycles;
     }
@@ -620,9 +670,13 @@ int cpu::unusedInstruction(void)
 
 int cpu::executeInstruction()
 {
-    uint16_t pc = registers["PC"]->getTotalValue();
+    uint8_t opcode = getOpCode();
 
-    uint8_t opcode = mainMemory.readAddress(pc);
+    if( opcode == 0xCB )
+    {
+        opcode = getOpCode();
+        return (this->*CBinstructionTable[opcode])();
+    }
 
     return (this->*instructionTable[opcode])();
 }

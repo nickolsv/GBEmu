@@ -20,6 +20,8 @@ class cpu
         void initializeInstructionTable();
         void initializeCBInstructionTable();
 
+        void powerUpSequence();
+
         uint8_t getOpCode();
         uint8_t getNextByte();
         int unusedInstruction();
