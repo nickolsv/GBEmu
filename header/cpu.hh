@@ -317,7 +317,7 @@ class cpu
         int op_PUSH_AF();                                           // 0xF5  PUSH AF
         int op_OR_n();                                              // 0xF6  OR n
         int op_RST_30H();                                           // 0xF7  RST 30H
-        int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n        // TODO: Implement
+        int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n        // TODO: Set/Reset H,C Flags
         int op_LD_SPHL();                                           // 0xF9  LD SP, HL
         int op_LD_Ann();                                            // 0xFA  LD A, (nn)
         int op_EI();                                                // 0xFB  EI                 // TODO: Implement

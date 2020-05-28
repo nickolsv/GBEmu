@@ -6422,7 +6422,7 @@ int cpu::op_LD_HLSPn(void)
     // LD HL SP+n
     //
     // Adds next byte in memory
-    // ands SP and loads the result into HL
+    // and SP and loads the result into HL
     // Note: Interprets the byte
     // as a signed value
     //
@@ -6433,7 +6433,21 @@ int cpu::op_LD_HLSPn(void)
     //      - Sets C if bit 7 overflows; Otherwise Resets C
     // 16 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
+
+    val = getNextByte();
+    totalVal = registers["SP"]->getTotalValue();
+
+    if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+    else                    totalVal += val;
+
+    registers["HL"]->setTotalValue(totalVal);
+
+    resetFlag('Z');
+    resetFlag('N');
+
+    // TODO: Set/Reset H,C Flags
 
     return 16;
 }
