@@ -284,7 +284,7 @@ class cpu
         int op_SUB_n();                                             // 0xD6  SUB n
         int op_RST_10H();                                           // 0xD7  RST 10H
         int op_RET_C();                                             // 0xD8  RET C
-        int op_RETI();                                              // 0xD9  RETI               // TODO: Implement
+        int op_RETI();                                              // 0xD9  RETI               // TODO: Enable Interrupts
         int op_JP_Cnn();                                            // 0xDA  JP C, nn
         // Unused Instruction 0xDB
         int op_CALL_Cnn();                                          // 0xDC  CALL C, nn

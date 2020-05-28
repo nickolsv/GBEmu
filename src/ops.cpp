@@ -5845,10 +5845,12 @@ int cpu::op_RETI(void)
     // Pops 2 bytes from the memory stack
     // and into the PC
     // Increments SP by 2
-    // Then, enable  interrupts
+    // Then, enable interrupts
     // 16 Cycles, 1 byte
 
-    // TODO: Implement
+    popToRegister("PC");
+
+    // TODO: Enable interrupts
 
     return 16;
 }
