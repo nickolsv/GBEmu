@@ -5,13 +5,13 @@ TEST_CASE("Reads & Writes")
 {
     memory mem;
 
-    mem.writeToAddress(0x1234,0x55);
-    mem.writeToAddress(0x4321,0x44);
+    mem.writeToAddress(0xCDEF,0x55);
+    mem.writeToAddress(0xCDDD,0x44);
 
-    REQUIRE( mem.readAddress(0x1234) == 0x55 );
-    REQUIRE( mem.readAddress(0x4321) == 0x44 );
+    REQUIRE( mem.readAddress(0xCDEF) == 0x55 );
+    REQUIRE( mem.readAddress(0xCDDD) == 0x44 );
 
-    mem.writeToAddress(0x1234,0xFF);
+    mem.writeToAddress(0xCDEF,0xFF);
 
-    REQUIRE( mem.readAddress(0x1234) == 0xFF );
+    REQUIRE( mem.readAddress(0xCDEF) == 0xFF );
 }

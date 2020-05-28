@@ -133,6 +133,8 @@ TEST_CASE("Instruction 0xCB 0x1X Testing")
 
     test.setByteAtAddress(0xC102, 0x87);
 
+    test.setLowRegisterValue("AF",0x00);
+
     // 0xCB 0x10
 
     test.op_RL_B();
