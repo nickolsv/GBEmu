@@ -4811,3 +4811,987 @@ int cpu::op_RES_7A(void)
 
     return 8;
 }
+
+int cpu::op_SET_0B(void)
+{
+    // opCode 0xCB 0xC0
+    // SET 0, B
+    //
+    // Sets bit 0
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0C(void)
+{
+    // opCode 0xCB 0xC1
+    // SET 0, C
+    //
+    // Sets bit 0
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0D(void)
+{
+    // opCode 0xCB 0xC2
+    // SET 0, D
+    //
+    // Sets bit 0
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0E(void)
+{
+    // opCode 0xCB 0xC3
+    // SET 0, E
+    //
+    // Sets bit 0
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0H(void)
+{
+    // opCode 0xCB 0xC4
+    // SET 0, H
+    //
+    // Sets bit 0
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0L(void)
+{
+    // opCode 0xCB 0xC5
+    // SET 0, L
+    //
+    // Sets bit 0
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_SET_0HLaddr(void)
+{
+    // opCode 0xCB 0xC6
+    // SET 0, (HL)
+    //
+    // Sets bit 0
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+
+    return 16;
+}
+
+int cpu::op_SET_0A(void)
+{
+    // opCode 0xCB 0xC7
+    // SET 0, A
+    //
+    // Sets bit 0
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_SET_1B(void)
+{
+    // opCode 0xCB 0xC8
+    // SET 1, B
+    //
+    // Sets bit 1
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1C(void)
+{
+    // opCode 0xCB 0xC9
+    // SET 1, C
+    //
+    // Sets bit 1
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1D(void)
+{
+    // opCode 0xCB 0xCA
+    // SET 1, D
+    //
+    // Sets bit 1
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1E(void)
+{
+    // opCode 0xCB 0xCB
+    // SET 1, E
+    //
+    // Sets bit 1
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1H(void)
+{
+    // opCode 0xCB 0xCC
+    // SET 1, H
+    //
+    // Sets bit 1
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1L(void)
+{
+    // opCode 0xCB 0xCD
+    // SET 1, L
+    //
+    // Sets bit 1
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_SET_1HLaddr(void)
+{
+    // opCode 0xCB 0xCE
+    // SET 1, (HL)
+    //
+    // Sets bit 1
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<1;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_1A(void)
+{
+    // opCode 0xCB 0xCF
+    // SET 1, A
+    //
+    // Sets bit 1
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_SET_2B(void)
+{
+    // opCode 0xCB 0xD0
+    // SET 2, B
+    //
+    // Sets bit 2
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2C(void)
+{
+    // opCode 0xCB 0xD1
+    // SET 2, C
+    //
+    // Sets bit 2
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2D(void)
+{
+    // opCode 0xCB 0xD2
+    // SET 2, D
+    //
+    // Sets bit 2
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2E(void)
+{
+    // opCode 0xCB 0xD3
+    // SET 2, E
+    //
+    // Sets bit 2
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2H(void)
+{
+    // opCode 0xCB 0xD4
+    // SET 2, H
+    //
+    // Sets bit 2
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2L(void)
+{
+    // opCode 0xCB 0xD5
+    // SET 2, L
+    //
+    // Sets bit 2
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_SET_2HLaddr(void)
+{
+    // opCode 0xCB 0xD6
+    // SET 2, (HL)
+    //
+    // Sets bit 2
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<2;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_2A(void)
+{
+    // opCode 0xCB 0xD7
+    // SET 2, A
+    //
+    // Sets bit 2
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_SET_3B(void)
+{
+    // opCode 0xCB 0xD8
+    // SET 3, B
+    //
+    // Sets bit 3
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3C(void)
+{
+    // opCode 0xCB 0xD9
+    // SET 3, C
+    //
+    // Sets bit 3
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3D(void)
+{
+    // opCode 0xCB 0xDA
+    // SET 3, D
+    //
+    // Sets bit 3
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3E(void)
+{
+    // opCode 0xCB 0xDB
+    // SET 3, E
+    //
+    // Sets bit 3
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3H(void)
+{
+    // opCode 0xCB 0xDC
+    // SET 3, H
+    //
+    // Sets bit 3
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3L(void)
+{
+    // opCode 0xCB 0xDD
+    // SET 3, L
+    //
+    // Sets bit 3
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_SET_3HLaddr(void)
+{
+    // opCode 0xCB 0xDE
+    // SET 3, (HL)
+    //
+    // Sets bit 3
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<3;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_3A(void)
+{
+    // opCode 0xCB 0xDF
+    // SET 3, A
+    //
+    // Sets bit 3
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_SET_4B(void)
+{
+    // opCode 0xCB 0xE0
+    // SET 4, B
+    //
+    // Sets bit 4
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4C(void)
+{
+    // opCode 0xCB 0xE1
+    // SET 4, C
+    //
+    // Sets bit 4
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4D(void)
+{
+    // opCode 0xCB 0xE2
+    // SET 4, D
+    //
+    // Sets bit 4
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4E(void)
+{
+    // opCode 0xCB 0xE3
+    // SET 4, E
+    //
+    // Sets bit 4
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4H(void)
+{
+    // opCode 0xCB 0xE4
+    // SET 4, H
+    //
+    // Sets bit 4
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4L(void)
+{
+    // opCode 0xCB 0xE5
+    // SET 4, L
+    //
+    // Sets bit 4
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_SET_4HLaddr(void)
+{
+    // opCode 0xCB 0xE6
+    // SET 4, (HL)
+    //
+    // Sets bit 4
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<4;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_4A(void)
+{
+    // opCode 0xCB 0xE7
+    // SET 4, A
+    //
+    // Sets bit 4
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_SET_5B(void)
+{
+    // opCode 0xCB 0xE8
+    // SET 5, B
+    //
+    // Sets bit 5
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5C(void)
+{
+    // opCode 0xCB 0xE9
+    // SET 5, C
+    //
+    // Sets bit 5
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5D(void)
+{
+    // opCode 0xCB 0xEA
+    // SET 5, D
+    //
+    // Sets bit 5
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5E(void)
+{
+    // opCode 0xCB 0xEB
+    // SET 5, E
+    //
+    // Sets bit 5
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5H(void)
+{
+    // opCode 0xCB 0xEC
+    // SET 5, H
+    //
+    // Sets bit 5
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5L(void)
+{
+    // opCode 0xCB 0xED
+    // SET 5, L
+    //
+    // Sets bit 5
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_SET_5HLaddr(void)
+{
+    // opCode 0xCB 0xEE
+    // SET 5, (HL)
+    //
+    // Sets bit 5
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<5;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_5A(void)
+{
+    // opCode 0xCB 0xEF
+    // SET 5, A
+    //
+    // Sets bit 5
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_SET_6B(void)
+{
+    // opCode 0xCB 0xF0
+    // SET 6, B
+    //
+    // Sets bit 6
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6C(void)
+{
+    // opCode 0xCB 0xF1
+    // SET 6, C
+    //
+    // Sets bit 6
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6D(void)
+{
+    // opCode 0xCB 0xF2
+    // SET 6, D
+    //
+    // Sets bit 6
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6E(void)
+{
+    // opCode 0xCB 0xF3
+    // SET 6, E
+    //
+    // Sets bit 6
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6H(void)
+{
+    // opCode 0xCB 0xF4
+    // SET 6, H
+    //
+    // Sets bit 6
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6L(void)
+{
+    // opCode 0xCB 0xF5
+    // SET 6, L
+    //
+    // Sets bit 6
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_SET_6HLaddr(void)
+{
+    // opCode 0xCB 0xF6
+    // SET 6, (HL)
+    //
+    // Sets bit 6
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<6;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_6A(void)
+{
+    // opCode 0xCB 0xF7
+    // SET 6, A
+    //
+    // Sets bit 6
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_SET_7B(void)
+{
+    // opCode 0xCB 0xF8
+    // SET 7, B
+    //
+    // Sets bit 7
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7C(void)
+{
+    // opCode 0xCB 0xF9
+    // SET 7, C
+    //
+    // Sets bit 7
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->setnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7D(void)
+{
+    // opCode 0xCB 0xFA
+    // SET 7, D
+    //
+    // Sets bit 7
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7E(void)
+{
+    // opCode 0xCB 0xFB
+    // SET 7, E
+    //
+    // Sets bit 7
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->setnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7H(void)
+{
+    // opCode 0xCB 0xFC
+    // SET 7, H
+    //
+    // Sets bit 7
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7L(void)
+{
+    // opCode 0xCB 0xFD
+    // SET 7, L
+    //
+    // Sets bit 7
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->setnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_SET_7HLaddr(void)
+{
+    // opCode 0xCB 0xFE
+    // SET 7, (HL)
+    //
+    // Sets bit 7
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<7;
+    val = val | temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_SET_7A(void)
+{
+    // opCode 0xCB 0xFF
+    // SET 7, A
+    //
+    // Sets bit 7
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->setnthBitHigh(7);
+
+    return 8;
+}

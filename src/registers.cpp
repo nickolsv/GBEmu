@@ -192,13 +192,13 @@ void register16::setnthBitHigh(uint8_t n)
 
 void register16::resetnthBitLow(uint8_t n)
 {
-    // Reset the nth bit of the low register
+    // Resets the nth bit of the low register
     low.resetnthBit(n);
 }
 
 void register16::resetnthBitHigh(uint8_t n)
 {
-    // Reset the nth bit of the high register
+    // Resets the nth bit of the high register
     high.resetnthBit(n);
 }
 
