@@ -2310,7 +2310,7 @@ int cpu::op_BIT_0L(void)
 int cpu::op_BIT_0HLaddr(void)
 {
     // opCode 0xCB 0x46
-    // BIT 0, (Hl)
+    // BIT 0, (HL)
     //
     // Copies complement of bit 0
     // of value in memory location
@@ -2517,7 +2517,7 @@ int cpu::op_BIT_1L(void)
 int cpu::op_BIT_1HLaddr(void)
 {
     // opCode 0xCB 0x4E
-    // BIT 1, (Hl)
+    // BIT 1, (HL)
     //
     // Copies complement of bit 1
     // of value in memory location
@@ -2725,7 +2725,7 @@ int cpu::op_BIT_2L(void)
 int cpu::op_BIT_2HLaddr(void)
 {
     // opCode 0xCB 0x56
-    // BIT 2, (Hl)
+    // BIT 2, (HL)
     //
     // Copies complement of bit 2
     // of value in memory location
@@ -2933,7 +2933,7 @@ int cpu::op_BIT_3L(void)
 int cpu::op_BIT_3HLaddr(void)
 {
     // opCode 0xCB 0x5E
-    // BIT 3, (Hl)
+    // BIT 3, (HL)
     //
     // Copies complement of bit 3
     // of value in memory location
@@ -2990,7 +2990,7 @@ int cpu::op_BIT_3A(void)
 
 int cpu::op_BIT_4B(void)
 {
-    // opCode 0xCB 0x50
+    // opCode 0xCB 0x60
     // BIT 4, B
     //
     // Copies complement of bit 4
@@ -3141,7 +3141,7 @@ int cpu::op_BIT_4L(void)
 int cpu::op_BIT_4HLaddr(void)
 {
     // opCode 0xCB 0x66
-    // BIT 4, (Hl)
+    // BIT 4, (HL)
     //
     // Copies complement of bit 4
     // of value in memory location
@@ -3349,7 +3349,7 @@ int cpu::op_BIT_5L(void)
 int cpu::op_BIT_5HLaddr(void)
 {
     // opCode 0xCB 0x6E
-    // BIT 5, (Hl)
+    // BIT 5, (HL)
     //
     // Copies complement of bit 5
     // of value in memory location
