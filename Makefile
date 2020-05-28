@@ -1,6 +1,6 @@
 CC  = g++
 HDIR = -I'.header'
-CFLAGS = $(HDIR)
+CFLAGS = $(HDIR) -g
 
 # Executable Names
 OUT = gbEMU
@@ -23,12 +23,13 @@ TESTOBJ = $(patsubst $(TESTDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST))
 ## RULES ##
 
 all: $(TESTOUT)
+testing: $(OUT)
 
 # Compile object files into executable
-$(OUT): $(OBJDIR) $(OBJDIR)/$(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
+$(OUT): $(OBJDIR) $(OBJDIR)/$(OBJ) debugmain.o
+	$(CC) $(CFLAGS) -o $@ $(OBJ) debugmain.o
 
-$(TESTOUT): $(OBJDIR) $(OBJDIR)/$(OBJ)  $(OBJDIR)/$(TESTOBJ)
+$(TESTOUT): $(OBJDIR) $(OBJDIR)/$(OBJ) $(OBJDIR)/$(TESTOBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(TESTOBJ)
 
 
@@ -37,6 +38,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(OBJDIR)/%.o: $(TESTDIR)/%.cpp
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+debugmain.o: debugmain.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 # Create directory containing object files
