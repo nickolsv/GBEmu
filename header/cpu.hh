@@ -16,10 +16,13 @@ class cpu
         int frameCycles;
 
         std::map<uint8_t, int (cpu::*)()> instructionTable;
+        std::map<uint8_t, int (cpu::*)()> CBinstructionTable;
         void initializeInstructionTable();
+        void initializeCBInstructionTable();
 
         uint8_t getOpCode();
         uint8_t getNextByte();
+        int unusedInstruction();
 
         uint8_t add16Bit(uint16_t srcVal, std::string destReg);
         uint8_t add8Bit(uint8_t srcVal, std::string destReg, uint8_t hiLo);
@@ -269,7 +272,7 @@ class cpu
         int op_RET_Z();                                             // 0xC8  RET Z
         int op_RET();                                               // 0xC9  RET
         int op_JP_Znn();                                            // 0xCA  JP Z, nn
-        int op_PREFIX_CB();                                         // 0xCB  PREFIX CB          // TODO: Implement
+        int op_PREFIX_CB();                                         // 0xCB  PREFIX CB
         int op_CALL_Znn();                                          // 0xCC  CALL Z, nn
         int op_CALL_nn();                                           // 0xCD  CALL nn
         int op_ADC_An();                                            // 0xCE  ADC A, n

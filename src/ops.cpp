@@ -5506,8 +5506,8 @@ int cpu::op_PREFIX_CB(void)
     // Reads next byte(s) in memory
     // and calls the respective instruction
     // from CB table
-
-    // TODO: Implement
+    // Will probably do nothing
+    // and the cpu loop will be handling it
 
     return 0;
 }
