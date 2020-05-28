@@ -3819,3 +3819,995 @@ int cpu::op_BIT_7A(void)
 
     return 8;
 }
+
+int cpu::op_RES_0B(void)
+{
+    // opCode 0xCB 0x80
+    // RES 0, B
+    //
+    // Resets bit 0
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0C(void)
+{
+    // opCode 0xCB 0x81
+    // RES 0, C
+    //
+    // Resets bit 0
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0D(void)
+{
+    // opCode 0xCB 0x82
+    // RES 0, D
+    //
+    // Resets bit 0
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0E(void)
+{
+    // opCode 0xCB 0x83
+    // RES 0, E
+    //
+    // Resets bit 0
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0H(void)
+{
+    // opCode 0xCB 0x84
+    // RES 0, H
+    //
+    // Resets bit 0
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0L(void)
+{
+    // opCode 0xCB 0x85
+    // RES 0, L
+    //
+    // Resets bit 0
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(0);
+
+    return 8;
+}
+
+int cpu::op_RES_0HLaddr(void)
+{
+    // opCode 0xCB 0x86
+    // RES 0, (HL)
+    //
+    // Resets bit 0
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+
+    return 16;
+}
+
+int cpu::op_RES_0A(void)
+{
+    // opCode 0xCB 0x87
+    // RES 0, A
+    //
+    // Resets bit 0
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(0);
+
+    return 8;
+}
+
+int cpu::op_RES_1B(void)
+{
+    // opCode 0xCB 0x88
+    // RES 1, B
+    //
+    // Resets bit 1
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1C(void)
+{
+    // opCode 0xCB 0x89
+    // RES 1, C
+    //
+    // Resets bit 1
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1D(void)
+{
+    // opCode 0xCB 0x8A
+    // RES 1, D
+    //
+    // Resets bit 1
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1E(void)
+{
+    // opCode 0xCB 0x8B
+    // RES 1, E
+    //
+    // Resets bit 1
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1H(void)
+{
+    // opCode 0xCB 0x8C
+    // RES 1, H
+    //
+    // Resets bit 1
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1L(void)
+{
+    // opCode 0xCB 0x8D
+    // RES 1, L
+    //
+    // Resets bit 1
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(1);
+
+    return 8;
+}
+
+int cpu::op_RES_1HLaddr(void)
+{
+    // opCode 0xCB 0x8E
+    // RES 1, (HL)
+    //
+    // Resets bit 1
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<1;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_1A(void)
+{
+    // opCode 0xCB 0x8F
+    // RES 1, A
+    //
+    // Resets bit 1
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(1);
+
+    return 8;
+}
+
+int cpu::op_RES_2B(void)
+{
+    // opCode 0xCB 0x90
+    // RES 2, B
+    //
+    // Resets bit 2
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2C(void)
+{
+    // opCode 0xCB 0x91
+    // RES 2, C
+    //
+    // Resets bit 2
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2D(void)
+{
+    // opCode 0xCB 0x92
+    // RES 2, D
+    //
+    // Resets bit 2
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2E(void)
+{
+    // opCode 0xCB 0x93
+    // RES 2, E
+    //
+    // Resets bit 2
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2H(void)
+{
+    // opCode 0xCB 0x94
+    // RES 2, H
+    //
+    // Resets bit 2
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2L(void)
+{
+    // opCode 0xCB 0x95
+    // RES 2, L
+    //
+    // Resets bit 2
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(2);
+
+    return 8;
+}
+
+int cpu::op_RES_2HLaddr(void)
+{
+    // opCode 0xCB 0x96
+    // RES 2, (HL)
+    //
+    // Resets bit 2
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<2;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_2A(void)
+{
+    // opCode 0xCB 0x97
+    // RES 2, A
+    //
+    // Resets bit 2
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(2);
+
+    return 8;
+}
+
+int cpu::op_RES_3B(void)
+{
+    // opCode 0xCB 0x98
+    // RES 3, B
+    //
+    // Resets bit 3
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3C(void)
+{
+    // opCode 0xCB 0x99
+    // RES 3, C
+    //
+    // Resets bit 3
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3D(void)
+{
+    // opCode 0xCB 0x9A
+    // RES 3, D
+    //
+    // Resets bit 3
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3E(void)
+{
+    // opCode 0xCB 0x9B
+    // RES 3, E
+    //
+    // Resets bit 3
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3H(void)
+{
+    // opCode 0xCB 0x9C
+    // RES 3, H
+    //
+    // Resets bit 3
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3L(void)
+{
+    // opCode 0xCB 0x9D
+    // RES 3, L
+    //
+    // Resets bit 3
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(3);
+
+    return 8;
+}
+
+int cpu::op_RES_3HLaddr(void)
+{
+    // opCode 0xCB 0x9E
+    // RES 3, (HL)
+    //
+    // Resets bit 3
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<3;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_3A(void)
+{
+    // opCode 0xCB 0x9F
+    // RES 3, A
+    //
+    // Resets bit 3
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(3);
+
+    return 8;
+}
+
+int cpu::op_RES_4B(void)
+{
+    // opCode 0xCB 0xA0
+    // RES 4, B
+    //
+    // Resets bit 4
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4C(void)
+{
+    // opCode 0xCB 0xA1
+    // RES 4, C
+    //
+    // Resets bit 4
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4D(void)
+{
+    // opCode 0xCB 0xA2
+    // RES 4, D
+    //
+    // Resets bit 4
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4E(void)
+{
+    // opCode 0xCB 0xA3
+    // RES 4, E
+    //
+    // Resets bit 4
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4H(void)
+{
+    // opCode 0xCB 0xA4
+    // RES 4, H
+    //
+    // Resets bit 4
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4L(void)
+{
+    // opCode 0xCB 0xA5
+    // RES 4, L
+    //
+    // Resets bit 4
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(4);
+
+    return 8;
+}
+
+int cpu::op_RES_4HLaddr(void)
+{
+    // opCode 0xCB 0xA6
+    // RES 4, (HL)
+    //
+    // Resets bit 4
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<4;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_4A(void)
+{
+    // opCode 0xCB 0xA7
+    // RES 4, A
+    //
+    // Resets bit 4
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(4);
+
+    return 8;
+}
+
+int cpu::op_RES_5B(void)
+{
+    // opCode 0xCB 0xA8
+    // RES 5, B
+    //
+    // Resets bit 5
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5C(void)
+{
+    // opCode 0xCB 0xA9
+    // RES 5, C
+    //
+    // Resets bit 5
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5D(void)
+{
+    // opCode 0xCB 0xAA
+    // RES 5, D
+    //
+    // Resets bit 5
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5E(void)
+{
+    // opCode 0xCB 0xAB
+    // RES 5, E
+    //
+    // Resets bit 5
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5H(void)
+{
+    // opCode 0xCB 0xAC
+    // RES 5, H
+    //
+    // Resets bit 5
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5L(void)
+{
+    // opCode 0xCB 0xAD
+    // RES 5, L
+    //
+    // Resets bit 5
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(5);
+
+    return 8;
+}
+
+int cpu::op_RES_5HLaddr(void)
+{
+    // opCode 0xCB 0xAE
+    // RES 5, (HL)
+    //
+    // Resets bit 5
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<5;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_5A(void)
+{
+    // opCode 0xCB 0xAF
+    // RES 5, A
+    //
+    // Resets bit 5
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(5);
+
+    return 8;
+}
+
+int cpu::op_RES_6B(void)
+{
+    // opCode 0xCB 0XB0
+    // RES 6, B
+    //
+    // Resets bit 6
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6C(void)
+{
+    // opCode 0xCB 0XB1
+    // RES 6, C
+    //
+    // Resets bit 6
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6D(void)
+{
+    // opCode 0xCB 0XB2
+    // RES 6, D
+    //
+    // Resets bit 6
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6E(void)
+{
+    // opCode 0xCB 0XB3
+    // RES 6, E
+    //
+    // Resets bit 6
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6H(void)
+{
+    // opCode 0xCB 0XB4
+    // RES 6, H
+    //
+    // Resets bit 6
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6L(void)
+{
+    // opCode 0xCB 0XB5
+    // RES 6, L
+    //
+    // Resets bit 6
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(6);
+
+    return 8;
+}
+
+int cpu::op_RES_6HLaddr(void)
+{
+    // opCode 0xCB 0XB6
+    // RES 6, (HL)
+    //
+    // Resets bit 6
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<6;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_6A(void)
+{
+    // opCode 0xCB 0XB7
+    // RES 6, A
+    //
+    // Resets bit 6
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(6);
+
+    return 8;
+}
+
+int cpu::op_RES_7B(void)
+{
+    // opCode 0xCB 0XB8
+    // RES 7, B
+    //
+    // Resets bit 7
+    // of register B
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7C(void)
+{
+    // opCode 0xCB 0XB9
+    // RES 7, C
+    //
+    // Resets bit 7
+    // of register C
+    // 8 Cycles, 2 bytes
+
+    registers["BC"]->resetnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7D(void)
+{
+    // opCode 0xCB 0XBA
+    // RES 7, D
+    //
+    // Resets bit 7
+    // of register D
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7E(void)
+{
+    // opCode 0xCB 0XBB
+    // RES 7, E
+    //
+    // Resets bit 7
+    // of register E
+    // 8 Cycles, 2 bytes
+
+    registers["DE"]->resetnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7H(void)
+{
+    // opCode 0xCB 0XBC
+    // RES 7, H
+    //
+    // Resets bit 7
+    // of register H
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitHigh(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7L(void)
+{
+    // opCode 0xCB 0XBD
+    // RES 7, L
+    //
+    // Resets bit 7
+    // of register L
+    // 8 Cycles, 2 bytes
+
+    registers["HL"]->resetnthBitLow(7);
+
+    return 8;
+}
+
+int cpu::op_RES_7HLaddr(void)
+{
+    // opCode 0xCB 0XBE
+    // RES 7, (HL)
+    //
+    // Resets bit 7
+    // of value in memory location
+    // register HL points to 
+    // 16 Cycles, 2 bytes
+
+    uint16_t addr;
+    uint8_t val, temp;
+
+    addr = registers["HL"]->getTotalValue();
+    val = mainMemory.readAddress(addr);
+
+    temp = 0x01;
+    temp = temp<<7;
+    temp = temp^0xFF;
+    val = val & temp;
+
+    mainMemory.writeToAddress(addr,val);
+
+    return 16;
+}
+
+int cpu::op_RES_7A(void)
+{
+    // opCode 0xCB 0XBF
+    // RES 7, A
+    //
+    // Resets bit 7
+    // of register A
+    // 8 Cycles, 2 bytes
+
+    registers["AF"]->resetnthBitHigh(7);
+
+    return 8;
+}
