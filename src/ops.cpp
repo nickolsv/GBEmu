@@ -6142,7 +6142,21 @@ int cpu::op_ADD_SPn(void)
     //      - Sets C if bit 7 overflows; Otherwise Resets C
     // 16 Cycles, 2 bytes
 
-    // TODO: Implement
+    uint8_t val;
+    uint16_t totalVal;
+
+    val = getNextByte();
+    totalVal = registers["SP"]->getTotalValue();
+
+    if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
+    else                    totalVal += val;
+
+    registers["SP"]->setTotalValue(totalVal);
+
+    resetFlag('Z');
+    resetFlag('N');
+
+    // TODO: Set/Reset H,C Flags
 
     return 16;
 }

@@ -300,7 +300,7 @@ class cpu
         int op_PUSH_HL();                                           // 0xE5  PUSH HL
         int op_AND_n();                                             // 0xE6  AND n
         int op_RST_20H();                                           // 0xE7  RST 20H
-        int op_ADD_SPn();                                           // 0xE8  ADD SP, n          // TODO: Implement
+        int op_ADD_SPn();                                           // 0xE8  ADD SP, n          // TODO: Set/Reset H,C Flags
         int op_JP_HLaddr();                                         // 0xE9  JP (HL)
         int op_LD_nnA();                                            // 0xEA  LD (nn), A
         // Unused Instruction 0xEB
