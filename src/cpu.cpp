@@ -621,6 +621,20 @@ void cpu::powerUpSequence(void)
     mainMemory.writeToAddress(0xFFFF, 0X00);
 }
 
+void cpu::loadROM(std::string filePath)
+{
+    // TODO: Checks
+    currentROM = new cartridge("tests/testROMs/cpu_instrs/individual/06-ld r,r.gb");
+    mainMemory.loadROM(currentROM);
+
+}
+
+void cpu::unloadROM()
+{
+    delete currentROM;
+    currentROM = 0;
+}
+
 void cpu::runFrame(void)
 {
     int opCycles = 0;

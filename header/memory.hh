@@ -2,6 +2,7 @@
 #define __GB_MEMORY_HH__
 
 #include <stdint.h>
+#include "../header/cartridge.hh"
 
 class memoryBank
 {
@@ -70,7 +71,7 @@ class memory
         ~memory();
         uint8_t readAddress(uint16_t);
         void writeToAddress(uint16_t,uint8_t);
-        void loadROM();
+        void loadROM(cartridge *);
 };
 
 #endif

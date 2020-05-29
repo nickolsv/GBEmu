@@ -4,6 +4,7 @@
 #include <map>
 #include "../header/registers.hh"
 #include "../header/memory.hh"
+#include "../header/cartridge.hh"
 
 // High Registers: A, B, D, H, Hi Bits of SP, Hi Bits of PC
 // Low Registers : F, C, E, L, Lo Bits of SP, Lo Bits of PC
@@ -14,6 +15,8 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
+        cartridge *currentROM;
+
 
         std::map<uint8_t, int (cpu::*)()> instructionTable;
         std::map<uint8_t, int (cpu::*)()> CBinstructionTable;
@@ -37,6 +40,9 @@ class cpu
         void pushByteToStack(uint8_t byte);
         void popToRegister(std::string destReg);
         void load16BitRegister(std::string, uint16_t);
+
+        void loadROM(std::string filePath);
+        void unloadROM();
 
     public:
         cpu();

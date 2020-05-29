@@ -31,6 +31,12 @@ memory::~memory()
     delete memArray;
 }
 
+void memory::loadROM(cartridge *ROM)
+{
+    ROM0 = ROM->getROMBank(0);
+    ROMn = ROM->getROMBank(1);
+}
+
 uint8_t memory::readAddress(uint16_t address)
 {
     if( address < 0x4000 )
