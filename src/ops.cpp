@@ -992,11 +992,14 @@ int cpu::op_LD_AHLinc(void)
     // Then, increments HL
     // 8 Cycles, 1 byte
 
-    uint16_t addr = registers["HL"]->getTotalValue();
-    uint8_t  val  = registers["AF"]->getHighValue();
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
 
-    mainMemory.writeToAddress(addr,val);
-
+    registers["AF"]->setHighValue(val);
+    
     registers["HL"]->incrementRegister();
 
     return 8;
@@ -1391,10 +1394,13 @@ int cpu::op_LD_AHLdec(void)
     // Then, decrements HL
     // 8 Cycles, 1 byte
 
-    uint16_t addr = registers["HL"]->getTotalValue();
-    uint8_t  val  = registers["AF"]->getHighValue();
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["HL"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
 
-    mainMemory.writeToAddress(addr,val);
+    registers["AF"]->setHighValue(val);
 
     registers["HL"]->decrementRegister();
 
