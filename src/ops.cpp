@@ -5288,7 +5288,7 @@ int cpu::op_JP_NZnn(void)
         high = getNextByte();
 
         registers["PC"]->setLowValue(low);
-        registers["PC"]->setHighValue(low);
+        registers["PC"]->setHighValue(high);
 
         return 16;
     }
@@ -5313,7 +5313,7 @@ int cpu::op_JP_nn(void)
     high = getNextByte();
 
     registers["PC"]->setLowValue(low);
-    registers["PC"]->setHighValue(low);
+    registers["PC"]->setHighValue(high);
 
     return 16;
 }
@@ -5487,7 +5487,7 @@ int cpu::op_JP_Znn(void)
         high = getNextByte();
 
         registers["PC"]->setLowValue(low);
-        registers["PC"]->setHighValue(low);
+        registers["PC"]->setHighValue(high);
 
         return 16;
     }
@@ -5686,7 +5686,7 @@ int cpu::op_JP_NCnn(void)
         high = getNextByte();
 
         registers["PC"]->setLowValue(low);
-        registers["PC"]->setHighValue(low);
+        registers["PC"]->setHighValue(high);
 
         return 16;
     }
@@ -5872,7 +5872,7 @@ int cpu::op_JP_Cnn(void)
         high = getNextByte();
 
         registers["PC"]->setLowValue(low);
-        registers["PC"]->setHighValue(low);
+        registers["PC"]->setHighValue(high);
 
         return 16;
     }
@@ -6177,7 +6177,7 @@ int cpu::op_JP_HLaddr(void)
     high = registers["HL"]->getHighValue();
 
     registers["PC"]->setLowValue(low);
-    registers["PC"]->setHighValue(low);
+    registers["PC"]->setHighValue(high);
 
     return 16;
 }
