@@ -1,5 +1,6 @@
 #include <cstring>
 #include "../header/memory.hh"
+#include "../header/cartridge.hh"
 
 memory::memory()
 {

@@ -2,7 +2,8 @@
 #define __GB_MEMORY_HH__
 
 #include <stdint.h>
-#include "../header/cartridge.hh"
+
+class cartridge;
 
 class memoryBank
 {
