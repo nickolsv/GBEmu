@@ -41,15 +41,15 @@ class cpu
         void popToRegister(std::string destReg);
         void load16BitRegister(std::string, uint16_t);
 
-        void loadROM(std::string filePath);
-        void unloadROM();
-
     public:
         cpu();
         ~cpu();
 
         void runFrame();
         int executeInstruction();
+        
+        void loadROM(std::string filePath);
+        void unloadROM();
 
         uint8_t getFlag(char);
         void setFlag(char);
