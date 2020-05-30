@@ -236,11 +236,13 @@ int cpu::op_LD_ABC(void)
     // register BC into register A
     // 8 Cycles, 1 byte
 
-    uint16_t addr = registers["BC"]->getTotalValue();
-    uint8_t  val  = mainMemory.readAddress(addr);
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["BC"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
 
     registers["AF"]->setHighValue(val);
-
     return 8;
 }
 
@@ -1016,7 +1018,7 @@ int cpu::op_DEC_HL(void)
     // Decrements value in register HL by 1
     // 8 Cycles, 1 byte
 
-    registers["BC"]->decrementRegister();
+    registers["HL"]->decrementRegister();
 
     return 8;
 }
