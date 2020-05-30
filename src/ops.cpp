@@ -604,10 +604,13 @@ int cpu::op_LD_ADE(void)
     // register DE into register A
     // 8 Cycles, 1 byte
 
-    uint16_t addr = registers["DE"]->getTotalValue();
-    uint8_t  val  = registers["AF"]->getHighValue();
+    uint16_t addr;
+    uint8_t val;
+    
+    addr = registers["DE"]->getTotalValue();
+    val  = mainMemory.readAddress(addr);
 
-    mainMemory.writeToAddress(addr,val);
+    registers["AF"]->setHighValue(val);
     return 8;
 }
 
@@ -999,7 +1002,7 @@ int cpu::op_LD_AHLinc(void)
     val  = mainMemory.readAddress(addr);
 
     registers["AF"]->setHighValue(val);
-    
+
     registers["HL"]->incrementRegister();
 
     return 8;
