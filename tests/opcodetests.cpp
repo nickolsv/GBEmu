@@ -596,3 +596,236 @@ TEST_CASE("Instruction 0x3X Testing")
     test.op_JR_NCn();
     REQUIRE(test.getRegisterValue("PC") == 0xC000);
 }
+
+TEST_CASE("Register8 Load Tests")
+{
+    cpu test;
+
+    test.setRegisterValue("BC", 0x1122);
+    test.setRegisterValue("DE", 0x3344);
+    test.setRegisterValue("HL", 0x5566);
+    test.setHighRegisterValue("AF", 0xFF);
+
+    SECTION("Load to B")
+    {
+        test.op_LD_BB();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x11);
+
+        test.op_LD_BC();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x22);
+
+        test.op_LD_BD();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x33);
+
+        test.op_LD_BE();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x44);
+
+        test.op_LD_BH();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x55);
+
+        test.op_LD_BL();
+        REQUIRE( test.getHighRegisterValue("BC") == 0x66);
+
+        test.op_LD_BA();
+        REQUIRE( test.getHighRegisterValue("BC") == 0xFF);
+    }
+
+    SECTION("Load to C")
+    {
+        test.op_LD_CC();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x22);
+
+        test.op_LD_CB();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x11);
+
+        test.op_LD_CD();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x33);
+
+        test.op_LD_CE();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x44);
+
+        test.op_LD_CH();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x55);
+
+        test.op_LD_CL();
+        REQUIRE( test.getLowRegisterValue("BC") == 0x66);
+
+        test.op_LD_CA();
+        REQUIRE( test.getLowRegisterValue("BC") == 0xFF);
+    }
+
+    SECTION("Load to D")
+    {
+        test.op_LD_DD();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x33);
+
+        test.op_LD_DB();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x11);
+
+        test.op_LD_DC();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x22);
+
+        test.op_LD_DE();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x44);
+
+        test.op_LD_DH();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x55);
+
+        test.op_LD_DL();
+        REQUIRE( test.getHighRegisterValue("DE") == 0x66);
+
+        test.op_LD_DA();
+        REQUIRE( test.getHighRegisterValue("DE") == 0xFF);
+    }
+
+    SECTION("Load to E")
+    {
+        test.op_LD_EE();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x44);
+
+        test.op_LD_EB();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x11);
+
+        test.op_LD_EC();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x22);
+
+        test.op_LD_ED();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x33);
+
+        test.op_LD_EH();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x55);
+
+        test.op_LD_EL();
+        REQUIRE( test.getLowRegisterValue("DE") == 0x66);
+
+        test.op_LD_EA();
+        REQUIRE( test.getLowRegisterValue("DE") == 0xFF);
+    }
+
+    SECTION("Load to H")
+    {
+        test.op_LD_HH();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x55);
+
+        test.op_LD_HB();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x11);
+
+        test.op_LD_HC();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x22);
+
+        test.op_LD_HD();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x33);
+
+        test.op_LD_HE();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x44);
+
+        test.op_LD_HL();
+        REQUIRE( test.getHighRegisterValue("HL") == 0x66);
+
+        test.op_LD_HA();
+        REQUIRE( test.getHighRegisterValue("HL") == 0xFF);
+    }
+
+    SECTION("Load to L")
+    {
+        test.op_LD_LL();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x66);
+
+        test.op_LD_LB();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x11);
+
+        test.op_LD_LC();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x22);
+
+        test.op_LD_LD();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x33);
+
+        test.op_LD_LE();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x44);
+
+        test.op_LD_LH();
+        REQUIRE( test.getLowRegisterValue("HL") == 0x55);
+
+        test.op_LD_LA();
+        REQUIRE( test.getLowRegisterValue("HL") == 0xFF);
+    }
+
+    SECTION("Load to A")
+    {
+        test.op_LD_AA();
+        REQUIRE( test.getHighRegisterValue("AF") == 0xFF);
+        
+        test.op_LD_AB();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x11);
+
+        test.op_LD_AC();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x22);
+
+        test.op_LD_AD();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x33);
+
+        test.op_LD_AE();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x44);
+
+        test.op_LD_AH();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x55);
+
+        test.op_LD_AL();
+        REQUIRE( test.getHighRegisterValue("AF") == 0x66);
+    }
+}
+
+TEST_CASE("(HL) Load Tests")
+{
+    cpu test;
+
+    test.setRegisterValue("BC", 0x1122);
+    test.setRegisterValue("DE", 0x3344);
+    test.setRegisterValue("HL", 0xCCDD);
+    test.setHighRegisterValue("AF", 0xFF);
+
+    test.setByteAtAddress(0xCCDD, 0xAB);
+
+    SECTION("Loads to (HL)")
+    {
+        test.op_LD_HLB();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0x11);
+
+        test.op_LD_HLC();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0x22);
+
+        test.op_LD_HLD();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0x33);
+
+        test.op_LD_HLE();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0x44);
+
+        test.op_LD_HLH();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0xCC);
+
+        test.op_LD_HLL();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0xDD);
+
+        test.op_LD_HLA();
+        REQUIRE(test.getByteAtAddress(0xCCDD) == 0xFF);
+    }
+
+    SECTION("Loads from (HL)")
+    {
+        test.op_LD_BHL();
+        test.op_LD_CHL();
+        REQUIRE( test.getRegisterValue("BC") == 0xABAB );
+
+        test.op_LD_DHL();
+        test.op_LD_EHL();
+        REQUIRE( test.getRegisterValue("BC") == 0xABAB );
+
+        test.op_LD_HHL();
+        test.op_LD_LHL();
+        REQUIRE( test.getRegisterValue("BC") == 0xABAB );
+
+        test.op_LD_AHL();
+        REQUIRE( test.getHighRegisterValue("BC") == 0xAB );
+
+    }
+}
