@@ -829,3 +829,70 @@ TEST_CASE("(HL) Load Tests")
 
     }
 }
+
+TEST_CASE("ADD Instructions")
+{
+    cpu test;
+
+    test.setRegisterValue("BC", 0x00FF);
+    test.setRegisterValue("DE", 0x0F5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+
+    SECTION("ADD A, B")
+    {
+        test.op_ADD_AB();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0));
+    }
+
+    SECTION("ADD A, C")
+    {
+        test.op_ADD_AC();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF7);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("ADD A, D")
+    {
+        test.op_ADD_AD();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x07);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("ADD A, E")
+    {
+        test.op_ADD_AE();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x56);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("ADD A, H")
+    {
+        test.op_ADD_AH();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xB8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 1));
+    }
+
+    SECTION("ADD A, L")
+    {
+        test.op_ADD_AL();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFF);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0));
+    }
+
+    SECTION("ADD A, A")
+    {
+        test.op_ADD_AA();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF0);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("ADD A, (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x08);
+        test.op_ADD_AHL();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x00);
+        REQUIRE((test.getFlag('Z') == 1 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 1));
+    }
+}
