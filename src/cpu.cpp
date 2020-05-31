@@ -660,7 +660,8 @@ void cpu::load16BitRegister(std::string registerName, uint16_t value)
 
 uint8_t cpu::getOpCode(void)
 {
-    return getNextByte();
+    uint8_t byte = getNextByte();
+    return byte;
 }
 
 uint8_t cpu::getNextByte(void)
@@ -685,7 +686,6 @@ int cpu::unusedInstruction(void)
 int cpu::executeInstruction()
 {
     uint8_t opcode = getOpCode();
-
     if( opcode == 0xCB )
     {
         opcode = getOpCode();
@@ -889,9 +889,9 @@ uint8_t cpu::add8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t hiLo)
         srcVal++;
 
         if( srcVal == 0)            carry = 2;
-        else if( srcVal % 16 == 0)  halfCarry = 1;          // When incrementing a number, the only case
+        if( srcVal % 16 == 0)       halfCarry = 1;          // When incrementing a number, the only case
                                                             // bit 3 can overflow is when a number of the form
-                                                            // XXX01111 is incremented to XXX10000, therefore
+                                                            // XXXX1111 is incremented to XXXX0000, therefore
                                                             // the result mod 16 equals 0
     }
 
@@ -955,7 +955,7 @@ uint8_t cpu::subtract8BitWithCarry(uint8_t srcVal, std::string destReg, uint8_t 
         srcVal--;
 
         if( srcVal == 0)            carry = 2;
-        else if( srcVal % 16 == 15)  halfCarry = 1;         // When decrementing a number, the only case
+        if( srcVal % 16 == 15)  halfCarry = 1;         // When decrementing a number, the only case
                                                             // bit 4 is borrowed from is when a number of the form
                                                             // XXX10000 is decremented to XXX01111, therefore
                                                             // the result mod 16 equals 15
