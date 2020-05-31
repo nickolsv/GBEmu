@@ -1286,13 +1286,11 @@ int cpu::op_LD_HLaddrn(void)
     // points to
     // 12 Cycles, 8 bytes
     
-    uint16_t addrSP, addrHL;
+    uint16_t addrPC, addrHL;
     uint8_t val;
     
-    addrSP = registers["SP"]->getTotalValue();
     addrHL = registers["HL"]->getTotalValue();
-
-    val    = mainMemory.readAddress(addrSP);
+    val    = getNextByte();
     mainMemory.writeToAddress(addrHL,val);
 
     return 12;
@@ -1474,7 +1472,7 @@ int cpu::op_DEC_A(void)
     
     if( val % 16 == 15 )        setFlag('H');           // When decrementing a number, the only case
     else                        resetFlag('H');         // bit 4 is borrowed from is when a number of the form
-                                                        // XXX10000 is decremented to XXX01111, therefore
+                                                        // XXXX0000 is decremented to XXXX1111, therefore
                                                         // the result mod 16 equals 15
 
     setFlag('N');
