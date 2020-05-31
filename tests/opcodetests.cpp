@@ -279,3 +279,167 @@ TEST_CASE("Instruction 0x1X Testing")
     REQUIRE(test.getRegisterValue("PC") == 0xC000);
 
 }
+
+TEST_CASE("Instruction 0x2X Testing")
+{
+    cpu test;
+
+    test.setRegisterValue("PC",0xC001);
+    test.setByteAtAddress(0xC001,0x02);
+    test.setByteAtAddress(0xC002,0xC0);
+    test.setByteAtAddress(0xC003,0x56);
+    test.setByteAtAddress(0xC004,0xD8);
+    test.setLowRegisterValue("AF",0x00);
+
+    
+    // 0x21
+
+    test.op_LD_HLnn();
+
+    REQUIRE( test.getRegisterValue("HL") == 0xC002 );
+
+    // 0X22
+
+    test.setHighRegisterValue("AF",0xEE);
+    test.op_LD_HLincA();
+    REQUIRE( test.getByteAtAddress(0xC002) == 0xEE );
+    REQUIRE( test.getRegisterValue("HL") == 0xC003 );
+
+    // 0x23
+
+    test.op_INC_HL();
+    REQUIRE( test.getRegisterValue("HL") == 0xC004 );
+
+    test.setRegisterValue("HL",0xFFFF);
+    test.op_INC_HL();
+    REQUIRE( test.getRegisterValue("HL") == 0x0000 );
+
+    // 0X24
+
+    REQUIRE( (test.getFlag('C') == 0 && test.getFlag('H') == 0 && test.getFlag('N') == 0 && test.getFlag('Z') == 0 ));
+
+    test.setHighRegisterValue("HL", 0b11011111);
+    test.op_INC_H();
+    REQUIRE( test.getHighRegisterValue("HL") == 0b11100000 );
+    REQUIRE( (test.getFlag('H') == 1 ));
+
+    test.setHighRegisterValue("HL", 0xFF);
+    test.op_INC_H();
+    REQUIRE( (test.getFlag('Z') == 1 && test.getFlag('H') == 1  && test.getFlag('N') == 0));
+
+    // 0x25
+
+    test.op_DEC_H();
+    REQUIRE( (test.getFlag('N') == 1 && test.getFlag('Z') == 0 && test.getFlag('H') == 1) );
+    REQUIRE(test.getHighRegisterValue("HL") == 0xFF);
+
+    // 0x26
+
+    test.setRegisterValue("PC",0xC002);
+    test.op_LD_Hn();
+    REQUIRE(test.getHighRegisterValue("HL") == 0xEE);
+    REQUIRE(test.getRegisterValue("PC") == 0xC003);
+
+    // 0x29
+
+    test.setRegisterValue("HL",0x0000);
+    test.setRegisterValue("DE",0xFFFF);
+    test.op_ADD_HLDE();
+    REQUIRE( test.getRegisterValue("HL") == 0xFFFF);
+    REQUIRE( ( test.getFlag('C') == 0 && test.getFlag('H') == 0 && test.getFlag('N') == 0 ));
+
+    test.op_ADD_HLDE();
+    REQUIRE( test.getRegisterValue("HL") == 0xFFFE);
+    REQUIRE( ( test.getFlag('C') == 1 && test.getFlag('H') == 1 && test.getFlag('N') == 0 ));
+
+    // 0x2A
+
+    test.setByteAtAddress(0xD234, 0xDD);
+    test.setRegisterValue("HL",0xD234);
+    test.op_LD_AHLdec();
+    REQUIRE( test.getHighRegisterValue("AF") == 0xDD );
+    REQUIRE( test.getRegisterValue("HL") == 0xD233);
+
+    // 0x2B
+
+    test.op_DEC_HL();
+    REQUIRE( test.getRegisterValue("HL") == 0xD232 );
+
+    test.setRegisterValue("HL",0x0000);
+    test.op_DEC_HL();
+    REQUIRE( test.getRegisterValue("HL") == 0xFFFF );
+
+    // 0x2C
+
+    test.setLowRegisterValue("HL", 0xFF);
+    test.op_INC_L();
+    REQUIRE( test.getLowRegisterValue("HL") == 0x00 );
+    REQUIRE( (test.getFlag('H') == 1 ));
+
+    test.setLowRegisterValue("HL", 0x0F);
+    test.op_INC_L();
+    REQUIRE( (test.getFlag('Z') == 0 && test.getFlag('H') == 1  && test.getFlag('N') == 0));
+
+    // 0x2D
+
+    test.op_DEC_L();
+    REQUIRE( (test.getFlag('N') == 1 && test.getFlag('Z') == 0 && test.getFlag('H') == 1) );
+    REQUIRE(test.getLowRegisterValue("HL") == 0x0F);
+
+    // 0x2E
+
+    test.setRegisterValue("PC",0xC002);
+    test.op_LD_Ln();
+    REQUIRE(test.getLowRegisterValue("HL") == 0xEE);
+    REQUIRE(test.getRegisterValue("PC") == 0xC003);
+
+    // 0x2F
+
+    test.setHighRegisterValue("AF",0b10101010);
+    test.op_CPL();
+    REQUIRE(test.getHighRegisterValue("AF") == 0b01010101);
+    REQUIRE( (test.getFlag('N') == 1 && test.getFlag('H') == 1));
+
+    test.setHighRegisterValue("AF",0xFF);
+    test.op_CPL();
+    REQUIRE(test.getHighRegisterValue("AF") == 0x00);
+
+    // 0x28
+
+    test.setRegisterValue("PC",0xC00E);
+    test.setByteAtAddress(0xC00E,0x00);
+    test.setByteAtAddress(0xC00F,0xF0);
+    test.resetFlag('Z');
+
+    test.op_JR_Zn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC00F);
+    test.op_JR_Zn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC010);
+
+    test.setRegisterValue("PC",0xC00E);
+    test.setFlag('Z');
+
+    test.op_JR_Zn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC00F);
+    test.op_JR_Zn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC000);
+
+    // 0x20
+
+    test.setRegisterValue("PC",0xC00E);
+    test.setFlag('Z');
+
+    test.op_JR_NZn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC00F);
+    test.op_JR_NZn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC010);
+
+    test.setRegisterValue("PC",0xC00E);
+    test.resetFlag('Z');
+
+    test.op_JR_NZn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC00F);
+    test.op_JR_NZn();
+    REQUIRE(test.getRegisterValue("PC") == 0xC000);
+
+}
