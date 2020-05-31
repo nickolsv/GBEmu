@@ -1030,3 +1030,216 @@ TEST_CASE("ADC Instructions")
         }
     }
 }
+
+TEST_CASE("SUB Instructions")
+{}
+
+TEST_CASE("SBC Instructions")
+{}
+
+TEST_CASE("AND Instructions")
+{
+    cpu test;
+    test.setRegisterValue("BC", 0x00FF);
+    test.setRegisterValue("DE", 0x0F5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+    test.setFlag('N');
+    test.setFlag('C');
+    test.resetFlag('H');
+
+    SECTION("AND B")
+    {
+        test.op_AND_B();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x00);
+        REQUIRE((test.getFlag('Z') == 1 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND C")
+    {
+        test.op_AND_C();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND D")
+    {
+        test.op_AND_D();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x08);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND E")
+    {
+        test.op_AND_E();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x58);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND H")
+    {
+        test.op_AND_H();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xC0);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND L")
+    {
+        test.op_AND_L();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x00);
+        REQUIRE((test.getFlag('Z') == 1 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x11);
+        test.op_AND_HL();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x10);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("AND A")
+    {
+        test.op_AND_A();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 1 && test.getFlag('C') == 0 ));
+    }
+}
+
+TEST_CASE("XOR Instructions")
+{
+    cpu test;
+    test.setRegisterValue("BC", 0x00FF);
+    test.setRegisterValue("DE", 0x0F5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+    test.setFlag('N');
+    test.setFlag('C');
+    test.resetFlag('H');
+
+    SECTION("XOR B")
+    {
+        test.op_XOR_B();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR C")
+    {
+        test.op_XOR_C();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x07);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR D")
+    {
+        test.op_XOR_D();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF7);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR E")
+    {
+        test.op_XOR_E();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xA6);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR H")
+    {
+        test.op_XOR_H();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x38);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR L")
+    {
+        test.op_XOR_L();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFF);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x11);
+        test.op_XOR_HL();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xE9);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("XOR A")
+    {
+        test.op_XOR_A();
+        REQUIRE(test.getHighRegisterValue("AF") == 0x00);
+        REQUIRE((test.getFlag('Z') == 1 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+}
+
+TEST_CASE("OR Instructions")
+{
+    cpu test;
+    test.setRegisterValue("BC", 0x00FF);
+    test.setRegisterValue("DE", 0x0F5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+    test.setFlag('N');
+    test.setFlag('C');
+    test.resetFlag('H');
+
+    SECTION("OR B")
+    {
+        test.op_OR_B();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR C")
+    {
+        test.op_OR_C();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFF);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR D")
+    {
+        test.op_OR_D();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFF);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR E")
+    {
+        test.op_OR_E();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFE);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR H")
+    {
+        test.op_OR_H();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR L")
+    {
+        test.op_OR_L();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xFF);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x11);
+        test.op_OR_HL();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF9);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+
+    SECTION("OR A")
+    {
+        test.op_OR_A();
+        REQUIRE(test.getHighRegisterValue("AF") == 0xF8);
+        REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
+    }
+}
