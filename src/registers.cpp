@@ -315,7 +315,7 @@ void register8::swapNibbles(void)
     val = val>>4;
     temp = temp<<4;
 
-    val = ( ( val & 0x0F) & (temp & 0xF0) );
+    val = ( ( val & 0x0F) | (temp & 0xF0) );
 
     setValue(val);
 }

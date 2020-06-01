@@ -1851,7 +1851,7 @@ int cpu::op_SWAP_HLaddr(void)
     val = val>>4;
     temp = temp<<4;
 
-    val = ( ( val & 0x0F) & (temp & 0xF0) );
+    val = ( ( val & 0x0F) | (temp & 0xF0) );
 
     mainMemory.writeToAddress(addr,val);
 
@@ -2173,8 +2173,8 @@ int cpu::op_BIT_0B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2198,8 +2198,8 @@ int cpu::op_BIT_0C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2223,8 +2223,8 @@ int cpu::op_BIT_0D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2248,8 +2248,8 @@ int cpu::op_BIT_0E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2273,8 +2273,8 @@ int cpu::op_BIT_0H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2298,8 +2298,8 @@ int cpu::op_BIT_0L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2330,8 +2330,8 @@ int cpu::op_BIT_0HLaddr(void)
 
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2355,8 +2355,8 @@ int cpu::op_BIT_0A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(0);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2380,8 +2380,8 @@ int cpu::op_BIT_1B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2405,8 +2405,8 @@ int cpu::op_BIT_1C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2430,8 +2430,8 @@ int cpu::op_BIT_1D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2455,8 +2455,8 @@ int cpu::op_BIT_1E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2480,8 +2480,8 @@ int cpu::op_BIT_1H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2505,8 +2505,8 @@ int cpu::op_BIT_1L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2538,8 +2538,8 @@ int cpu::op_BIT_1HLaddr(void)
     bit = bit>>1;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2563,8 +2563,8 @@ int cpu::op_BIT_1A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(1);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2588,8 +2588,8 @@ int cpu::op_BIT_2B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2613,8 +2613,8 @@ int cpu::op_BIT_2C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2638,8 +2638,8 @@ int cpu::op_BIT_2D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2663,8 +2663,8 @@ int cpu::op_BIT_2E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2688,8 +2688,8 @@ int cpu::op_BIT_2H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2713,8 +2713,8 @@ int cpu::op_BIT_2L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2746,8 +2746,8 @@ int cpu::op_BIT_2HLaddr(void)
     bit = bit>>2;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2771,8 +2771,8 @@ int cpu::op_BIT_2A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(2);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2796,8 +2796,8 @@ int cpu::op_BIT_3B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2821,8 +2821,8 @@ int cpu::op_BIT_3C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2846,8 +2846,8 @@ int cpu::op_BIT_3D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2871,8 +2871,8 @@ int cpu::op_BIT_3E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2896,8 +2896,8 @@ int cpu::op_BIT_3H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2921,8 +2921,8 @@ int cpu::op_BIT_3L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2954,8 +2954,8 @@ int cpu::op_BIT_3HLaddr(void)
     bit = bit>>3;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -2979,8 +2979,8 @@ int cpu::op_BIT_3A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(3);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3004,8 +3004,8 @@ int cpu::op_BIT_4B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3029,8 +3029,8 @@ int cpu::op_BIT_4C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3054,8 +3054,8 @@ int cpu::op_BIT_4D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3079,8 +3079,8 @@ int cpu::op_BIT_4E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3104,8 +3104,8 @@ int cpu::op_BIT_4H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3129,8 +3129,8 @@ int cpu::op_BIT_4L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3162,8 +3162,8 @@ int cpu::op_BIT_4HLaddr(void)
     bit = bit>>4;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3187,8 +3187,8 @@ int cpu::op_BIT_4A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(4);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3212,8 +3212,8 @@ int cpu::op_BIT_5B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3237,8 +3237,8 @@ int cpu::op_BIT_5C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3262,8 +3262,8 @@ int cpu::op_BIT_5D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3287,8 +3287,8 @@ int cpu::op_BIT_5E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3312,8 +3312,8 @@ int cpu::op_BIT_5H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3337,8 +3337,8 @@ int cpu::op_BIT_5L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3370,8 +3370,8 @@ int cpu::op_BIT_5HLaddr(void)
     bit = bit>>5;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3395,8 +3395,8 @@ int cpu::op_BIT_5A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(5);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3420,8 +3420,8 @@ int cpu::op_BIT_6B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3445,8 +3445,8 @@ int cpu::op_BIT_6C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3470,8 +3470,8 @@ int cpu::op_BIT_6D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3495,8 +3495,8 @@ int cpu::op_BIT_6E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3520,8 +3520,8 @@ int cpu::op_BIT_6H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3545,8 +3545,8 @@ int cpu::op_BIT_6L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3578,8 +3578,8 @@ int cpu::op_BIT_6HLaddr(void)
     bit = bit>>6;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3603,8 +3603,8 @@ int cpu::op_BIT_6A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(6);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3628,8 +3628,8 @@ int cpu::op_BIT_7B(void)
 
     uint8_t bit = registers["BC"]->getnthBitHigh(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3653,8 +3653,8 @@ int cpu::op_BIT_7C(void)
 
     uint8_t bit = registers["BC"]->getnthBitLow(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3678,8 +3678,8 @@ int cpu::op_BIT_7D(void)
 
     uint8_t bit = registers["DE"]->getnthBitHigh(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3703,8 +3703,8 @@ int cpu::op_BIT_7E(void)
 
     uint8_t bit = registers["DE"]->getnthBitLow(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3728,8 +3728,8 @@ int cpu::op_BIT_7H(void)
 
     uint8_t bit = registers["HL"]->getnthBitHigh(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3753,8 +3753,8 @@ int cpu::op_BIT_7L(void)
 
     uint8_t bit = registers["HL"]->getnthBitLow(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3786,8 +3786,8 @@ int cpu::op_BIT_7HLaddr(void)
     bit = bit>>7;
     bit = bit & 0x01;
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
@@ -3811,8 +3811,8 @@ int cpu::op_BIT_7A(void)
 
     uint8_t bit = registers["AF"]->getnthBitHigh(7);
 
-    if( bit == 0 )      setFlag('C');
-    else                resetFlag('C');
+    if( bit == 0 )      setFlag('Z');
+    else                resetFlag('Z');
 
     resetFlag('N');
     setFlag('H');
