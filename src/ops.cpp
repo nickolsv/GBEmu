@@ -6159,6 +6159,15 @@ int cpu::op_ADD_SPn(void)
     val = getNextByte();
     totalVal = registers["SP"]->getTotalValue();
 
+    // Half Carry & Carry flags are set as if unsigned addition is performed
+    resetFlag('H');
+    if( ( ( ( val & 0x0F ) + ( totalVal & 0x000F ) ) & 0x10 ) == 0x10 )
+        setFlag('H');
+
+    resetFlag('C');
+    if((( val + (totalVal & 0x00FF)) & 0x0100 ) == 0x0100)
+        setFlag('C');
+
     if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
     else                    totalVal += val;
 
@@ -6166,8 +6175,6 @@ int cpu::op_ADD_SPn(void)
 
     resetFlag('Z');
     resetFlag('N');
-
-    // TODO: Set/Reset H,C Flags
 
     return 16;
 }
@@ -6450,6 +6457,15 @@ int cpu::op_LD_HLSPn(void)
     val = getNextByte();
     totalVal = registers["SP"]->getTotalValue();
 
+    // Half Carry & Carry flags are set as if unsigned addition is performed
+    resetFlag('H');
+    if( ( ( ( val & 0x0F ) + ( totalVal & 0x000F ) ) & 0x10 ) == 0x10 )
+        setFlag('H');
+    
+    resetFlag('C');
+    if((( val + (totalVal & 0x00FF)) & 0x0100 ) == 0x0100)
+        setFlag('C');
+
     if( (val & 0x80) != 0 ) totalVal -= ((val^0xFF) + 1);
     else                    totalVal += val;
 
@@ -6457,8 +6473,6 @@ int cpu::op_LD_HLSPn(void)
 
     resetFlag('Z');
     resetFlag('N');
-
-    // TODO: Set/Reset H,C Flags
 
     return 16;
 }

@@ -47,7 +47,7 @@ class cpu
 
         void runFrame();
         int executeInstruction();
-        
+
         void loadROM(std::string filePath);
         void unloadROM();
 
@@ -311,7 +311,7 @@ class cpu
         int op_PUSH_HL();                                           // 0xE5  PUSH HL
         int op_AND_n();                                             // 0xE6  AND n
         int op_RST_20H();                                           // 0xE7  RST 20H
-        int op_ADD_SPn();                                           // 0xE8  ADD SP, n          // TODO: Set/Reset H,C Flags
+        int op_ADD_SPn();                                           // 0xE8  ADD SP, n
         int op_JP_HLaddr();                                         // 0xE9  JP (HL)
         int op_LD_nnA();                                            // 0xEA  LD (nn), A
         // Unused Instruction 0xEB
@@ -328,7 +328,7 @@ class cpu
         int op_PUSH_AF();                                           // 0xF5  PUSH AF
         int op_OR_n();                                              // 0xF6  OR n
         int op_RST_30H();                                           // 0xF7  RST 30H
-        int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n        // TODO: Set/Reset H,C Flags
+        int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n
         int op_LD_SPHL();                                           // 0xF9  LD SP, HL
         int op_LD_Ann();                                            // 0xFA  LD A, (nn)
         int op_EI();                                                // 0xFB  EI                 // TODO: Implement
