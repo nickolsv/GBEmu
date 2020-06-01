@@ -5802,7 +5802,7 @@ int cpu::op_SUB_n(void)
             resetFlag('C');
     }
 
-    resetFlag('N');
+    setFlag('N');
 
     if( registers["AF"]->getHighValue() == 0 )  setFlag('Z');
     else                                        resetFlag('Z');
