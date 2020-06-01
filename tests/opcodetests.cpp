@@ -1682,3 +1682,102 @@ TEST_CASE("PUSH/POP")
     REQUIRE(test.getRegisterValue("AF") == 0xAA00);
     REQUIRE(test.getRegisterValue("SP") == 0xFFDE);
 }
+
+TEST_CASE("JP")
+{
+    cpu test;
+
+    test.setRegisterValue("PC",0xC010);
+    
+    test.setByteAtAddress(0xC010,0x00);
+    test.setByteAtAddress(0xC011,0xC1);
+
+    SECTION("cc = None")
+    {
+        test.op_JP_nn();
+        REQUIRE(test.getRegisterValue("PC") == 0xC100);
+    }
+
+    SECTION("cc = Z")
+    {
+        SECTION("Z Set")
+        {
+            test.setFlag('Z');
+            
+            test.op_JP_Znn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC100);
+        }
+
+        SECTION("Z Reset")
+        {
+            test.resetFlag('Z');
+            
+            test.op_JP_Znn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC012);
+        }
+    }
+
+    SECTION("cc = NZ")
+    {
+        SECTION("Z Reset")
+        {
+            test.resetFlag('Z');
+            
+            test.op_JP_NZnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC100);
+        }
+
+        SECTION("Z Set")
+        {
+            test.setFlag('Z');
+            
+            test.op_JP_NZnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC012);
+        }
+    }
+
+    SECTION("cc = C")
+    {
+        SECTION("C Set")
+        {
+            test.setFlag('C');
+            
+            test.op_JP_Cnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC100);
+        }
+
+        SECTION("C Reset")
+        {
+            test.resetFlag('C');
+            
+            test.op_JP_Cnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC012);
+        }
+    }
+
+    SECTION("cc = NC")
+    {
+        SECTION("C Reset")
+        {
+            test.resetFlag('C');
+            
+            test.op_JP_NCnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC100);
+        }
+
+        SECTION("C Set")
+        {
+            test.setFlag('C');
+            
+            test.op_JP_NCnn();
+            REQUIRE(test.getRegisterValue("PC") == 0xC012);
+        }
+    }
+
+    SECTION("(HL)")
+    {
+        test.setRegisterValue("HL",0xC200);
+        test.op_JP_HLaddr();
+        REQUIRE(test.getRegisterValue("PC") == 0xC200);
+    }
+}
