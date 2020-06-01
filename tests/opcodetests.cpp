@@ -1032,7 +1032,72 @@ TEST_CASE("ADC Instructions")
 }
 
 TEST_CASE("SUB Instructions")
-{}
+{
+    cpu test;
+
+    test.setRegisterValue("BC", 0x09F0);
+    test.setRegisterValue("DE", 0xFF5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+
+    SECTION("SUB B")
+    {
+        test.op_SUB_B();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0xEF);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("SUB C")
+    {
+        test.op_SUB_C();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0x08);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("SUB D")
+    {
+        test.op_SUB_D();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0xF9);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("SUB E")
+    {
+        test.op_SUB_E();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0x9A);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("SUB H")
+    {
+        test.op_SUB_H();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0x38);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("SUB L")
+    {
+        test.op_SUB_L();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0xF1);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("SUB (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x39);
+        test.op_SUB_HL();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0xBF);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+
+    }
+
+    SECTION("SUB A")
+    {
+        test.op_SUB_A();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0x00);
+        REQUIRE((test.getFlag('Z') == 1 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+}
 
 TEST_CASE("SBC Instructions")
 {}
@@ -1243,3 +1308,6 @@ TEST_CASE("OR Instructions")
         REQUIRE((test.getFlag('Z') == 0 && test.getFlag('N') == 0 && test.getFlag('H') == 0 && test.getFlag('C') == 0 ));
     }
 }
+
+TEST_CASE("CP Instructions")
+{}
