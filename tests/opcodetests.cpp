@@ -1378,7 +1378,6 @@ TEST_CASE("CP Instructions")
         test.setByteAtAddress(0xC007,0x39);
         test.op_CP_HL();
         REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
-
     }
 
     SECTION("CP A")
@@ -1591,4 +1590,67 @@ TEST_CASE("CALL & RET")
             }     
         }
     }
+}
+
+TEST_CASE("RST Instructions")
+{
+    cpu test;
+    test.setRegisterValue("PC",0xC010);
+    test.setRegisterValue("SP",0xFFDE);
+
+    SECTION("00H")
+    {
+        test.op_RST_00H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0000 );
+    }
+
+    SECTION("08H")
+    {
+        test.op_RST_08H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0008 );
+    }
+
+    SECTION("10H")
+    {
+        test.op_RST_10H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0010 );
+    }
+
+    SECTION("18H")
+    {
+        test.op_RST_18H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0018 );
+    }
+
+    SECTION("20H")
+    {
+        test.op_RST_20H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0020 );
+    }
+
+    SECTION("28H")
+    {
+        test.op_RST_28H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0028 );
+    }
+
+    SECTION("30H")
+    {
+        test.op_RST_30H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0030 );
+    }
+
+    SECTION("38H")
+    {
+        test.op_RST_38H();
+        REQUIRE(test.getRegisterValue("PC") == 0x0038 );
+    }
+
+    REQUIRE(test.getRegisterValue("SP") == 0xFFDC );
+    REQUIRE(test.getByteAtAddress(0xFFDC) == 0x10);
+    REQUIRE(test.getByteAtAddress(0xFFDD) == 0xC0);
+
+    test.op_RET();
+    REQUIRE(test.getRegisterValue("PC") == 0xC010 );
+    REQUIRE(test.getRegisterValue("SP") == 0xFFDE );        
 }
