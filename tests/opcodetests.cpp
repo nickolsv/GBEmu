@@ -1097,6 +1097,16 @@ TEST_CASE("SUB Instructions")
         REQUIRE(test.getHighRegisterValue("AF") ==  0x00);
         REQUIRE((test.getFlag('Z') == 1 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
     }
+
+    SECTION("SUB n")
+    {
+        test.setRegisterValue("PC",0xC100);
+        test.setByteAtAddress(0xC100,0x0A);
+        test.op_SUB_n();
+        REQUIRE(test.getHighRegisterValue("AF") ==  0xEE);
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+       
+    }
 }
 
 TEST_CASE("SBC Instructions")
@@ -1310,4 +1320,72 @@ TEST_CASE("OR Instructions")
 }
 
 TEST_CASE("CP Instructions")
-{}
+{
+    cpu test;
+
+    test.setRegisterValue("BC", 0x09F0);
+    test.setRegisterValue("DE", 0xFF5E);
+    test.setRegisterValue("HL", 0xC007);
+    test.setHighRegisterValue("AF", 0xF8);
+
+    SECTION("CP B")
+    {
+        test.op_CP_B();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP C")
+    {
+        test.op_CP_C();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP D")
+    {
+        test.op_CP_D();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 1));
+    }
+
+    SECTION("CP E")
+    {
+        test.op_CP_E();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP H")
+    {
+        test.op_CP_H();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP L")
+    {
+        test.op_CP_L();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP (HL)")
+    {
+        test.setByteAtAddress(0xC007,0x39);
+        test.op_CP_HL();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+
+    }
+
+    SECTION("CP A")
+    {
+        test.op_CP_A();
+        REQUIRE((test.getFlag('Z') == 1 & test.getFlag('H') == 0 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+    }
+
+    SECTION("CP n")
+    {
+        test.setRegisterValue("PC",0xC100);
+        test.setByteAtAddress(0xC100,0x0A);
+        test.op_CP_n();
+        REQUIRE((test.getFlag('Z') == 0 & test.getFlag('H') == 1 && test.getFlag('N') == 1 && test.getFlag('C') == 0));
+       
+    }
+}
+
+// TODO: TEST SBC, 0XC0-0XFF
