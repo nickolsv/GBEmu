@@ -1654,3 +1654,31 @@ TEST_CASE("RST Instructions")
     REQUIRE(test.getRegisterValue("PC") == 0xC010 );
     REQUIRE(test.getRegisterValue("SP") == 0xFFDE );        
 }
+
+TEST_CASE("PUSH/POP")
+{
+    cpu test;
+    test.setRegisterValue("BC",0xAA00);
+    test.setRegisterValue("DE",0xBBCC);
+    test.setRegisterValue("HL",0xDDEE);
+    test.setRegisterValue("AF",0x1100);
+    test.setRegisterValue("SP",0xFFDE);
+
+    test.op_PUSH_AF();
+    test.op_PUSH_BC();
+    test.op_PUSH_DE();
+    test.op_PUSH_HL();
+
+    REQUIRE(test.getRegisterValue("SP") == 0xFFD6);
+
+    test.op_POP_DE();
+    test.op_POP_BC();
+    test.op_POP_AF();
+    test.op_POP_HL();
+
+    REQUIRE(test.getRegisterValue("BC") == 0xBBCC);
+    REQUIRE(test.getRegisterValue("DE") == 0xDDEE);
+    REQUIRE(test.getRegisterValue("HL") == 0x1100);
+    REQUIRE(test.getRegisterValue("AF") == 0xAA00);
+    REQUIRE(test.getRegisterValue("SP") == 0xFFDE);
+}
