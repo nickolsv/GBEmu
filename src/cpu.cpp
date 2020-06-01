@@ -624,7 +624,7 @@ void cpu::powerUpSequence(void)
 void cpu::loadROM(std::string filePath)
 {
     // TODO: Checks
-    currentROM = new cartridge("tests/testROMs/cpu_instrs/individual/06-ld r,r.gb");
+    currentROM = new cartridge(filePath);
     mainMemory.loadROM(currentROM);
 
 }

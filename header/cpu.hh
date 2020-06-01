@@ -101,7 +101,7 @@ class cpu
 
         int op_JR_NZn();                                            // 0x20  JR NZ, n
         int op_LD_HLnn();                                           // 0x21  LD HL, nn
-        int op_LD_HLincA();                                         // 0x22  LD HL+, A
+        int op_LD_HLincA();                                         // 0x22  LD (HL+), A
         int op_INC_HL();                                            // 0x23  INC HL
         int op_INC_H();                                             // 0x24  INC H
         int op_DEC_H();                                             // 0x25  DEC H
@@ -118,7 +118,7 @@ class cpu
 
         int op_JR_NCn();                                            // 0x30  JR NC, n
         int op_LD_SPnn();                                           // 0x31  LD SP, nn
-        int op_LD_HLdecA();                                         // 0x32  LD HL-, A
+        int op_LD_HLdecA();                                         // 0x32  LD (HL-), A
         int op_INC_SP();                                            // 0x33  INC SP
         int op_INC_HLaddr();                                        // 0x34  INC (HL)
         int op_DEC_HLaddr();                                        // 0x35  DEC (HL)
