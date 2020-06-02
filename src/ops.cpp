@@ -5858,8 +5858,7 @@ int cpu::op_RETI(void)
     // 16 Cycles, 1 byte
 
     popToRegister("PC");
-
-    // TODO: Enable interrupts
+    IME = 1;
 
     return 16;
 }
@@ -6349,11 +6348,10 @@ int cpu::op_DI(void)
     // opCode 0xF3
     // DI
     //
-    // Disables interrups after
-    // the next instruction is executed
+    // Disables interrups
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    IME = 0;
 
     return 4;
 }
@@ -6523,7 +6521,7 @@ int cpu::op_EI(void)
     // the next instruction is executed
     // 4 Cycles, 1 byte
 
-    // TODO: Implement
+    IME = 2;
 
     return 4;
 }

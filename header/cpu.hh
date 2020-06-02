@@ -15,11 +15,16 @@ class cpu
         std::map<std::string,register16 *> registers;
         memory mainMemory;
         int frameCycles;
-        cartridge *currentROM;
 
+        uint8_t IME;            // IME flag can be  0 for Interrupts Disabled
+                                //                  1 for Interrupts Enabled
+                                //                  2 for Interrupts Enabled after next instruction
 
         std::map<uint8_t, int (cpu::*)()> instructionTable;
         std::map<uint8_t, int (cpu::*)()> CBinstructionTable;
+        cartridge *currentROM;
+
+
         void initializeInstructionTable();
         void initializeCBInstructionTable();
 
@@ -295,7 +300,7 @@ class cpu
         int op_SUB_n();                                             // 0xD6  SUB n
         int op_RST_10H();                                           // 0xD7  RST 10H
         int op_RET_C();                                             // 0xD8  RET C
-        int op_RETI();                                              // 0xD9  RETI               // TODO: Enable Interrupts
+        int op_RETI();                                              // 0xD9  RETI
         int op_JP_Cnn();                                            // 0xDA  JP C, nn
         // Unused Instruction 0xDB
         int op_CALL_Cnn();                                          // 0xDC  CALL C, nn
@@ -323,7 +328,7 @@ class cpu
         int op_LDH_An();                                            // 0xF0  LDH A, n
         int op_POP_AF();                                            // 0xF1  POP AF
         int op_LD_ACaddr();                                         // 0xF2  LD A, (C)
-        int op_DI();                                                // 0xF3  DI                 // TODO: Implement
+        int op_DI();                                                // 0xF3  DI
         // Unused Instruction 0xF4
         int op_PUSH_AF();                                           // 0xF5  PUSH AF
         int op_OR_n();                                              // 0xF6  OR n
@@ -331,7 +336,7 @@ class cpu
         int op_LD_HLSPn();                                          // 0xF8  LD HL, SP+n
         int op_LD_SPHL();                                           // 0xF9  LD SP, HL
         int op_LD_Ann();                                            // 0xFA  LD A, (nn)
-        int op_EI();                                                // 0xFB  EI                 // TODO: Implement
+        int op_EI();                                                // 0xFB  EI
         // Unused Instruction 0xFC
         // Unused Instruction 0xFD
         int op_CP_n();                                              // 0xFE  CP n
